@@ -1,4 +1,4 @@
-package com.example.petitionhub.conrillers;
+package com.example.petitionhub.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +10,6 @@ public class FirstController {
 
     @GetMapping
     public String index() {
-        return "index";
+        return "main_page";
     }
-
 }
