@@ -8,7 +8,7 @@
 <body>
 <div class="container mt-5">
     <div class="text-end">
-        <button type="button" class="btn btn-success btn-lg" onclick="window.location.href='/auth/sign-in'">
+        <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/auth/sign-in'">
             Вход
         </button>
     </div>
