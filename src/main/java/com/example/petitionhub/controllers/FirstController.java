@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class FirstController {
 
     @GetMapping
-    public String index() {
-        return "main_page";
+    public String main_page() {
+        return "main-page";
     }
+
+    @GetMapping("auth/sign-in")
+    public String log_in_page() { return "sign-in-page"; }
 }
