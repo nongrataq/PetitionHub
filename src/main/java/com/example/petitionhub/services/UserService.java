@@ -26,11 +26,10 @@ public class UserService implements UserDetailsService {
         if (userRepository.findUserByUsername(username).isPresent()) {
             throw new RuntimeException("Логин занят!");
         }
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(password));
-        user.setActive(true);
-        userRepository.save(user);
-        System.out.println("Пользователь сохранён: " + user);
+
+        userRepository.save(User.builder()
+                .active(true)
+                .password(passwordEncoder.encode(password))
+                .username(username).build());
     }
 }

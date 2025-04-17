@@ -21,21 +21,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable)  // CSRF отключён (для теста)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/auth/sign-up", "/petitions", "/auth/registration").permitAll()
+                        .requestMatchers(
+                                "/",
+                                "/auth/sign-up",
+                                "/auth/registration",
+                                "/petitions/create",
+                                "/petitions/all-petitions"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/auth/sign-in")
+                        .defaultSuccessUrl("/", true)
                         .permitAll()
-                        .defaultSuccessUrl("/", true).permitAll()
-                /*)
-                .logout(logout -> logout
-                        .logoutUrl("/auth/log-out")
-                        .logoutSuccessUrl("/")
-                        .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID")*/
                 );
         return http.build();
     }
