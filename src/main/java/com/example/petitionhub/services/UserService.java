@@ -1,6 +1,6 @@
 package com.example.petitionhub.services;
 
-import com.example.petitionhub.entities.User;
+import com.example.petitionhub.entities.UserEntity;
 import com.example.petitionhub.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,15 +21,15 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
     }
 
-    public void registerUser(String username, String password) {
-        System.out.println("Регистрация пользователя: " + username);
-        if (userRepository.findUserByUsername(username).isPresent()) {
-            throw new RuntimeException("Логин занят!");
+    public void save(String username, String password) {
+        if (userRepository.existsByUsername(username)) {
+            throw new IllegalArgumentException("Пользователь с таким именем уже существует");
         }
-
-        userRepository.save(User.builder()
-                .active(true)
+        userRepository
+                .save(UserEntity.builder()
+                .isActive(true)
                 .password(passwordEncoder.encode(password))
+                        .role("ROLE_USER")
                 .username(username).build());
     }
 }
