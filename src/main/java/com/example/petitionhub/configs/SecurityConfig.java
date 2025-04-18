@@ -2,6 +2,7 @@ package com.example.petitionhub.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -23,13 +24,13 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/auth/sign-up", "/petitions", "/auth/registration").permitAll()
+                        .requestMatchers("/", "/auth/sign-up", "/auth/registration","/petitions/all-petitions","/petitions/create").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/auth/sign-in")
-                        .permitAll()
-                        .defaultSuccessUrl("/", true).permitAll()
+                                .loginPage("/auth/sign-in")
+                                .permitAll()
+                                .defaultSuccessUrl("/", true).permitAll()
                 /*)
                 .logout(logout -> logout
                         .logoutUrl("/auth/log-out")
