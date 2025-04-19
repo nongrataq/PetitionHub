@@ -1,9 +1,6 @@
 package com.example.petitionhub.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,10 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Entity
 @Data
@@ -39,7 +33,7 @@ public class UserEntity implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @Column(name = "is_active", nullable = false, columnDefinition = "boolean default true")
+    @Column(name = "is_active", nullable = false)
     private boolean isActive;
 
     @Override
