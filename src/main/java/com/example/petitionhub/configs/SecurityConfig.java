@@ -26,7 +26,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/",
-                                "/auth/**"
+                                "/auth/**",
+                                "/petitions/all-petitions"
                         ).permitAll()
                         .anyRequest().hasAuthority("ROLE_USER")
                 )
