@@ -23,10 +23,10 @@ public class PetitionController {
         return "redirect:/petitions/all-petitions";
     }
 
-    @GetMapping("/all-petitions")
+    @GetMapping("/create-petition")
     public String getPetitions(Model model) {
-        model.addAttribute("petitions", petitionService.getAllPetitions());
-        return "petitions/allPetitions";
+        model.addAttribute("petition", petitionService.getAllPetitions());
+        return "/petitions/petitions";
     }
 
     @GetMapping("/{id}")

@@ -33,8 +33,4 @@ public class PetitionService {
         petitionRepository.deleteById(id);
     }
 
-
-
-
-
 }

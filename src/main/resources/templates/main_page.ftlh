@@ -14,7 +14,7 @@
     </div>
 </div>
 <div class="position-absolute top-50 start-50">
-    <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/petitions/all-petitions'">
+    <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/petitions/create-petition'">
         Создать петицию
     </button>
 
