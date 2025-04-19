@@ -2,7 +2,6 @@ package com.example.petitionhub.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -23,20 +22,27 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/auth/sign-up", "/auth/registration","/petitions/all-petitions","/petitions/create").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers(
+                                "/",
+                                "/auth/**",
+                                "/petitions/all-petitions"
+                        ).permitAll()
+                        .anyRequest().hasAuthority("ROLE_USER")
                 )
                 .formLogin(form -> form
-                                .loginPage("/auth/sign-in")
-                                .permitAll()
-                                .defaultSuccessUrl("/", true).permitAll()
-                /*)
+                        .loginPage("/auth/sign-in")
+                        .passwordParameter("password")
+                        .usernameParameter("username")
+                        .defaultSuccessUrl("/", true)
+                )
                 .logout(logout -> logout
-                        .logoutUrl("/auth/log-out")
+                        .logoutUrl("/logout")
                         .logoutSuccessUrl("/")
+                        .permitAll()
                         .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID")*/
+                        .deleteCookies("JSESSIONID")
                 );
         return http.build();
     }
