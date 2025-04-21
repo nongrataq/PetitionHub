@@ -26,15 +26,4 @@ public class PetitionController {
         model.addAttribute("petition", petitionService.getAllPetitions());
         return "/petitions/petitions";
     }
-
-    @GetMapping("/{id}")
-    public PetitionEntity getPetitionById(@PathVariable long id) {
-        return petitionService.getPetitionById(id);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deletePetitionById(@PathVariable long id) {
-        petitionService.deletePetition(id);
-    }
-
 }
