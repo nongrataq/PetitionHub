@@ -1,13 +1,11 @@
 package com.example.petitionhub.controllers;
 
-import com.example.petitionhub.entities.Petition;
+import com.example.petitionhub.entities.PetitionEntity;
 import com.example.petitionhub.services.PetitionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/petitions")
@@ -30,7 +28,7 @@ public class PetitionController {
     }
 
     @GetMapping("/{id}")
-    public Petition getPetitionById(@PathVariable long id) {
+    public PetitionEntity getPetitionById(@PathVariable long id) {
         return petitionService.getPetitionById(id);
     }
 
