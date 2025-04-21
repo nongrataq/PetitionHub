@@ -11,7 +11,7 @@
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public class Petition {
+    public class PetitionEntity {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
