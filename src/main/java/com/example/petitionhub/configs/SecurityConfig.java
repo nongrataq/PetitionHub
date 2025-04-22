@@ -27,7 +27,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/",
                                 "/auth/**",
-                                "/petitions/all-petitions"
+                                "/search"
                         ).permitAll()
                         .anyRequest().hasAuthority("ROLE_USER")
                 )
@@ -44,6 +44,7 @@ public class SecurityConfig {
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                 );
+
         return http.build();
     }
 }

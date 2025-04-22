@@ -20,12 +20,12 @@ import java.util.List;
 @Table(name = "users")
 public class UserEntity implements UserDetails {
 
-    @Column(name = "role", nullable = false)
-    private String role = "ROLE_USER";
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "role", nullable = false)
+    private String role = "ROLE_USER";
 
     @Column(unique = true, nullable = false)
     private String username;
