@@ -1,6 +1,7 @@
 package com.example.petitionhub.controllers;
 
 import com.example.petitionhub.entities.PetitionEntity;
+import com.example.petitionhub.entities.PetitionEntity.Petition;
 import com.example.petitionhub.services.PetitionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
