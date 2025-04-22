@@ -18,7 +18,6 @@ public class PetitionService {
         petition.setTitle(title);
         petition.setDescription(description);
         petitionRepository.save(petition);
-        System.out.println("Петиция сохранена: " + petition);
     }
 
     public List<PetitionEntity> getAllPetitions() {

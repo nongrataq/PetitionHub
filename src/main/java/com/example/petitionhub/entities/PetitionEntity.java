@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "petition")
 public class PetitionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,3 +23,17 @@ public class PetitionEntity {
     @Column(nullable = false, name = "description")
     private String description;
 }
+
+
+
+
+
+
+
+
+
+
+
+========
+        >>>>>>>>origin/main:src/main/java/com/example/petitionhub/entities/PetitionEntity.java
+    }
