@@ -24,16 +24,3 @@ public class PetitionEntity {
     private String description;
 }
 
-
-
-
-
-
-
-
-
-
-
-========
-        >>>>>>>>origin/main:src/main/java/com/example/petitionhub/entities/PetitionEntity.java
-    }
