@@ -1,4 +1,4 @@
-    package com.example.petitionhub.entities;
+    package com.example.petitionhub.entities.PetitionEntity;
 
     import jakarta.persistence.*;
     import lombok.AllArgsConstructor;
@@ -26,7 +26,9 @@
 
 
 
-        
+
+
+
 
 
 
