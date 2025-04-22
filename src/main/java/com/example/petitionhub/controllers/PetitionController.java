@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/petitions")
 @RequiredArgsConstructor
-
 public class PetitionController {
-
     private final PetitionService petitionService;
 
     @PostMapping("/create")
@@ -22,7 +20,7 @@ public class PetitionController {
 
     @GetMapping("/create-petition")
     public String getPetitions(Model model) {
-        model.addAttribute("petition", petitionService.getAllPetitions());
-        return "petitions/page_of_creating_petitions";
+        return "/petitions/create-petitions";
     }
+
 }

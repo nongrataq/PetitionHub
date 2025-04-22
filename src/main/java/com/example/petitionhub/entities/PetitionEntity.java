@@ -23,4 +23,3 @@ public class PetitionEntity {
     @Column(nullable = false, name = "description")
     private String description;
 }
-
