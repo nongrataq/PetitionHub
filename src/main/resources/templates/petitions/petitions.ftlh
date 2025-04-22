@@ -16,14 +16,5 @@
     </div>
     <button type="submit" class="btn btn-primary">Создать</button>
 </form>
-<#list petitions as petition>
-    <div>
-        <p><b>${petition.title}</b></p><br>
-        <p><b>Описание: ${petition.description}</b></p>
-    </div>
-<#else>
-    <h3>Петиций Нет</h3>
-</#list>
-
 </body>
 </html>

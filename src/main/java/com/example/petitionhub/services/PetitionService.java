@@ -1,5 +1,6 @@
 package com.example.petitionhub.services;
 
+import com.example.petitionhub.entities.PetitionEntity;
 import com.example.petitionhub.entities.PetitionEntity.Petition;
 import com.example.petitionhub.repositories.PetitionRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,27 +15,23 @@ public class PetitionService {
     private final PetitionRepository petitionRepository;
 
     public void createPetition(String title, String description) {
-        Petition petition = new Petition();
+        PetitionEntity petition = new PetitionEntity();
         petition.setTitle(title);
         petition.setDescription(description);
         petitionRepository.save(petition);
         System.out.println("Петиция сохранена: " + petition);
     }
 
-    public List<Petition> getAllPetitions() {
+    public List<PetitionEntity> getAllPetitions() {
         return petitionRepository.findAll();
     }
 
-    public Petition getPetitionById(Long id) {
+    public PetitionEntity getPetitionById(Long id) {
         return petitionRepository.findById(id).orElse(null);
     }
 
     public void deletePetition(Long id) {
         petitionRepository.deleteById(id);
     }
-
-
-
-
 
 }

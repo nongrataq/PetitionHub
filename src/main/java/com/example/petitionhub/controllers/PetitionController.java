@@ -1,5 +1,6 @@
 package com.example.petitionhub.controllers;
 
+import com.example.petitionhub.entities.PetitionEntity;
 import com.example.petitionhub.entities.PetitionEntity.Petition;
 import com.example.petitionhub.services.PetitionService;
 import lombok.RequiredArgsConstructor;
@@ -21,14 +22,14 @@ public class PetitionController {
         return "redirect:/petitions/all-petitions";
     }
 
-    @GetMapping("/all-petitions")
+    @GetMapping("/create-petition")
     public String getPetitions(Model model) {
-        model.addAttribute("petitions", petitionService.getAllPetitions());
-        return "petitions/allPetitions";
+        model.addAttribute("petition", petitionService.getAllPetitions());
+        return "/petitions/petitions";
     }
 
     @GetMapping("/{id}")
-    public Petition getPetitionById(@PathVariable long id) {
+    public PetitionEntity getPetitionById(@PathVariable long id) {
         return petitionService.getPetitionById(id);
     }
 
