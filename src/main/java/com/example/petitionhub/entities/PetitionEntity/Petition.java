@@ -20,6 +20,14 @@
         @Column(nullable = false, name = "description")
         private String description;
 
+        @Enumerated
+        @Column(nullable = false)
+        private PetitionStatus status;
+
+
+
+        
+
 
 
 
