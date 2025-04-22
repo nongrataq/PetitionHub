@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoderBean;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -28,8 +28,14 @@ public class UserService implements UserDetailsService {
         userRepository
                 .save(UserEntity.builder()
                 .isActive(true)
-                .password(passwordEncoder.encode(password))
+                .password(passwordEncoderBean.encode(password))
                         .role("ROLE_USER")
                 .username(username).build());
     }
+
+    public UserEntity findUserEntityByUsername(String username) {
+        return userRepository.findUserEntityByUsername(username);
+    }
+
+
 }
