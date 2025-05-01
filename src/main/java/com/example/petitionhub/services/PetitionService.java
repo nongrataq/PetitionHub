@@ -5,16 +5,24 @@ import com.example.petitionhub.repositories.PetitionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+
 @RequiredArgsConstructor
 @Service
 public class PetitionService {
     private final PetitionRepository petitionRepository;
 
-    public void createPetition(String title, String description) {
-        PetitionEntity petition = new PetitionEntity();
-        petition.setTitle(title);
-        petition.setDescription(description);
-        petitionRepository.save(petition);
-        System.out.println("Петиция сохранена: " + petition);
+    public PetitionEntity createPetition(PetitionEntity petition) {
+        return petitionRepository.save(
+                PetitionEntity.builder()
+                        .title(petition.getTitle())
+                        .description(petition.getDescription())
+                        .build()
+        );
+    }
+
+    public PetitionEntity findById(long id) {
+        return petitionRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Не существующая петиция"));
     }
 }

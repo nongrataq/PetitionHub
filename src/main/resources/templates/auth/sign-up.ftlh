@@ -16,6 +16,11 @@
             <input type="password" name="password" value="password" class="form-control" placeholder="input password">
         </label>
         <input type="submit" value="Создать аккаунт">
+        <#if errors??>
+            <div class="alert alert-danger">
+                ${errors}
+            </div>
+        </#if>
         <#if message??>
             <div class="alert alert-danger">
                 ${message}
