@@ -86,7 +86,7 @@
     <!-- Кнопка создания петиции -->
     <div class="text-center my-5 py-4">
         <#if user??>
-            <a href="/petitions/create-petition" class="btn btn-lg btn-secondary px-5">
+            <a href="/petitions" class="btn btn-lg btn-secondary px-5">
                 Создать петицию
             </a>
         <#else>

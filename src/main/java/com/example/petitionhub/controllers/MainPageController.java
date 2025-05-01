@@ -17,19 +17,19 @@ public class MainPageController {
     @GetMapping
     public String main_page(Model model, Principal principal) {
         if (principal != null) {
-            UserEntity user = userService.findUserEntityByUsername(principal.getName());
+            UserEntity user = (UserEntity) userService.loadUserByUsername(principal.getName());
             model.addAttribute("user", user);
         }
-        return "main_page";
+        return "/main_page";
     }
 
     @GetMapping("profile")
     public String profile() {
-        return "profile";
+        return "/profile";
     }
 
     @GetMapping("search")
     public String search(Model model) {
-        return "search";
+        return "/search";
     }
 }

@@ -17,25 +17,21 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findUserByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
+        return userRepository.findUserEntityByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException(username));
     }
 
-    public void save(String username, String password) {
-        if (userRepository.existsByUsername(username)) {
+    public void saveUserToDataBase(UserEntity userEntity) {
+        if (userRepository.existsUserEntityByUsername(userEntity.getUsername())) {
             throw new IllegalArgumentException("Пользователь с таким именем уже существует");
         }
+
         userRepository
                 .save(UserEntity.builder()
-                .isActive(true)
-                .password(passwordEncoderBean.encode(password))
+                        .active(true)
+                        .password(passwordEncoderBean.encode(userEntity.getPassword()))
                         .role("ROLE_USER")
-                .username(username).build());
+                        .username(userEntity.getUsername()).build());
     }
-
-    public UserEntity findUserEntityByUsername(String username) {
-        return userRepository.findUserEntityByUsername(username);
-    }
-
 
 }
