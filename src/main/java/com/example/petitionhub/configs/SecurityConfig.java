@@ -33,9 +33,14 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/auth/sign-in")
+                        .loginProcessingUrl("/auth/login")
                         .passwordParameter("password")
                         .usernameParameter("username")
                         .defaultSuccessUrl("/", true)
+                        .failureHandler((request, response, exception) -> {
+                            request.getSession().setAttribute("error", "Неверный логин или пароль");
+                            response.sendRedirect("/auth/sign-in?error");
+                        })
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")

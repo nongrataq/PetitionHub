@@ -17,9 +17,13 @@ public class PetitionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, name = "title")
+    @Column(nullable = false, name = "title", length = 255)
     private String title;
 
-    @Column(nullable = false, name = "description")
+    @Column(nullable = false, name = "description", columnDefinition = "TEXT")
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "author_id")
+    private UserEntity author;
 }

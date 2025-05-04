@@ -31,7 +31,12 @@ public class UserService implements UserDetailsService {
                         .active(true)
                         .password(passwordEncoderBean.encode(userEntity.getPassword()))
                         .role("ROLE_USER")
-                        .username(userEntity.getUsername()).build());
+                        .username(userEntity.getUsername())
+                        .petitions(userEntity.getPetitions())
+                        .build());
     }
 
+    public boolean userExists(String username) {
+        return userRepository.existsUserEntityByUsername(username);
+    }
 }

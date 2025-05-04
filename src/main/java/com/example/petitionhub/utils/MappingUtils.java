@@ -6,6 +6,7 @@ import com.example.petitionhub.entities.PetitionEntity;
 import com.example.petitionhub.entities.UserEntity;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class MappingUtils {
     public UserEntity mapUserAuthDtoToUserEntity(UserAuthDto dto) {
