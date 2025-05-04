@@ -1,32 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<h1>REGISTRATION</h1>
 <#import "../patterns/layout.ftlh" as layout>
-<@layout.main title="Регистрация">
-    <form action="/auth/registration" method="post">
-        <label>
-            <input type="text" name="username" value="username" class="form-control" placeholder="input username">
-        </label>
-        <label>
-            <input type="password" name="password" value="password" class="form-control" placeholder="input password">
-        </label>
-        <input type="submit" value="Создать аккаунт">
-        <#if errors??>
-            <div class="alert alert-danger">
-                ${errors}
+<@layout.main title="Sign Up">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-sm">
+                    <div class="card-body p-4">
+                        <h2 class="text-center mb-4">Регистрация</h2>
+                        <form action="/auth/registration" method="post">
+                            <#if error??>
+                                <div class="alert alert-danger">
+                                    <p class="error">${error}</p>
+                                </div>
+                            </#if>
+                            <div class="form-floating">
+                                <input type="text" class="mb-3 form-control" id="username" name="username"
+                                       placeholder="Логин"
+                                       required>
+                                <label for="username">Логин</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="password" class="mb-3 form-control" id="password" name="password"
+                                       placeholder="Пароль"
+                                       required>
+                                <label for="password">Пароль</label>
+                            </div>
+                            <div class="d-grid gap-2 mb-3">
+                                <button type="submit" class="btn btn-dark btn-lg">Создать</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </#if>
-        <#if message??>
-            <div class="alert alert-danger">
-                ${message}
-            </div>
-        </#if>
-    </form>
+        </div>
+    </div>
 </@layout.main>
-</body>
-</html>
