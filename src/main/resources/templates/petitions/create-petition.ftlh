@@ -1,8 +1,12 @@
 <#import "../patterns/layout.ftlh" as layout>
 <@layout.main title="Petition Creating">
-    <form action="/create-petition" method="post" class="card p-4 mb-4">
-        <#if petitionValidationError??>
-            <div class="alert alert-danger">${petitionValidationError}</div>
+    <form action="/petition" method="post" class="card p-4 mb-4">
+        <#if errors??>
+            <#list errors as error>
+                <div class="alert alert-danger">
+                    ${error.defaultMessage}
+                </div>
+            </#list>
         </#if>
         <div class="mb-3">
             <label for="title" class="form-label">Название</label>

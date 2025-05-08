@@ -28,6 +28,11 @@
     <div class="container">
         <div class="auth-container">
             <h2 class="text-center mb-4">Вход в PetitionsHub</h2>
+            <#if message??>
+                <div class="alert alert-success">
+                    <p>${message}</p>
+                </div>
+            </#if>
             <form action="/auth/login" method="post">
                 <div class="auth-container">
                     <#if RequestParameters.error??>

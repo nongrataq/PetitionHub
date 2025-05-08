@@ -52,7 +52,7 @@
                         <button class="btn btn-outline-light" type="submit">Найти</button>
                     </form>
                 </div>
-                <#if user??>
+                <#if isAuthenticated>
                     <form action="/logout" method="post" class="me-2">
                         <button type="submit" class="btn btn-outline-light">Выйти</button>
                     </form>
@@ -60,7 +60,6 @@
                         <i class="bi bi-person-circle"></i> Профиль
                     </a>
                 <#else>
-                    <!-- Если пользователь не вошел -->
                     <form action="/auth/sign-in" method="get">
                         <button type="submit" class="btn btn-outline-light">Войти</button>
                     </form>

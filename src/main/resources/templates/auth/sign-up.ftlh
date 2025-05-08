@@ -6,11 +6,16 @@
                 <div class="card shadow-sm">
                     <div class="card-body p-4">
                         <h2 class="text-center mb-4">Регистрация</h2>
-                        <form action="/auth/registration" method="post">
-                            <#if error??>
-                                <div class="alert alert-danger">
-                                    <p class="error">${error}</p>
-                                </div>
+                        <form action="/auth/sign-up" method="post">
+                            <#if errors??>
+                                <#list errors as error>
+                                    <div class="alert alert-danger">Ошибка: ${error.defaultMessage}</div>
+                                    <br>
+                                </#list>
+                            </#if>
+                            <#if userAlreadyExist??>
+                                <div class="alert alert-danger">Ошибка: ${userAlreadyExist}</div>
+                                <br>
                             </#if>
                             <div class="form-floating">
                                 <input type="text" class="mb-3 form-control" id="username" name="username"

@@ -1,10 +1,10 @@
 package com.example.petitionhub.entities;
 
+import com.example.petitionhub.enums.Role;
+import com.example.petitionhub.enums.Status;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,17 +15,21 @@ import java.util.List;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(exclude = "petitions")
 @Table(name = "users")
-public class UserEntity implements UserDetails {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long ID;
 
-    @Column(name = "role", nullable = false)
-    private String role = "ROLE_USER";
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Column(unique = true, nullable = false)
     private String username;
@@ -33,8 +37,6 @@ public class UserEntity implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @Column(name = "is_active", nullable = false)
-    private boolean active;
 
     @OneToMany(
             fetch = FetchType.EAGER,
@@ -44,14 +46,4 @@ public class UserEntity implements UserDetails {
             targetEntity = PetitionEntity.class
     )
     private List<PetitionEntity> petitions;
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role));
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return active;
-    }
 }
