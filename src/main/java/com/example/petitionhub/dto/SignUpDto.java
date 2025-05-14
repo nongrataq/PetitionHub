@@ -1,7 +1,5 @@
 package com.example.petitionhub.dto;
 
-import com.example.petitionhub.entities.PetitionEntity;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -9,14 +7,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserAuthDto {
-
+public class SignUpDto {
     @NotBlank(message = "Введите логин.")
     @Pattern(
             regexp = "^(?=.*[a-zA-Z])[a-zA-Z0-9_\\-.!+#$%*()^&]{5,32}$",

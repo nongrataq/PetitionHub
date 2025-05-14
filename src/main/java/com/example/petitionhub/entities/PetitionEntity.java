@@ -1,10 +1,7 @@
 package com.example.petitionhub.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
@@ -15,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class PetitionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long ID;
 
     @Column(nullable = false, name = "title", length = 255)
     private String title;

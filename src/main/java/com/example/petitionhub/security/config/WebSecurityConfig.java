@@ -1,4 +1,4 @@
-package com.example.petitionhub.configs;
+package com.example.petitionhub.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class WebSecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -29,7 +29,7 @@ public class SecurityConfig {
                                 "/auth/**",
                                 "/search"
                         ).permitAll()
-                        .anyRequest().hasAuthority("ROLE_USER")
+                        .anyRequest().hasRole("COMMON_USER")
                 )
                 .formLogin(form -> form
                         .loginPage("/auth/sign-in")

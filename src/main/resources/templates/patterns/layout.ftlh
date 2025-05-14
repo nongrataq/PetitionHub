@@ -13,33 +13,95 @@
               crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <style>
+            /* ===========================
+                        Основа
+            =========================== */
+            :root {
+                --bg-color: #F9F9F9;
+                --card-bg: #FFFFFF;
+                --accent-start: #9A8C98;
+                --accent-end: #C9ADA7;
+                --shadow: rgba(0, 0, 0, 0.1);
+                --nav-height: 70px;
+                --footer-height: 80px;
+            }
+
             html, body {
                 height: 100%;
             }
 
+* { margin: 0; padding: 0; box-sizing: border-box; }
             body {
-                display: flex;
-                flex-direction: column;
-                padding-top: 56px; /* Для фиксированного navbar */
+                position: relative;
+                min-height: 100vh;
+                font-family: system-ui, sans-serif;
+                color: var(--text-color);
+                background-color: var(--bg-color);
+                padding-top: var(--nav-height);
+                padding-bottom: var(--footer-height);
             }
 
+/* ===========================
+       Canvas под фон
+    =========================== */
+            #network-bg {
+                position: fixed;
+                top: 0; left: 0;
+                width: 100%; height: 100%;
+                z-index: -1;
+            }
+
+/* ===========================
+       Навигационная панель
+    =========================== */
+            nav {
+                position: fixed;
+                top: 0; left: 0;
+                width: 100%; height: var(--nav-height);
+                background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+                display: flex;
+                align-items: center;
+                padding: 0 1rem;
+                z-index: 10;
+                box-shadow: 0 2px 6px var(--shadow);
+            }
+            nav .navbar-brand { color: #fff; font-weight: 600; text-decoration: none; }
+
+/* ===========================
+       Контент
+    =========================== */
             main {
                 flex: 1 0 auto; /* Растягивает основной контент */
                 padding-bottom: 20px; /* Отступ от футера */
+                margin: 1rem auto;
+                max-width: 1200px;
             }
 
+/* ===========================
+       Футер
+    =========================== */
             footer {
-                flex-shrink: 0; /* Фиксирует футер */
-                background-color: #343a40;
-                color: white;
+                position: fixed;
+                bottom: 0; left: 0;
+                width: 100%; height: var(--footer-height);
+                background: linear-gradient(90deg, var(--accent-end), var(--accent-start));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                font-size: 0.9rem;
+                z-index: 10;
+                box-shadow: 0 -2px 6px var(--shadow);
             }
 
             .btn-outline-light {
                 transform: translateX(20px);
             }
         </style>
+
     </head>
     <body>
+    <canvas id="network-bg"></canvas>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
         <div class="container-fluid">
             <!-- Лого -->
@@ -52,7 +114,7 @@
                         <button class="btn btn-outline-light" type="submit">Найти</button>
                     </form>
                 </div>
-                <#if user??>
+                <#if isAuthenticated>
                     <form action="/logout" method="post" class="me-2">
                         <button type="submit" class="btn btn-outline-light">Выйти</button>
                     </form>
@@ -60,7 +122,6 @@
                         <i class="bi bi-person-circle"></i> Профиль
                     </a>
                 <#else>
-                    <!-- Если пользователь не вошел -->
                     <form action="/auth/sign-in" method="get">
                         <button type="submit" class="btn btn-outline-light">Войти</button>
                     </form>
@@ -93,6 +154,78 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        /* ===========================
+                Сеть графов
+        =========================== */
+        const canvas = document.getElementById('network-bg');
+        const ctx = canvas.getContext('2d');
+        let w, h, nodes = [], lines = [];
+
+        function init() {
+          resize();
+          createNodes(80);
+          connectNodes(120);
+          animate();
+        }
+        function resize() {
+          w = canvas.width = window.innerWidth;
+          h = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+
+        function createNodes(count) {
+          nodes = [];
+          for (let i = 0; i < count; i++) {
+            nodes.push({
+              x: Math.random() * w,
+              y: Math.random() * h,
+              vx: (Math.random()-0.5)*0.3,
+              vy: (Math.random()-0.5)*0.3
+            });
+          }
+        }
+
+        function connectNodes(maxDist) {
+          lines = [];
+          for (let i = 0; i < nodes.length; i++) {
+            for (let j = i+1; j < nodes.length; j++) {
+              const dx = nodes[i].x - nodes[j].x;
+              const dy = nodes[i].y - nodes[j].y;
+              if (dx*dx + dy*dy < maxDist*maxDist) {
+                lines.push([i,j]);
+              }
+            }
+          }
+        }
+
+        function animate() {
+          ctx.clearRect(0,0,w,h);
+          nodes.forEach(n => {
+            n.x += n.vx; n.y += n.vy;
+            if (n.x<0||n.x>w) n.vx *= -1;
+            if (n.y<0||n.y>h) n.vy *= -1;
+          });
+          ctx.strokeStyle = 'rgba(176, 190, 197, 0.7)';
+          lines.forEach(([i,j]) => {
+            const a = nodes[i], b = nodes[j];
+            ctx.beginPath();
+            ctx.moveTo(a.x,a.y);
+            ctx.lineTo(b.x,b.y);
+            ctx.stroke();
+          });
+          ctx.fillStyle = 'rgba(84, 110, 122, 0.9)';
+          nodes.forEach(n => {
+            ctx.beginPath();
+            ctx.arc(n.x,n.y,2,0,2*Math.PI);
+            ctx.fill();
+          });
+          requestAnimationFrame(animate);
+        }
+
+        init();
+    </script>
     </body>
     </html>
 </#macro>
