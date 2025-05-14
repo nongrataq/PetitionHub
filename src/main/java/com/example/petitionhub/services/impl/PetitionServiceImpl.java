@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -24,22 +25,24 @@ public class PetitionServiceImpl implements PetitionService {
 
     @Override
     @Transactional
-    public PetitionDto createPetition(PetitionDto petitionDto) { //descr, title
+    public PetitionDto createPetition(PetitionDto petitionDto) {
 
-        String username = SecurityContextHolder.getContext().getAuthentication().getName(); //lapay2
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
         UserEntity currentUser = userRepository.findUserEntityByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not registered")); // password,role,tp td
+                .orElseThrow(() -> new RuntimeException("User not registered"));
 
 
-        PetitionEntity newPetitionEntity = petitionEntityMapper.toPetitionEntity(petitionDto);
-        newPetitionEntity.setAuthor(currentUser);
+        PetitionEntity petition = petitionEntityMapper.toPetitionEntity(petitionDto);
 
-        currentUser.getPetitions().add(newPetitionEntity);
+        petition.setAuthor(currentUser);
+        petition.setDateOfCreation(LocalDateTime.now());
+
+        currentUser.getPetitions().add(petition);
 
 
 
-        PetitionEntity savedPetition = petitionRepository.save(newPetitionEntity);
+        PetitionEntity savedPetition = petitionRepository.save(petition);
 
         return petitionEntityMapper.toPetitionDto(savedPetition);
     }
