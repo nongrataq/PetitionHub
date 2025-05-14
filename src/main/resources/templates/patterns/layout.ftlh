@@ -17,14 +17,39 @@
                         Основа
             =========================== */
             :root {
-                --bg-color: #F9F9F9;
-                --card-bg: #FFFFFF;
-                --accent-start: #9A8C98;
-                --accent-end: #C9ADA7;
-                --shadow: rgba(0, 0, 0, 0.1);
-                --nav-height: 70px;
-                --footer-height: 80px;
-            }
+  --nav-height: 70px;
+  --footer-height: 80px;
+  --shadow: rgba(0, 0, 0, 0.4);
+  --text-color: #1a1a1a;
+}
+
+/* Светлая тема */
+:root.light-theme {
+  --bg-color: #F9F9F9;
+  --card-bg: #FFFFFF;
+  --accent-start: #9A8C98;
+  --accent-end: #C9ADA7;
+  --text-color: #1a1a1a;
+}
+
+/* Тёмная тема */
+:root.dark-theme {
+  --bg-color: #1C1B1E;
+  --card-bg: #2A272D;
+  --accent-start: #6E636B;
+  --accent-end: #927C77;
+  --text-color: #F0F0F0;
+}
+
+         /* ===========================
+               Перебивка Bootstrap
+            =========================== */
+        .text-muted {
+          color: var(--text-color) !important;
+        }
+        .card-title a {
+          color: var(--text-color) !important;
+        }
 
             html, body {
                 height: 100%;
@@ -32,13 +57,13 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
             body {
-                position: relative;
-                min-height: 100vh;
-                font-family: system-ui, sans-serif;
-                color: var(--text-color);
-                background-color: var(--bg-color);
-                padding-top: var(--nav-height);
-                padding-bottom: var(--footer-height);
+                display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: system-ui, sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    padding-top: var(--nav-height);
             }
 
 /* ===========================
@@ -71,32 +96,63 @@
        Контент
     =========================== */
             main {
-                flex: 1 0 auto; /* Растягивает основной контент */
-                padding-bottom: 20px; /* Отступ от футера */
-                margin: 1rem auto;
-                max-width: 1200px;
+                flex: 1;
+    margin: 1rem auto;
+    max-width: 1200px;
             }
 
 /* ===========================
        Футер
     =========================== */
             footer {
-                position: fixed;
-                bottom: 0; left: 0;
-                width: 100%; height: var(--footer-height);
-                background: linear-gradient(90deg, var(--accent-end), var(--accent-start));
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #fff;
-                font-size: 0.9rem;
-                z-index: 10;
-                box-shadow: 0 -2px 6px var(--shadow);
+                height: var(--footer-height);
+                bottom: auto;
+            background: linear-gradient(90deg, var(--accent-end), var(--accent-start));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 0.9rem;
+            z-index: 10;
+            box-shadow: 0 -2px 6px var(--shadow);
             }
 
+            .footer-contact {
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: color 0.8s ease;
+}
+
+.footer-contact:hover {
+    color: #C0C0C0;
+    text-decoration: underline;
+}
+
+.text-info {
+    color: #FFFFFF !important;
+    text-decoration: none;
+    transition: color 0.8s ease;
+}
             .btn-outline-light {
                 transform: translateX(20px);
             }
+
+            body, nav, footer {
+    transition: background-color 0.8s ease, color 0.8s ease;
+
+    .form-control {
+        background-color: var(--card-bg);
+        color: var(--text-color);
+        box-shadow: var(--shadow);
+        border-radius: 8px;
+    }
+
+    .search input::placeholder {
+        color: var(--text-color);
+        opacity: 0.7;
+        transition: color 0.8s ease;
+    }
+}
         </style>
 
     </head>
@@ -104,6 +160,7 @@
     <canvas id="network-bg"></canvas>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
         <div class="container-fluid">
+
             <!-- Лого -->
             <div class="d-flex align-items-center">
                 <div class="search">
@@ -127,10 +184,14 @@
                     </form>
                 </#if>
             </div>
-
-            <a class="navbar-brand" href="/">
-                <i class="bi bi-megaphone fs-4"></i> PetitionHub
-            </a>
+        <div class="d-flex align-items-center">
+            <button id="themeToggle" class="btn btn-outline-light me-5">
+                <i class="bi" id="themeIcon"></i>
+            </button>
+                <a class="navbar-brand" href="/">
+                    <i class="bi bi-megaphone fs-4"></i> PetitionHub
+                </a>
+        </div>
         </div>
     </nav>
 
@@ -147,7 +208,7 @@
                     <p class="text-info">Платформа для создания и поддержки петиций</p>
                 </div>
                 <div class="col-md-6 text-end">
-                    <a href="https://github.com/ssadam16" class="mb-0">Контакты: saidFrontendkin@gmail.com</a>
+                    <a href="https://github.com/ssadam16" class="footer-contact mb-0">Контакты: saidFrontendkin@gmail.com</a>
                     <p class="mb-0">© 2025 Petition Platform</p>
                 </div>
             </div>
@@ -226,6 +287,38 @@
 
         init();
     </script>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const root = document.documentElement;
+
+        function setTheme(theme) {
+          root.classList.remove('light-theme', 'dark-theme');
+          root.classList.add(theme + '-theme');
+          localStorage.setItem('theme', theme);
+          updateIcon(theme);
+        }
+
+        function updateIcon(theme) {
+          if (theme === 'dark') {
+            themeIcon.className = 'bi bi-sun-fill'; // ☀️
+          } else {
+            themeIcon.className = 'bi bi-moon-stars-fill'; // 🌙
+          }
+        }
+
+        // Применяем сохранённую тему
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+          const newTheme = root.classList.contains('light-theme') ? 'dark' : 'light';
+          setTheme(newTheme);
+        });
+    </script>
+
+
     </body>
     </html>
 </#macro>

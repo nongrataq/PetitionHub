@@ -9,9 +9,28 @@
             color: #fff;
             border: none;
         }
+
+    .card {
+        background-color: var(--card-bg);
+        color: var(--text-color);
+        border: none;
+        box-shadow: var(--shadow);
+        border-radius: 8px;
+    }
+
+    .form-floating label {
+        color: var(--text-color);
+        transition: color 0.8s ease;
+    }
+
+    .form-control:focus {
+        background-color: var(--card-bg) !important;
+        color: var(--text-color) !important;
+    }
 </style>
 
     <div class="container">
+
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
                 <div class="card shadow-sm">

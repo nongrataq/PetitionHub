@@ -1,5 +1,16 @@
 <#import "patterns/layout.ftlh" as layout>
 <@layout.main title="Profile">
+
+<style>
+    .card {
+        background-color: var(--card-bg);
+        color: var(--text-color);
+        border: none;
+        box-shadow: var(--shadow);
+        border-radius: 8px;
+    }
+</style>
+
     <h2 class="text-primary h3">Ваши петиции: </h2><br>
 
 <#-- Сообщение об успешном создании петиции -->

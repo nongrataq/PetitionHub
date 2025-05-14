@@ -6,12 +6,8 @@
             margin: 50px auto;
             padding: 25px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            background: white;
-        }
-
-        body {
-            background-color: #f8f9fa;
+            box-shadow: var(--shadow);
+            background: var(--card-bg);
         }
 
 /* ===========================
@@ -34,6 +30,15 @@
             font-size: 0.9rem;
         }
 
+        .form-floating label {
+            color: var(--text-color);
+            transition: color 0.8s ease;
+        }
+
+        .form-control:focus {
+            background-color: var(--card-bg) !important;
+            color: var(--text-color) !important;
+        }
     </style>
     <div class="container">
         <div class="auth-container">

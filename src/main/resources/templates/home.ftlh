@@ -2,16 +2,6 @@
 <@layout.main title="Petition Platform">
     <style>
         /* ===========================
-               Перебивка Bootstrap
-            =========================== */
-        /* .text-muted {
-          color: var(--text-color) !important;
-        }
-        .card-title a {
-          color: var(--text-color) !important;
-        } */
-
-        /* ===========================
            Карточки с градиент‑бордером
         =========================== */
         .card {
@@ -61,13 +51,30 @@
             border-radius: 8px;
             font-weight: 500;
             position: relative;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            font-size: 1.25rem;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 4px 12px var(--shadow);
-        }
+.btn-primary:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
+}
+
+.btn-primary:hover span {
+  display: inline-block;
+  animation: wiggle 0.4s ease-in-out;
+}
+
+@keyframes wiggle {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-2px); }
+  50%  { transform: translateX(2px); }
+  75%  { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
+}
 
         /* ===========================
            Ссылки
@@ -86,11 +93,6 @@
         .card-title a:hover {
             background-size: 100% 2px;
         }
-
-        /* ===========================
-           Футер
-        =========================== */
-
     </style>
     <!-- Навигация -->
     <nav>
@@ -100,7 +102,7 @@
     <!-- Основной контент -->
     <main class="container">
         <div class="text-center my-5 py-4">
-            <a href="/create-petition" class="btn-primary btn-lg">Создать петицию</a>
+            <a href="/create-petition" class="btn-primary btn-lg"><span>Создать петицию</span></a>
         </div>
 
         <h3 class="mb-4">Недавние петиции</h3>
@@ -115,8 +117,12 @@
                         </h5>
                         <p class="card-text text-muted">Нужно числануть Богдана, т.к. он...</p>
                         <div class="d-flex justify-content-between text-muted small">
-                            <span>786 подписей</span>
-                            <span>19.03.2025 дата</span>
+                            <span>
+                                <i class="bi bi-check-circle me-1 text-success"></i>786 подписей
+                            </span>
+                            <span>
+                                <i class="bi bi-calendar-event me-1 text-primary"></i>19.03.2025
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -131,8 +137,12 @@
                         </h5>
                         <p class="card-text text-muted">Легенда java, поэтому надо скорее...</p>
                         <div class="d-flex justify-content-between text-muted small">
-                            <span>7,890 подписей</span>
-                            <span>01.01.2024 дата</span>
+                            <span>
+                                <i class="bi bi-check-circle me-1 text-success"></i>7,890 подписей
+                            </span>
+                            <span>
+                                <i class="bi bi-calendar-event me-1 text-primary"></i>01.01.2024
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -145,10 +155,14 @@
                         <h5 class="card-title">
                             <a href="/petitions/3">Отобрать общагу у Игоря</a>
                         </h5>
-                        <p class="card-text text-muted">Нужно скорее отобрать общагу у Игоря, пока он в Тольятти...</p>
+                        <p class="card-text text-muted">Нужно скорее отобрать общагу у Игоря, пока...</p>
                         <div class="d-flex justify-content-between text-muted small">
-                            <span>91 подписей</span>
-                            <span>30.02.2025 дата</span>
+                            <span>
+                                <i class="bi bi-check-circle me-1 text-success"></i>91 подписей
+                            </span>
+                            <span>
+                                <i class="bi bi-calendar-event me-1 text-primary"></i>30.02.2025
+                            </span>
                         </div>
                     </div>
                 </div>
