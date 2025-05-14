@@ -1,10 +1,7 @@
 package com.example.petitionhub.controllers;
 
 import com.example.petitionhub.dto.PetitionDto;
-import com.example.petitionhub.entities.PetitionEntity;
-import com.example.petitionhub.entities.UserEntity;
 import com.example.petitionhub.services.PetitionService;
-import com.example.petitionhub.services.SignUpService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
