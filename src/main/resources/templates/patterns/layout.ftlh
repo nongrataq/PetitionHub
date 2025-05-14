@@ -147,8 +147,8 @@
                     <p class="text-info">Платформа для создания и поддержки петиций</p>
                 </div>
                 <div class="col-md-6 text-end">
-                    <p class="mb-0">Контакты: saidFrontendkin@gmail.com</p>
-                    <p class="mb-0">© 2025 Все права защищены</p>
+                    <a href="https://github.com/ssadam16" class="mb-0">Контакты: saidFrontendkin@gmail.com</a>
+                    <p class="mb-0">© 2025 Petition Platform</p>
                 </div>
             </div>
         </div>
