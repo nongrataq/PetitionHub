@@ -13,9 +13,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
 @Controller
-@RequestMapping("/petition")
+@RequestMapping("/create-petition")
 @RequiredArgsConstructor
-public class PetitionController {
+public class PetitionCreationController {
     private final PetitionService petitionService;
 
     @PostMapping

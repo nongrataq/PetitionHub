@@ -2,19 +2,19 @@ package com.example.petitionhub.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
+
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "petitions")
-public class PetitionEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ID;
+public class PetitionEntity extends BaseEntity {
 
-    @Column(nullable = false, name = "title", length = 255)
+    @Column(nullable = false, name = "title")
     private String title;
 
     @Column(nullable = false, name = "description", columnDefinition = "TEXT")

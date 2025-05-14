@@ -21,9 +21,8 @@
                     <p class="card-text">Описание: ${p.description}</p>
                 </div>
                 <div class="card-footer text-muted mb-3">
-                    <#-- Дата будет работать после добавления поля createdAt в PetitionEntity -->
-                    <#if p.createdAt??>
-                        Дата создания: ${p.createdAt?datetime}
+                    <#if p.dateOfCreation??>
+                        Дата создания: ${p.dateOfCreation}
                     <#else>
                         Дата не указана
                     </#if>

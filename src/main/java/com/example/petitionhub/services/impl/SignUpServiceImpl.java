@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -35,6 +36,7 @@ public class SignUpServiceImpl implements SignUpService {
                 .password(passwordEncoderBean.encode(signUpDto.getPassword()))
                 .role(Role.COMMON_USER)
                 .status(Status.ACTIVE)
+                .dateOfCreation(LocalDateTime.now())
                 .petitions(new LinkedList<>())
                 .build();
 

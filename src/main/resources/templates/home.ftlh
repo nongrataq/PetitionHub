@@ -30,7 +30,7 @@
     </style>
     <main class="container">
         <div class="text-center my-5 py-4">
-            <form action="/petition" method="get">
+            <form action="/create-petition" method="get">
                 <button type="submit" class="btn btn-lg btn-secondary px-5">Создать петицию</button>
             </form>
         </div>
