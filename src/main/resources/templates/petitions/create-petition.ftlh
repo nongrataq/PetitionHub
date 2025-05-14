@@ -1,6 +1,6 @@
 <#import "../patterns/layout.ftlh" as layout>
 <@layout.main title="Petition Creating">
-    <form action="/petition" method="post" class="card p-4 mb-4">
+    <form action="/create-petition" method="post" class="card p-4 mb-4">
         <#if errors??>
             <#list errors as error>
                 <div class="alert alert-danger">

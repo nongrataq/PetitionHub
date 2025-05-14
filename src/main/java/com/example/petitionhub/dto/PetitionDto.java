@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,5 +20,7 @@ public class PetitionDto {
 
     @Size(min=5, max = 255, message = "Заголовок от 5 до 255 символов.")
     private String title;
+
+    private LocalDateTime dateOfCreation;
 
 }

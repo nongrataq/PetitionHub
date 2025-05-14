@@ -3,15 +3,12 @@ package com.example.petitionhub.security.details;
 import com.example.petitionhub.entities.UserEntity;
 import com.example.petitionhub.enums.Status;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
-
 
 @Data
 public class UserEntityDetails implements UserDetails {

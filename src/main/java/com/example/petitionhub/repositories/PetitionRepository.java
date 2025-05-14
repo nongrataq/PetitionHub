@@ -6,8 +6,9 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.UUID;
 
-public interface PetitionRepository extends JpaRepository<PetitionEntity, Long> {
+public interface PetitionRepository extends JpaRepository<PetitionEntity, UUID> {
     @EntityGraph(attributePaths = {"author"})
     List<PetitionEntity> findAllByAuthor(UserEntity author);
 }
