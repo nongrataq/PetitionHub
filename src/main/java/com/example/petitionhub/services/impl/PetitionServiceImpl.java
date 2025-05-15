@@ -9,12 +9,15 @@ import com.example.petitionhub.repositories.UserRepository;
 import com.example.petitionhub.services.PetitionService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class PetitionServiceImpl implements PetitionService {
@@ -37,10 +40,7 @@ public class PetitionServiceImpl implements PetitionService {
 
         petition.setAuthor(currentUser);
         petition.setDateOfCreation(LocalDateTime.now());
-
         currentUser.getPetitions().add(petition);
-
-
 
         PetitionEntity savedPetition = petitionRepository.save(petition);
 
@@ -48,7 +48,21 @@ public class PetitionServiceImpl implements PetitionService {
     }
 
     @Override
-    public List<PetitionEntity> findAllByAuthor(UserEntity author) {
-        return petitionRepository.findAllByAuthor(author);
+    public List<PetitionDto> findAllByAuthor(UserEntity author) {
+
+        return petitionEntityMapper.toPetitionDtos(petitionRepository.findAllByAuthor(author));
+    }
+
+    @Override
+    public PetitionDto findPetitionById(UUID id) {
+        PetitionEntity petitionEntity = petitionRepository.findById(id)
+                .orElseThrow(() -> new NullPointerException("Несуществующая петиция"));
+
+        return petitionEntityMapper.toPetitionDto(petitionEntity);
+    }
+
+    @Override
+    public List<PetitionEntity> findAll() {
+        return petitionRepository.findAll();
     }
 }

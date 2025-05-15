@@ -22,5 +22,6 @@ public class PetitionDto {
     private String title;
 
     private LocalDateTime dateOfCreation;
-
+    private String authorUsername;
+    private Integer numberOfSignatures;
 }

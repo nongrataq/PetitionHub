@@ -27,7 +27,8 @@ public class WebSecurityConfig {
                         .requestMatchers(
                                 "/",
                                 "/auth/**",
-                                "/search"
+                                "/search",
+                                "/specific-petition/**"
                         ).permitAll()
                         .anyRequest().hasRole("COMMON_USER")
                 )
@@ -47,6 +48,7 @@ public class WebSecurityConfig {
                         .logoutSuccessUrl("/")
                         .permitAll()
                         .invalidateHttpSession(true)
+                        .clearAuthentication(true)
                         .deleteCookies("JSESSIONID")
                 );
 
