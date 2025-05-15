@@ -5,15 +5,15 @@
        Кнопки
     =========================== */
     .btn-primary {
-            background: linear-gradient(90deg, var(--accent-start-reversed), var(--accent-end-reversed));
-            color: #fff;
-            border: none;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            transition: box-shadow 0.3s ease;
-        }
+        background: linear-gradient(90deg, var(--accent-start-reversed), var(--accent-end-reversed));
+        color: #fff;
+        border: none;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transition: box-shadow 0.3s ease;
+    }
 
     .btn-primary:hover {
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+         box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
     }
 
     .card {

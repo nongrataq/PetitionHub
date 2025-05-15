@@ -16,9 +16,9 @@
             box-shadow: none;
         }
 
-/* ===========================
-       Кнопки
-    =========================== */
+        /* ===========================
+                Кнопки
+        =========================== */
         .btn-primary {
             background: linear-gradient(90deg, var(--accent-start-reversed), var(--accent-end-reversed));
             color: #fff;
@@ -52,6 +52,7 @@
             color: var(--text-color) !important;
         }
     </style>
+
     <div class="container">
         <div class="auth-wrapper">
             <h2 class="text-center mb-4">Вход в PetitionHub</h2>
