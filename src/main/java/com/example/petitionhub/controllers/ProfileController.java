@@ -19,13 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ProfileController {
     private final PetitionService petitionService;
-    private final PetitionEntityMapper petitionEntityMapper;
 
     @GetMapping
     public String profile(Model model, @AuthenticationPrincipal UserEntityDetails userDetails) {
         UserEntity author = userDetails.getUserEntity();
-        model.addAttribute("petitions",
-                petitionEntityMapper.toPetitionDtos(petitionService.findAllByAuthor(author)));
+        model.addAttribute("petitions", petitionService.findAllByAuthor(author));
 
         if (model.containsAttribute("petitionDto")) {
             model.addAttribute("petitionDto", model.getAttribute("petitionDto"));
