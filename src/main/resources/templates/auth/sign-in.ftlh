@@ -1,22 +1,34 @@
 <#import "../patterns/layout.ftlh" as layout>
 <@layout.main title="Sign In">
     <style>
-        .auth-container {
+        .auth-wrapper {
             max-width: 400px;
             margin: 50px auto;
             padding: 25px;
             border-radius: 8px;
-            box-shadow: var(--shadow);
-            background: var(--card-bg);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+            background: linear-gradient(90deg, var(--accent-end), var(--accent-start));
         }
 
-/* ===========================
-       Кнопки
-    =========================== */
+        .auth-container {
+            padding: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        /* ===========================
+                Кнопки
+        =========================== */
         .btn-primary {
-            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+            background: linear-gradient(90deg, var(--accent-start-reversed), var(--accent-end-reversed));
             color: #fff;
             border: none;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
         }
 
         .form-floating {
@@ -40,8 +52,9 @@
             color: var(--text-color) !important;
         }
     </style>
+
     <div class="container">
-        <div class="auth-container">
+        <div class="auth-wrapper">
             <h2 class="text-center mb-4">Вход в PetitionHub</h2>
             <#if message??>
                 <div class="alert alert-success">
