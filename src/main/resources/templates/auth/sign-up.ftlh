@@ -5,16 +5,22 @@
        Кнопки
     =========================== */
     .btn-primary {
-            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+            background: linear-gradient(90deg, var(--accent-start-reversed), var(--accent-end-reversed));
             color: #fff;
             border: none;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transition: box-shadow 0.3s ease;
         }
 
+    .btn-primary:hover {
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+    }
+
     .card {
-        background-color: var(--card-bg);
+        background: linear-gradient(90deg, var(--accent-end), var(--accent-start));
         color: var(--text-color);
         border: none;
-        box-shadow: var(--shadow);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
         border-radius: 8px;
     }
 
@@ -33,7 +39,7 @@
 
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
-                <div class="card shadow-sm">
+                <div class="card">
                     <div class="card-body p-4">
                         <h2 class="text-center mb-4">Регистрация</h2>
                         <form action="/auth/sign-up" method="post">

@@ -23,7 +23,7 @@
 
         .card:hover {
             transform: translateY(-6px) scale(1.02);
-            box-shadow: 0 6px 16px var(--shadow);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
         }
 
         .card::before {
@@ -60,7 +60,7 @@
 
 .btn-primary:hover {
   transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7);
 }
 
 .btn-primary:hover span {

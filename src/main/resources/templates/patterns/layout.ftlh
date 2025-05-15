@@ -19,7 +19,7 @@
             :root {
   --nav-height: 70px;
   --footer-height: 80px;
-  --shadow: rgba(0, 0, 0, 0.4);
+  --shadow: rgba(0, 0, 0, 0.5);
   --text-color: #1a1a1a;
 }
 
@@ -29,6 +29,8 @@
   --card-bg: #FFFFFF;
   --accent-start: #9A8C98;
   --accent-end: #C9ADA7;
+  --accent-start-reversed: #6E636B;
+  --accent-end-reversed: #927C77;
   --text-color: #1a1a1a;
 }
 
@@ -38,6 +40,8 @@
   --card-bg: #2A272D;
   --accent-start: #6E636B;
   --accent-end: #927C77;
+  --accent-start-reversed: #9A8C98;
+  --accent-end-reversed: #C9ADA7;
   --text-color: #F0F0F0;
 }
 
