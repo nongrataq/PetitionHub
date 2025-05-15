@@ -20,6 +20,9 @@ public class PetitionEntity extends BaseEntity {
     @Column(nullable = false, name = "description", columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "signatures_count")
+    private Integer numberOfSignatures;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "author_id")
     private UserEntity author;

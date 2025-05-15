@@ -113,72 +113,31 @@
     </div>
 
     <!-- Заголовок секции -->
-    <h3 class="mb-4">Недавние петиции</h3>
-
-    <!-- Список недавних петиций -->
-    <!-- TODO: заменить ID 1, 2, 3 на реальные -->
-    <div class="row g-4">
-
-        <!-- Петиция 1 -->
-        <div class="col-md-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="/petitions/1">Числануть Богдана</a>
-                    </h5>
-                    <p class="card-text text-muted">Нужно числануть Богдана, т.к. он...</p>
-                    <div class="d-flex justify-content-between text-muted small">
+<h3 class="mb-4">Недавние петиции</h3>
+        <div class="row g-4">
+            <#if petitions?has_content>
+                <#list petitions as petition>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="/specific-petition/${petition.id}">${petition.title}</a>
+                                </h5>
+                                <p class="card-text text-muted">${petition.description}</p>
+                                <div class="d-flex justify-content-between text-muted small">
                             <span>
-                                <i class="bi bi-check-circle me-1 text-success"></i>786 подписей
+                                <i class="bi bi-check-circle me-1 text-success"></i>1 подписей
                             </span>
-                        <span>
-                                <i class="bi bi-calendar-event me-1 text-primary"></i>19.03.2025
+                                    <span>
+                                <i class="bi bi-calendar-event me-1 text-primary"></i>${petition.dateOfCreation}
                             </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </#list>
+            <#else> Пока петиций нет!
+            </#if>
         </div>
-
-        <!-- Петиция 2 -->
-        <div class="col-md-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="/petitions/2">Гусева Федора Андреевича в сеньоры</a>
-                    </h5>
-                    <p class="card-text text-muted">Легенда java, поэтому надо скорее...</p>
-                    <div class="d-flex justify-content-between text-muted small">
-                            <span>
-                                <i class="bi bi-check-circle me-1 text-success"></i>7,890 подписей
-                            </span>
-                        <span>
-                                <i class="bi bi-calendar-event me-1 text-primary"></i>01.01.2024
-                            </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Петиция 3 -->
-        <div class="col-md-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="/petitions/3">Отобрать общагу у Игоря</a>
-                    </h5>
-                    <p class="card-text text-muted">Нужно скорее отобрать общагу у Игоря, пока...</p>
-                    <div class="d-flex justify-content-between text-muted small">
-                            <span>
-                                <i class="bi bi-check-circle me-1 text-success"></i>91 подписей
-                            </span>
-                        <span>
-                                <i class="bi bi-calendar-event me-1 text-primary"></i>30.02.2025
-                            </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-
+    </main>
 </@layout.main>
