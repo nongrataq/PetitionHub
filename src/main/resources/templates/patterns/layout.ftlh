@@ -20,33 +20,33 @@
                 Цветовая палитра
         =========================== */
         :root {
-    --nav-height: 70px;
-    --footer-height: 80px;
-    --shadow: rgba(0, 0, 0, 0.5);
-    --text-color: #1a1a1a;
-    --line-color: rgba(124, 77, 255, 0.5);   /* Затемнённый --accent-start с свечением */
-    --node-color: rgba(47, 215, 217, 0.8);   --accent-end с лёгкой прозрачностью */
-}
+          --nav-height: 70px;
+          --footer-height: 80px;
+          --shadow: rgba(0, 0, 0, 0.5);
+          --text-color: #1a1a1a;
+          --line-color: rgba(124, 77, 255, 0.5);
+          --node-color : rgba(130, 170, 255, 1);
+        }
 
-:root.light-theme {
-    --bg-color: #F5F3FF;        /* Светло-лавандовый туман */
-    --card-bg: #FFFFFF;         /* Чистый белый */
-    --accent-start: #C792EA;    /* Нежно-фиолетовый */
-    --accent-end: #82AAFF;      /* Голубой эфир */
-    --accent-start-reversed: #7C4DFF; /* Глубокий ультрамарин */
-    --accent-end-reversed: #2FD7D9;   /* Аквамариновый */
-    --text-color: #2A2A3C;      /* Темно-синий гранит */
-}
+        :root.light-theme {
+          --bg-color: #F5F3FF;
+          --card-bg: #FFFFFF;
+          --accent-start: #C792EA;
+          --accent-end: #82AAFF;
+          --accent-start-reversed: #7C4DFF;
+          --accent-end-reversed: #2FD7D9;
+          --text-color: #2A2A3C;
+        }
 
-:root.dark-theme {
-    --bg-color: #1A1B26;        /* Ночная синева */
-    --card-bg: #24283B;         /* Глубокий космос */
-    --accent-start: #7C4DFF;    /* Электрик-пурпур */
-    --accent-end: #2FD7D9;      /* Неоновый циан */
-    --accent-start-reversed: #C792EA; /* Пастельная орхидея */
-    --accent-end-reversed: #82AAFF;   /* Светящийся сапфир */
-    --text-color: #CFD8DC;      /* Лунное сияние */
-}
+        :root.dark-theme {
+          --bg-color: #1A1B26;
+          --card-bg: #24283B;
+          --accent-start: #7C4DFF;
+          --accent-end: #2FD7D9;
+          --accent-start-reversed: #C792EA;
+          --accent-end-reversed: #82AAFF;
+          --text-color: #CFD8DC;
+        }
 
         /* ===========================
                 Базовые правки Bootstrap
@@ -60,9 +60,6 @@
             height: 100%;
         }
 
-        /* ===========================
-                Глобальный CSS-ресет
-        =========================== */
         * {
             margin: 0;
             padding: 0;
@@ -139,13 +136,13 @@
         }
 
         .footer-contact {
-            color: #FFFFFF;
+            color: var(--accent-start-reversed);
             text-decoration: none;
             transition: color 0.8s ease;
         }
 
         .footer-contact:hover {
-            color: #C0C0C0;
+            color: var(--accent-end-reversed);
             text-decoration: underline;
         }
 
@@ -175,6 +172,7 @@
             transition: color 0.8s ease;
         }
     </style>
+    
 </head>
 <body>
 
@@ -235,7 +233,9 @@
                 <p class="text-info">Платформа для создания и поддержки петиций</p>
             </div>
             <div class="col-md-6 text-end">
-                <a href="https://github.com/ssadam16" class="footer-contact mb-0">Контакты: saidFrontendkin@gmail.com</a>
+                <a href="/about-us" class="footer-contact mb-0">
+                    <i class="bi bi-info-circle me-1"></i> О нас
+                </a>
                 <p class="mb-0">© 2025 Petition Platform</p>
             </div>
         </div>

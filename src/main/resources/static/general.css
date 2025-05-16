@@ -1,0 +1,253 @@
+/* ===========================
+        Цветовая палитра
+=========================== */
+:root {
+  --nav-height: 70px;
+  --footer-height: 80px;
+  --shadow: rgba(0, 0, 0, 0.5);
+  --text-color: #1a1a1a;
+  --line-color: rgba(124, 77, 255, 0.5);
+}
+
+:root.light-theme {
+  --bg-color: #F5F3FF;
+  --card-bg: #FFFFFF;
+  --accent-start: #C792EA;
+  --accent-end: #82AAFF;
+  --accent-start-reversed: #7C4DFF;
+  --accent-end-reversed: #2FD7D9;
+  --text-color: #2A2A3C;
+}
+
+:root.dark-theme {
+  --bg-color: #1A1B26;
+  --card-bg: #24283B;
+  --accent-start: #7C4DFF;
+  --accent-end: #2FD7D9;
+  --accent-start-reversed: #C792EA;
+  --accent-end-reversed: #82AAFF;
+  --text-color: #CFD8DC;
+}
+
+/* ===========================
+        Базовые правки Bootstrap
+=========================== */
+.text-muted,
+.card-title a {
+    color: var(--text-color) !important;
+}
+
+html, body {
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: system-ui, sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    padding-top: var(--nav-height);
+    transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+/* ===========================
+        Canvas с фоном
+=========================== */
+#network-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+}
+
+/* ===========================
+        Навигация
+=========================== */
+nav {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    z-index: 10;
+    box-shadow: 0 2px 6px var(--shadow);
+    transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+nav .navbar-brand {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* ===========================
+        Контент
+=========================== */
+main {
+    flex: 1;
+    margin: 1rem auto;
+    max-width: 1200px;
+}
+
+/* ===========================
+        Футер
+=========================== */
+footer {
+    height: var(--footer-height);
+    background: linear-gradient(90deg, var(--accent-end), var(--accent-start));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.9rem;
+    z-index: 10;
+    box-shadow: 0 -2px 6px var(--shadow);
+    transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+.footer-contact {
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: color 0.8s ease;
+}
+
+.footer-contact:hover {
+    color: #C0C0C0;
+    text-decoration: underline;
+}
+
+.text-info {
+    color: #FFFFFF !important;
+    text-decoration: none;
+    transition: color 0.8s ease;
+}
+
+.btn-outline-light {
+    transform: translateX(20px);
+}
+
+/* ===========================
+        Поле поиска
+=========================== */
+.form-control {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px var(--shadow);
+}
+
+.form-control::placeholder {
+    color: var(--text-color);
+    opacity: 0.7;
+    transition: color 0.8s ease;
+}
+
+/* ===========================
+   Карточки с градиент‑бордером
+=========================== */
+.card {
+    position: relative;
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px var(--shadow);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeInUp 0.6s forwards;
+    border: 2px solid transparent;
+    background-image: linear-gradient(var(--card-bg), var(--card-bg)),
+                      linear-gradient(90deg, var(--accent-start), var(--accent-end));
+    background-origin: padding-box, border-box;
+    background-clip: padding-box, border-box;
+}
+
+.card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+}
+
+.card::before {
+    content: '';
+    display: block;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+}
+
+/* Анимация появления карточек */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ===========================
+   Кнопки
+=========================== */
+.btn-primary {
+    background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+    color: #fff;
+    padding: .95rem 3.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    font-size: 1.25rem;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeInUp 0.6s forwards;
+}
+
+/* Эффекты при наведении на кнопку */
+.btn-primary:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7);
+}
+
+.btn-primary:hover span {
+    display: inline-block;
+    animation: wiggle 0.4s ease-in-out;
+}
+
+/* Анимация "встряски" текста */
+@keyframes wiggle {
+    0%   { transform: translateX(0); }
+    25%  { transform: translateX(-2px); }
+    50%  { transform: translateX(2px); }
+    75%  { transform: translateX(-1px); }
+    100% { transform: translateX(0); }
+}
+
+/* ===========================
+   Ссылки в заголовках карточек
+=========================== */
+.card-title a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    background-image: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+    background-size: 0% 2px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s ease;
+}
+
+.card-title a:hover {
+    background-size: 100% 2px;
+}

@@ -58,6 +58,9 @@
         font-size: 1.25rem;
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
         display: inline-block;
+        opacity: 0;
+        transform: translateY(12px);
+        animation: fadeInUp 0.6s forwards;
     }
 
     /* Эффекты при наведении на кнопку */
@@ -94,6 +97,10 @@
         transition: background-size 0.3s ease;
     }
 
+    .petition-title a {
+      color: var(--accent-start-reversed) !important;
+    }
+
     .card-title a:hover {
         background-size: 100% 2px;
     }
@@ -120,7 +127,7 @@
                     <div class="col-md-4">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">
+                                <h5 class="card-title petition-title">
                                     <a href="/specific-petition/${petition.id}">${petition.title}</a>
                                 </h5>
                                 <p class="card-text text-muted">${petition.description}</p>
