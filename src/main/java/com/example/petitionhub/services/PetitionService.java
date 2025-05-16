@@ -10,5 +10,6 @@ public interface PetitionService {
     PetitionDto createPetition(PetitionDto petition);
     List<PetitionDto> findAllByAuthor(UserEntity author);
     List<PetitionEntity> findAll();
-    PetitionDto findPetitionById(UUID id);
+    PetitionEntity findPetitionById(UUID id);
+    void signPetition(PetitionEntity petition);
 }
