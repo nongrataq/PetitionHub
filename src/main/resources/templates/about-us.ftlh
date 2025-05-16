@@ -3,11 +3,29 @@
 
 <style>
     .about-card {
-      margin: 2rem auto;
-      max-width: 800px;
+       border: 2px solid transparent;
+       border-radius: 8px;
+       background-image:
+            linear-gradient(var(--bg-color), var(--bg-color)),
+            linear-gradient(90deg, var(--accent-start), var(--accent-end));
+      background-origin: padding-box, border-box;
+      background-clip: padding-box, border-box;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       padding: 1.5rem;
     }
 
+    .team-section::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 100%;
+      background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
     .section-title {
       font-size: 1.75rem;
       font-weight: 600;
@@ -28,7 +46,9 @@
       gap: 1rem;
       justify-content: center;
       margin-top: 2rem;
+      border-radius: 8px;
     }
+
 
     .team-member {
       background: var(--card-bg);
