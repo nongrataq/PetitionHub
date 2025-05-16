@@ -20,30 +20,32 @@
                 Цветовая палитра
         =========================== */
         :root {
-            --nav-height: 70px;
-            --footer-height: 80px;
-            --shadow: rgba(0, 0, 0, 0.5);
-            --text-color: #1a1a1a;
+          --nav-height: 70px;
+          --footer-height: 80px;
+          --shadow: rgba(0, 0, 0, 0.5);
+          --text-color: #1a1a1a;
+          --line-color: rgba(124, 77, 255, 0.5);
+          --node-color : rgba(130, 170, 255, 1);
         }
 
         :root.light-theme {
-            --bg-color: #F9F9F9;
-            --card-bg: #FFFFFF;
-            --accent-start: #9A8C98;
-            --accent-end: #C9ADA7;
-            --accent-start-reversed: #6E636B;
-            --accent-end-reversed: #927C77;
-            --text-color: #1a1a1a;
+          --bg-color: #F5F3FF;
+          --card-bg: #FFFFFF;
+          --accent-start: #C792EA;
+          --accent-end: #82AAFF;
+          --accent-start-reversed: #7C4DFF;
+          --accent-end-reversed: #2FD7D9;
+          --text-color: #2A2A3C;
         }
 
         :root.dark-theme {
-            --bg-color: #1C1B1E;
-            --card-bg: #2A272D;
-            --accent-start: #6E636B;
-            --accent-end: #927C77;
-            --accent-start-reversed: #9A8C98;
-            --accent-end-reversed: #C9ADA7;
-            --text-color: #F0F0F0;
+          --bg-color: #1A1B26;
+          --card-bg: #24283B;
+          --accent-start: #7C4DFF;
+          --accent-end: #2FD7D9;
+          --accent-start-reversed: #C792EA;
+          --accent-end-reversed: #82AAFF;
+          --text-color: #CFD8DC;
         }
 
         /* ===========================
@@ -134,13 +136,13 @@
         }
 
         .footer-contact {
-            color: #FFFFFF;
+            color: var(--accent-start-reversed);
             text-decoration: none;
             transition: color 0.8s ease;
         }
 
         .footer-contact:hover {
-            color: #C0C0C0;
+            color: var(--accent-end-reversed);
             text-decoration: underline;
         }
 
@@ -170,6 +172,7 @@
             transition: color 0.8s ease;
         }
     </style>
+    
 </head>
 <body>
 
@@ -230,7 +233,9 @@
                 <p class="text-info">Платформа для создания и поддержки петиций</p>
             </div>
             <div class="col-md-6 text-end">
-                <a href="https://github.com/ssadam16" class="footer-contact mb-0">Контакты: saidFrontendkin@gmail.com</a>
+                <a href="/about-us" class="footer-contact mb-0">
+                    <i class="bi bi-info-circle me-1"></i> О нас
+                </a>
                 <p class="mb-0">© 2025 Petition Platform</p>
             </div>
         </div>
@@ -285,6 +290,10 @@
     }
 
     function animate() {
+        const rootStyles = getComputedStyle(document.documentElement);
+        const lineColor = rootStyles.getPropertyValue('--line-color');
+        const nodeColor = rootStyles.getPropertyValue('--node-color');
+
         ctx.clearRect(0, 0, w, h);
         nodes.forEach(n => {
             n.x += n.vx;
@@ -293,7 +302,7 @@
             if (n.y < 0 || n.y > h) n.vy *= -1;
         });
 
-        ctx.strokeStyle = 'rgba(176, 190, 197, 0.7)';
+        ctx.strokeStyle = lineColor;
         lines.forEach(([i, j]) => {
             const a = nodes[i], b = nodes[j];
             ctx.beginPath();
@@ -302,7 +311,7 @@
             ctx.stroke();
         });
 
-        ctx.fillStyle = 'rgba(84, 110, 122, 0.9)';
+        ctx.fillStyle = nodeColor;
         nodes.forEach(n => {
             ctx.beginPath();
             ctx.arc(n.x, n.y, 2, 0, 2 * Math.PI);

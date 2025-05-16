@@ -9,7 +9,6 @@ import com.example.petitionhub.repositories.UserRepository;
 import com.example.petitionhub.services.PetitionService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-@Slf4j
+
 @RequiredArgsConstructor
 @Service
 public class PetitionServiceImpl implements PetitionService {
@@ -41,6 +40,7 @@ public class PetitionServiceImpl implements PetitionService {
         petition.setAuthor(currentUser);
         petition.setDateOfCreation(LocalDateTime.now());
         currentUser.getPetitions().add(petition);
+        petition.setNumberOfSignatures(0);
 
         PetitionEntity savedPetition = petitionRepository.save(petition);
 
@@ -54,11 +54,15 @@ public class PetitionServiceImpl implements PetitionService {
     }
 
     @Override
-    public PetitionDto findPetitionById(UUID id) {
-        PetitionEntity petitionEntity = petitionRepository.findById(id)
-                .orElseThrow(() -> new NullPointerException("Несуществующая петиция"));
+    public PetitionEntity findPetitionById(UUID id) {
+        return petitionRepository.findById(id).orElseThrow(() -> new NullPointerException("Несуществующая петиция"));
+    }
 
-        return petitionEntityMapper.toPetitionDto(petitionEntity);
+    @Transactional
+    @Override
+    public void signPetition(PetitionEntity petition) {
+        int currentSignaturesCount = petition.getNumberOfSignatures();
+        petition.setNumberOfSignatures(++currentSignaturesCount);
     }
 
     @Override
