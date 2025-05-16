@@ -20,31 +20,33 @@
                 Цветовая палитра
         =========================== */
         :root {
-            --nav-height: 70px;
-            --footer-height: 80px;
-            --shadow: rgba(0, 0, 0, 0.5);
-            --text-color: #1a1a1a;
-        }
+    --nav-height: 70px;
+    --footer-height: 80px;
+    --shadow: rgba(0, 0, 0, 0.5);
+    --text-color: #1a1a1a;
+    --line-color: rgba(124, 77, 255, 0.5);   /* Затемнённый --accent-start с свечением */
+    --node-color: rgba(47, 215, 217, 0.8);   --accent-end с лёгкой прозрачностью */
+}
 
-        :root.light-theme {
-            --bg-color: #F9F9F9;
-            --card-bg: #FFFFFF;
-            --accent-start: #9A8C98;
-            --accent-end: #C9ADA7;
-            --accent-start-reversed: #6E636B;
-            --accent-end-reversed: #927C77;
-            --text-color: #1a1a1a;
-        }
+:root.light-theme {
+    --bg-color: #F5F3FF;        /* Светло-лавандовый туман */
+    --card-bg: #FFFFFF;         /* Чистый белый */
+    --accent-start: #C792EA;    /* Нежно-фиолетовый */
+    --accent-end: #82AAFF;      /* Голубой эфир */
+    --accent-start-reversed: #7C4DFF; /* Глубокий ультрамарин */
+    --accent-end-reversed: #2FD7D9;   /* Аквамариновый */
+    --text-color: #2A2A3C;      /* Темно-синий гранит */
+}
 
-        :root.dark-theme {
-            --bg-color: #1C1B1E;
-            --card-bg: #2A272D;
-            --accent-start: #6E636B;
-            --accent-end: #927C77;
-            --accent-start-reversed: #9A8C98;
-            --accent-end-reversed: #C9ADA7;
-            --text-color: #F0F0F0;
-        }
+:root.dark-theme {
+    --bg-color: #1A1B26;        /* Ночная синева */
+    --card-bg: #24283B;         /* Глубокий космос */
+    --accent-start: #7C4DFF;    /* Электрик-пурпур */
+    --accent-end: #2FD7D9;      /* Неоновый циан */
+    --accent-start-reversed: #C792EA; /* Пастельная орхидея */
+    --accent-end-reversed: #82AAFF;   /* Светящийся сапфир */
+    --text-color: #CFD8DC;      /* Лунное сияние */
+}
 
         /* ===========================
                 Базовые правки Bootstrap
@@ -58,6 +60,9 @@
             height: 100%;
         }
 
+        /* ===========================
+                Глобальный CSS-ресет
+        =========================== */
         * {
             margin: 0;
             padding: 0;
@@ -285,6 +290,10 @@
     }
 
     function animate() {
+        const rootStyles = getComputedStyle(document.documentElement);
+        const lineColor = rootStyles.getPropertyValue('--line-color');
+        const nodeColor = rootStyles.getPropertyValue('--node-color');
+
         ctx.clearRect(0, 0, w, h);
         nodes.forEach(n => {
             n.x += n.vx;
@@ -293,7 +302,7 @@
             if (n.y < 0 || n.y > h) n.vy *= -1;
         });
 
-        ctx.strokeStyle = 'rgba(176, 190, 197, 0.7)';
+        ctx.strokeStyle = lineColor;
         lines.forEach(([i, j]) => {
             const a = nodes[i], b = nodes[j];
             ctx.beginPath();
@@ -302,7 +311,7 @@
             ctx.stroke();
         });
 
-        ctx.fillStyle = 'rgba(84, 110, 122, 0.9)';
+        ctx.fillStyle = nodeColor;
         nodes.forEach(n => {
             ctx.beginPath();
             ctx.arc(n.x, n.y, 2, 0, 2 * Math.PI);
