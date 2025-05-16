@@ -1,5 +1,6 @@
 <#import "patterns/layout.ftlh" as layout>
 <@layout.main title="Petition Platform">
+
     <style>
         /* ===========================
            Карточки с градиент‑бордером
@@ -23,7 +24,7 @@
 
         .card:hover {
             transform: translateY(-6px) scale(1.02);
-            box-shadow: 0 6px 16px var(--shadow);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
         }
 
         .card::before {
@@ -33,6 +34,7 @@
             background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
         }
 
+        /* Анимация появления карточек */
         @keyframes fadeInUp {
             to {
                 opacity: 1;
@@ -58,9 +60,10 @@
             display: inline-block;
         }
 
+        /* Эффекты при наведении на кнопку */
         .btn-primary:hover {
             transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7);
         }
 
         .btn-primary:hover span {
@@ -68,26 +71,17 @@
             animation: wiggle 0.4s ease-in-out;
         }
 
+        /* Анимация "встряски" текста */
         @keyframes wiggle {
-            0% {
-                transform: translateX(0);
-            }
-            25% {
-                transform: translateX(-2px);
-            }
-            50% {
-                transform: translateX(2px);
-            }
-            75% {
-                transform: translateX(-1px);
-            }
-            100% {
-                transform: translateX(0);
-            }
+            0%   { transform: translateX(0); }
+            25%  { transform: translateX(-2px); }
+            50%  { transform: translateX(2px); }
+            75%  { transform: translateX(-1px); }
+            100% { transform: translateX(0); }
         }
 
         /* ===========================
-           Ссылки
+           Ссылки в заголовках карточек
         =========================== */
         .card-title a {
             color: inherit;
@@ -104,6 +98,7 @@
             background-size: 100% 2px;
         }
     </style>
+
     <!-- Навигация -->
     <nav>
         <a href="/" class="navbar-brand">Petition Platform</a>
@@ -111,10 +106,13 @@
 
     <!-- Основной контент -->
     <main class="container">
+
+        <!-- Кнопка создания новой петиции -->
         <div class="text-center my-5 py-4">
             <a href="/create-petition" class="btn-primary btn-lg"><span>Создать петицию</span></a>
         </div>
 
+        <!-- Заголовок секции -->
         <h3 class="mb-4">Недавние петиции</h3>
         <div class="row g-4">
             <#if petitions?has_content>
