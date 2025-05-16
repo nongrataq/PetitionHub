@@ -32,11 +32,12 @@
                     <p class="card-text">Описание: ${p.description}</p>
                 </div>
                 <div class="card-footer text-muted mb-3">
-                    <#if p.dateOfCreation??>
-                        Дата создания: ${p.dateOfCreation}
+                    <#if p.formattedDateOfCreation?? && p.formattedDateOfCreation?length != 0>
+                        Дата создания: ${p.formattedDateOfCreation}
                     <#else>
                         Дата не указана
                     </#if>
+
                 </div>
             </div>
         </#list>
