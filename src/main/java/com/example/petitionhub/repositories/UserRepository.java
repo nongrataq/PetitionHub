@@ -4,9 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.petitionhub.entities.UserEntity;
 
 import java.util.Optional;
+import java.util.UUID;
 
-public interface UserRepository extends JpaRepository<UserEntity, Long> {
-    Optional<UserEntity> findUserByUsername(String username);
-    boolean existsByUsername(String username);
-    UserEntity findUserEntityByUsername(String username);
+public interface UserRepository extends JpaRepository<UserEntity, UUID> {
+    boolean existsUserEntityByUsername(String username);
+    Optional<UserEntity> findUserEntityByUsername(String username);
 }

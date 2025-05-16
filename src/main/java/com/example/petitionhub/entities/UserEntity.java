@@ -1,31 +1,33 @@
 package com.example.petitionhub.entities;
 
+import com.example.petitionhub.enums.Role;
+import com.example.petitionhub.enums.Status;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-@AllArgsConstructor
+@SuperBuilder
 @NoArgsConstructor
-@Builder
+@AllArgsConstructor
+@ToString(exclude = "petitions")
 @Table(name = "users")
-public class UserEntity implements UserDetails {
+public class UserEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    @Column(name = "role", nullable = false)
-    private String role = "ROLE_USER";
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Column(unique = true, nullable = false)
     private String username;
@@ -33,16 +35,13 @@ public class UserEntity implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @Column(name = "is_active", nullable = false)
-    private boolean isActive;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role));
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return isActive;
-    }
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            mappedBy = "author",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            targetEntity = PetitionEntity.class
+    )
+    private List<PetitionEntity> petitions;
 }

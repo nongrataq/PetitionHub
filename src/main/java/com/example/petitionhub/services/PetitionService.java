@@ -1,20 +1,15 @@
 package com.example.petitionhub.services;
 
+import com.example.petitionhub.dto.PetitionDto;
 import com.example.petitionhub.entities.PetitionEntity;
-import com.example.petitionhub.repositories.PetitionRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.example.petitionhub.entities.UserEntity;
+import java.util.List;
+import java.util.UUID;
 
-@RequiredArgsConstructor
-@Service
-public class PetitionService {
-    private final PetitionRepository petitionRepository;
-
-    public void createPetition(String title, String description) {
-        PetitionEntity petition = new PetitionEntity();
-        petition.setTitle(title);
-        petition.setDescription(description);
-        petitionRepository.save(petition);
-        System.out.println("Петиция сохранена: " + petition);
-    }
+public interface PetitionService {
+    PetitionDto createPetition(PetitionDto petition);
+    List<PetitionDto> findAllByAuthor(UserEntity author);
+    List<PetitionEntity> findAll();
+    PetitionEntity findPetitionById(UUID id);
+    void signPetition(PetitionEntity petition);
 }
