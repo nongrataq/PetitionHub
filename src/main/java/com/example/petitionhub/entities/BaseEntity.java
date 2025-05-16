@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 @MappedSuperclass
@@ -19,4 +20,12 @@ public abstract class BaseEntity {
     private UUID id;
 
     private LocalDateTime dateOfCreation;
+
+    @Transient
+    public String getFormattedDateOfCreation() {
+        if (dateOfCreation == null) return "";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        return dateOfCreation.format(formatter);
+    }
+
 }

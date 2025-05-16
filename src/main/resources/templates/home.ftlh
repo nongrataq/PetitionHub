@@ -136,7 +136,7 @@
                                 <i class="bi bi-check-circle me-1 text-success"></i>${petition.numberOfSignatures} подписей
                             </span>
                                     <span>
-                                <i class="bi bi-calendar-event me-1 text-primary"></i>${petition.dateOfCreation}
+                                <i class="bi bi-calendar-event me-1 text-primary"></i>${petition.formattedDateOfCreation}
                             </span>
                                 </div>
                             </div>

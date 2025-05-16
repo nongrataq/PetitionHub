@@ -14,6 +14,9 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "petitions")
 public class PetitionEntity extends BaseEntity {
 
+
+
+
     @Column(nullable = false, name = "title")
     private String title;
 

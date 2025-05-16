@@ -16,7 +16,7 @@ import java.util.UUID;
 public class SignPetitionController {
     private final PetitionService petitionService;
 
-    @PostMapping()
+    @PostMapping
     public String signPetition(@PathVariable("id") UUID id) {
 
         PetitionEntity petition = petitionService.findPetitionById(id);
