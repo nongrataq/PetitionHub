@@ -23,11 +23,11 @@
           --nav-height: 70px;
           --footer-height: 80px;
           --shadow: rgba(0, 0, 0, 0.5);
-          --text-color: #1a1a1a;
           --line-color: rgba(124, 77, 255, 0.5);
-          --node-color : rgba(130, 170, 255, 1);
+          --node-color: rgba(130, 170, 255, 1);
         }
 
+        /* Базовая “Robot” палитра */
         :root.light-theme {
           --bg-color: #F5F3FF;
           --card-bg: #FFFFFF;
@@ -37,7 +37,6 @@
           --accent-end-reversed: #2FD7D9;
           --text-color: #2A2A3C;
         }
-
         :root.dark-theme {
           --bg-color: #1A1B26;
           --card-bg: #24283B;
@@ -48,158 +47,200 @@
           --text-color: #CFD8DC;
         }
 
-        /* ===========================
-                Базовые правки Bootstrap
-        =========================== */
-        .text-muted,
-        .card-title a {
-            color: var(--text-color) !important;
+        /* Ocean палитра */
+        :root.ocean.light-theme {
+          --bg-color: #e0f7fa;
+          --card-bg: #ffffff;
+          --accent-start: #00bcd4;
+          --accent-end: #009688;
+          --accent-start-reversed: #009688;
+          --accent-end-reversed: #00bcd4;
+          --text-color: #004d40;
         }
-
-        html, body {
-            height: 100%;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            font-family: system-ui, sans-serif;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            padding-top: var(--nav-height);
-            transition: background-color 0.8s ease, color 0.8s ease;
+        :root.ocean.dark-theme {
+          --bg-color: #004d40;
+          --card-bg: #263238;
+          --accent-start: #ffffff;
+          --accent-end: #26a69a;
+          --accent-start-reversed: #26a69a;
+          --accent-end-reversed: #4dd0e1;
+          --text-color: #e0f2f1;
         }
 
         /* ===========================
-                Canvas с фоном
-        =========================== */
-        #network-bg {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: -1;
-        }
+            Базовые правки Bootstrap
+    =========================== */
+    .text-muted,
+    .card-title a {
+        color: var(--text-color) !important;
+    }
 
-        /* ===========================
-                Навигация
-        =========================== */
-        nav {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            height: var(--nav-height);
-            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
-            display: flex;
-            align-items: center;
-            padding: 0 1rem;
-            z-index: 10;
-            box-shadow: 0 2px 6px var(--shadow);
-            transition: background-color 0.8s ease, color 0.8s ease;
-        }
+    html, body {
+        height: 100%;
+    }
 
-        nav .navbar-brand {
-            color: #fff;
-            font-weight: 600;
-            text-decoration: none;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        /* ===========================
-                Контент
-        =========================== */
-        main {
-            flex: 1;
-            margin: 1rem auto;
-            max-width: 1200px;
-        }
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        font-family: system-ui, sans-serif;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        padding-top: var(--nav-height);
+        transition: background-color 0.8s ease, color 0.8s ease;
+    }
 
-        /* ===========================
-                Футер
-        =========================== */
-        footer {
-            height: var(--footer-height);
-            background: linear-gradient(90deg, var(--accent-end), var(--accent-start));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 0.9rem;
-            z-index: 10;
-            box-shadow: 0 -2px 6px var(--shadow);
-            transition: background-color 0.8s ease, color 0.8s ease;
-        }
+    /* ===========================
+            Canvas с фоном
+    =========================== */
+    #network-bg {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        z-index: -1;
+    }
 
-        .footer-contact {
-            color: var(--accent-start-reversed);
-            text-decoration: none;
-            transition: color 0.8s ease;
-        }
+    /* ===========================
+            Навигация
+    =========================== */
+    nav {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%;
+        height: var(--nav-height);
+        background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        z-index: 10;
+        box-shadow: 0 2px 6px var(--shadow);
+        transition: background-color 0.8s ease, color 0.8s ease;
+    }
 
-        .footer-contact:hover {
-            color: var(--accent-end-reversed);
-            text-decoration: underline;
-        }
+    nav .navbar-brand {
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+    }
 
-        .text-info {
-            color: #FFFFFF !important;
-            text-decoration: none;
-            transition: color 0.8s ease;
-        }
+    /* ===========================
+            Контент
+    =========================== */
+    main {
+        flex: 1;
+        margin: 1rem auto;
+        max-width: 1200px;
+    }
 
-        .btn-outline-light {
-            transform: translateX(20px);
-        }
+    /* ===========================
+            Футер
+    =========================== */
+    footer {
+        height: var(--footer-height);
+        background: linear-gradient(90deg, var(--accent-end), var(--accent-start));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 0.9rem;
+        z-index: 10;
+        box-shadow: 0 -2px 6px var(--shadow);
+        transition: background-color 0.8s ease, color 0.8s ease;
+    }
 
-        /* ===========================
-                Поле поиска
-        =========================== */
-        .form-control {
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            border-radius: 8px;
-            box-shadow: 0 2px 6px var(--shadow);
-        }
+    .footer-contact {
+        color: var(--accent-start-reversed);
+        text-decoration: none;
+        transition: color 0.8s ease;
+    }
 
-        .form-control::placeholder {
-            color: var(--text-color);
-            opacity: 0.7;
-            transition: color 0.8s ease;
-        }
+    .footer-contact:hover {
+        color: var(--accent-end-reversed);
+        text-decoration: underline;
+    }
+
+    .text-info {
+        color: #FFFFFF !important;
+        text-decoration: none;
+        transition: color 0.8s ease;
+    }
+
+    .btn-outline-light {
+        transform: translateX(20px);
+    }
+
+    /* ===========================
+            Поле поиска
+    =========================== */
+    .form-control {
+        background-color: var(--card-bg);
+        color: var(--text-color);
+        border-radius: 8px;
+        box-shadow: 0 2px 6px var(--shadow);
+    }
+
+    .form-control::placeholder {
+        color: var(--text-color);
+        opacity: 0.7;
+        transition: color 0.8s ease;
+    }
+
+    .theme-select {
+      display: inline-block;
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      border: 1px solid #fff;
+      border-radius: 0.375rem;
+      background-color: transparent;
+      color: #fff;
+      appearance: none;
+      position: relative;
+      cursor: pointer;
+      transition:
+      background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .theme-select:hover {
+      background-color: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+    }
+
+    .theme-select option {
+      background: #fff;
+      color: #000;
+    }
     </style>
-    
+
 </head>
 <body>
 
 <canvas id="network-bg"></canvas>
 
 <!-- Навбар -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
+<nav class="navbar navbar-expand-lg fixed-top shadow-sm">
     <div class="container-fluid">
 
         <!-- Поиск + Авторизация -->
         <div class="d-flex align-items-center">
             <div class="search">
                 <form class="d-flex me-3" action="/search" method="get">
-                    <label>
-                        <input class="form-control me-2" type="search" name="query" placeholder="Поиск петиций">
-                    </label>
+                    <label><input class="form-control me-2" type="search" name="query" placeholder="Поиск петиций"></label>
                     <button class="btn btn-outline-light" type="submit">Найти</button>
                 </form>
             </div>
-
             <#if isAuthenticated>
             <form action="/logout" method="post" class="me-2">
                 <button type="submit" class="btn btn-outline-light">Выйти</button>
             </form>
-            <a href="/profile" class="btn btn-outline-light">
-                <i class="bi bi-person-circle"></i> Профиль
-            </a>
+            <a href="/profile" class="btn btn-outline-light"><i class="bi bi-person-circle"></i> Профиль</a>
             <#else>
             <form action="/auth/sign-in" method="get">
                 <button type="submit" class="btn btn-outline-light">Войти</button>
@@ -207,25 +248,26 @@
         </#if>
     </div>
 
-    <!-- Тема + Лого -->
-    <div class="d-flex align-items-center">
+    <!-- Темы + Лого -->
+    <div class="d-flex align-items-center ms-auto">
+        <select id="themeSelect" class="theme-select me-2">
+            <option value="robot">Robot</option>
+            <option value="ocean">Ocean</option>
+        </select>
+
         <button id="themeToggle" class="btn btn-outline-light me-5">
-            <i class="bi" id="themeIcon"></i>
+            <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
         </button>
-        <a class="navbar-brand" href="/">
-            <i class="bi bi-megaphone fs-4"></i> PetitionHub
-        </a>
+        <a class="navbar-brand" href="/"><i class="bi bi-megaphone fs-4"></i> PetitionHub</a>
     </div>
     </div>
 </nav>
 
-<!-- Контент -->
 <main class="container mt-4">
     <#nested>
 </main>
 
-<!-- Футер -->
-<footer class="bg-dark text-white mt-5 py-4">
+<footer class="mt-5 py-4">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -233,18 +275,15 @@
                 <p class="text-info">Платформа для создания и поддержки петиций</p>
             </div>
             <div class="col-md-6 text-end">
-                <a href="/about-us" class="footer-contact mb-0">
-                    <i class="bi bi-info-circle me-1"></i> О нас
-                </a>
+                <a href="/about-us" class="footer-contact mb-0"><i class="bi bi-info-circle me-1"></i> О нас</a>
                 <p class="mb-0">© 2025 Petition Platform</p>
             </div>
         </div>
     </div>
 </footer>
 
-<!-- ===========================
-        Canvas background
-=========================== -->
+<!-- Canvas background script… (оставьте без изменений) -->
+
 <script>
     const canvas = document.getElementById('network-bg');
     const ctx = canvas.getContext('2d');
@@ -324,31 +363,39 @@
     init();
 </script>
 
-<!-- ===========================
-        Темы (светлая/тёмная)
-=========================== -->
+<!-- Логика тем -->
 <script>
+    const themeSelect = document.getElementById('themeSelect');
     const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const root = document.documentElement;
+    const themeIcon   = document.getElementById('themeIcon');
+    const root        = document.documentElement;
 
-    function setTheme(theme) {
-        root.classList.remove('light-theme', 'dark-theme');
-        root.classList.add(theme + '-theme');
-        localStorage.setItem('theme', theme);
-        updateIcon(theme);
+    function applyTheme(palette, mode) {
+      root.classList.remove('light-theme','dark-theme','robot','ocean');
+      root.classList.add(mode + '-theme', palette);
+      themeIcon.className = mode === 'dark'
+        ? 'bi bi-sun-fill'
+        : 'bi bi-moon-stars-fill';
     }
 
-    function updateIcon(theme) {
-        themeIcon.className = theme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
-    }
+    const savedPalette = localStorage.getItem('theme') || 'robot';
+    const savedMode    = localStorage.getItem('mode')  || 'light';
+    themeSelect.value = savedPalette;
+    applyTheme(savedPalette, savedMode);
 
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(savedTheme);
+    themeSelect.addEventListener('change', () => {
+      const newPalette = themeSelect.value;
+      const mode = root.classList.contains('dark-theme') ? 'dark' : 'light';
+      localStorage.setItem('theme', newPalette);
+      applyTheme(newPalette, mode);
+    });
 
     themeToggle.addEventListener('click', () => {
-        const newTheme = root.classList.contains('light-theme') ? 'dark' : 'light';
-        setTheme(newTheme);
+      const isLight = root.classList.contains('light-theme');
+      const newMode = isLight ? 'dark' : 'light';
+      const palette = themeSelect.value;
+      localStorage.setItem('mode', newMode);
+      applyTheme(palette, newMode);
     });
 </script>
 
