@@ -149,18 +149,6 @@
         }
     </style>
 
-    <!-- Сообщения об успехе или ошибке -->
-    <#if message??>
-        <div class="alert alert-success">
-            <p>${message}</p>
-        </div>
-    </#if>
-    <#if error??>
-        <div class="alert alert-danger">
-            <p>${error}</p>
-        </div>
-    </#if>
-
     <!-- Карточка петиции -->
     <div class="card petition-card">
         <div class="card-header">
