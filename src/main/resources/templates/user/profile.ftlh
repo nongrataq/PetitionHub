@@ -2,39 +2,49 @@
 <@layout.main title="Profile"
 styles='<link rel="stylesheet" href="/css/user/profile-style.css">'>
 
-<h2 class="text-primary h3">Ваши петиции: </h2><br>
+<section class="user-info">
+  <img src="" alt="Аватар" class="avatar">
+  <h2>Логин</h2>
+  <p>Петиций:</p>
+  <p>Голоса:</p>
+  <p class="description"></p>
+</section>
 
-<#-- Сообщение об успешном создании петиции -->
-<#if petitionDto??>
-<div class="alert alert-success mb-3">
-  Петиция "${petitionDto.title}" успешно создана!
-</div>
-</#if>
+<button id="togglePetitionsBtn" class="btn btn-primary">Показать петиции</button>
 
-<#-- Список петиций -->
-<#if petitions?? && petitions?has_content>
-<#list petitions as p>
-<div class="card mb-3">
-  <div class="card-header collapsed">
-    Петиция
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Название: ${p.title}</h5>
-    <p class="card-text">Описание: ${p.description}</p>
-  </div>
-  <div class="card-footer text-muted mb-3">
-    <#if p.formattedDateOfCreation?? && p.formattedDateOfCreation?length != 0>
-    Дата создания: ${p.formattedDateOfCreation}
-    <#else>
-    Дата не указана
+<section id="petitionsSection" style="display:none; margin-top: 20px;">
+  <#if petitions?? && petitions?has_content>
+  <#list petitions as p>
+  <div class="card mb-3">
+    <div class="card-header collapsed">Петиция</div>
+    <div class="card-body">
+      <h5 class="card-title">${p.title}</h5>
+      <p class="card-text">${p.description}</p>
+    </div>
+    <div class="card-footer text-muted mb-3">
+      <#if p.formattedDateOfCreation?? && p.formattedDateOfCreation?length != 0>
+      Дата создания: ${p.formattedDateOfCreation}
+      <#else>
+      Дата не указана
     </#if>
-
   </div>
-</div>
+  </section>
 </#list>
 <#else>
-<div class="alert alert-info">
-  <h3>Пока петиций нет!</h3>
-</div>
+<div class="alert alert-info">Петиций пока нет.</div>
 </#if>
+</section>
+
+<script>
+  const btn = document.getElementById('togglePetitionsBtn');
+  const petitionsSection = document.getElementById('petitionsSection');
+  let visible = false;
+
+  btn.addEventListener('click', () => {
+    visible = !visible;
+    petitionsSection.style.display = visible ? 'block' : 'none';
+    btn.textContent = visible ? 'Скрыть петиции' : 'Показать петиции';
+  });
+</script>
+
 </@layout.main>
