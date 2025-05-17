@@ -121,31 +121,75 @@
             color: var(--accent-end-reversed);
             text-decoration: underline;
         }
+
+        /* Стили для сообщений */
+        .alert {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .alert-success {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+            border: 1px solid #28a745;
+        }
+
+        .alert-danger {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+            border: 1px solid #dc3545;
+        }
+
+        /* Стиль для текста "Вы уже подписали" */
+        .signed-message {
+            color: #28a745;
+            font-weight: 500;
+            font-size: 1rem;
+        }
     </style>
-    <form action="/sign/${current_petition.id}" method="post">
-        <div class="card petition-card">
-            <div class="card-header">
-                <div class="label-block">
-                    <div class="label-title">Заголовок</div>
-                    <h5 class="card-title">${current_petition.title}</h5>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="label-block">
-                    <div class="label-title">Описание</div>
-                    <p class="card-text">${current_petition.description}</p>
-                </div>
-            </div>
-            <div class="card-footer">
-              <p>количество подписей: ${current_petition.numberOfSignatures}</p>
-                <p class="text-muted">
-                    <span class="label">Автор:</span>
-                  <a class="author-link" href="/profile/${current_petition.author.username}">${current_petition.author.username}</a>
-                </p>
-                <div class="button-wrapper">
-                    <button class="btn-primary">Подписать петицию</button>
-                </div>
+
+    <!-- Сообщения об успехе или ошибке -->
+    <#if message??>
+        <div class="alert alert-success">
+            <p>${message}</p>
+        </div>
+    </#if>
+    <#if error??>
+        <div class="alert alert-danger">
+            <p>${error}</p>
+        </div>
+    </#if>
+
+    <!-- Карточка петиции -->
+    <div class="card petition-card">
+        <div class="card-header">
+            <div class="label-block">
+                <div class="label-title">Заголовок</div>
+                <h5 class="card-title">${current_petition.title}</h5>
             </div>
         </div>
-    </form>
+        <div class="card-body">
+            <div class="label-block">
+                <div class="label-title">Описание</div>
+                <p class="card-text">${current_petition.description}</p>
+            </div>
+        </div>
+        <div class="card-footer">
+            <p>Количество подписей: ${current_petition.numberOfSignatures}</p>
+            <p class="text-muted">
+                <span class="label">Автор:</span>
+                <a class="author-link" href="/profile/${current_petition.author.username}">${current_petition.author.username}</a>
+            </p>
+            <div class="button-wrapper">
+                <#if hasSigned?? && hasSigned>
+                    <p class="signed-message">Вы уже подписали эту петицию</p>
+                <#else>
+                    <form action="/sign/${current_petition.id}" method="post">
+                        <button class="btn-primary">Подписать петицию</button>
+                    </form>
+                </#if>
+            </div>
+        </div>
+    </div>
 </@layout.main>
