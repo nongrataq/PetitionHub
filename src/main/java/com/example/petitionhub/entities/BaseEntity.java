@@ -19,13 +19,14 @@ public abstract class BaseEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private LocalDateTime dateOfCreation;
+    @Column(name = "date")
+    private LocalDateTime date;
 
     @Transient
     public String getFormattedDateOfCreation() {
-        if (dateOfCreation == null) return "";
+        if (date == null) return "";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        return dateOfCreation.format(formatter);
+        return date.format(formatter);
     }
 
 }

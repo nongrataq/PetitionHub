@@ -29,6 +29,6 @@ public class PetitionEntity extends BaseEntity {
     @JoinColumn(name = "author_id")
     private UserEntity author;
 
-    @OneToMany(mappedBy = "petition", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<SignatureEntity> signatures = new ArrayList<>();
+    @OneToMany(mappedBy = "petition", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SignatureEntity> signatures;
 }

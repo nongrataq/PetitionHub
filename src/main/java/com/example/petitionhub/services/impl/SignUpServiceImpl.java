@@ -36,7 +36,7 @@ public class SignUpServiceImpl implements SignUpService {
                 .password(passwordEncoderBean.encode(signUpDto.getPassword()))
                 .role(Role.COMMON_USER)
                 .status(Status.ACTIVE)
-                .dateOfCreation(LocalDateTime.now())
+                .date(LocalDateTime.now())
                 .petitions(new LinkedList<>())
                 .build();
 

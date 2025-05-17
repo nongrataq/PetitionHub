@@ -4,6 +4,7 @@ import com.example.petitionhub.entities.PetitionEntity;
 import com.example.petitionhub.entities.UserEntity;
 import com.example.petitionhub.security.details.UserEntityDetails;
 import com.example.petitionhub.services.PetitionService;
+import com.example.petitionhub.services.SignService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -18,14 +19,16 @@ import java.util.UUID;
 @Controller
 public class SignPetitionController {
     private final PetitionService petitionService;
+    private final SignService signService;
 
-    @PostMapping()
+
+    @PostMapping
     public String signPetition(@PathVariable("id") UUID id,
                                @AuthenticationPrincipal UserEntityDetails userDetails) {
 
         PetitionEntity petition = petitionService.findPetitionById(id);
         UserEntity user = userDetails.getUserEntity();
-        petitionService.signPetition(petition, user);
+        signService.signPetition(petition, user);
         return "redirect:/specific-petition/" + id;
     }
 }

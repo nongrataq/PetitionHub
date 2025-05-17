@@ -22,14 +22,14 @@ public class PetitionDto {
     @Size(min = 5, max = 255, message = "Заголовок от 5 до 255 символов.")
     private String title;
 
-    private LocalDateTime dateOfCreation;
+    private LocalDateTime date;
     private String authorUsername;
     private Integer numberOfSignatures;
 
     public String getFormattedDateOfCreation() {
-        if (dateOfCreation == null) return "";
+        if (date == null) return "";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        return dateOfCreation.format(formatter);
+        return date.format(formatter);
     }
 }
 

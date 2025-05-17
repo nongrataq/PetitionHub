@@ -1,12 +1,9 @@
 package com.example.petitionhub.controllers;
 
 import com.example.petitionhub.entities.UserEntity;
-import com.example.petitionhub.mappers.PetitionEntityMapper;
-import com.example.petitionhub.mappers.UserEntityMapper;
 import com.example.petitionhub.security.details.UserEntityDetails;
 import com.example.petitionhub.services.PetitionService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

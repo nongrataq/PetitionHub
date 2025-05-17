@@ -1,8 +1,10 @@
 package com.example.petitionhub.controllers;
 
+import com.example.petitionhub.entities.PetitionEntity;
 import com.example.petitionhub.entities.UserEntity;
 import com.example.petitionhub.security.details.UserEntityDetails;
 import com.example.petitionhub.services.PetitionService;
+import com.example.petitionhub.services.SignService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import java.util.UUID;
 @Controller
 public class SpecificPetitionController {
     private final PetitionService petitionService;
+    private final SignService signService;
 
     @GetMapping
     public String showSpecificPetition(
@@ -25,11 +28,14 @@ public class SpecificPetitionController {
             @PathVariable("id") UUID id,
             @AuthenticationPrincipal UserEntityDetails userDetails
     ) {
-        model.addAttribute("current_petition", petitionService.findPetitionById(id));
+        PetitionEntity currentPetition = petitionService.findPetitionById(id);
+
+        model.addAttribute("current_petition", currentPetition);
+
         boolean hasSigned = false;
+
         if (userDetails != null) {
-            UserEntity user = userDetails.getUserEntity();
-            hasSigned = petitionService.hasUserSignedPetition(user, petitionService.findPetitionById(id));
+            hasSigned = signService.hasUserSignedPetition(userDetails.getUserEntity(), currentPetition);
         }
         model.addAttribute("hasSigned", hasSigned);
         return "petitions/specific-petition";

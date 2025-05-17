@@ -2,33 +2,28 @@ package com.example.petitionhub.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(
         name = "signatures",
         uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "petition_id"})
 )
-public class SignatureEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+public class SignatureEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity user;
+    @JoinColumn(name = "signer_id", nullable = false)
+    private UserEntity signer;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "petition_id", nullable = false)
     private PetitionEntity petition;
-
-    @Column(name = "signed_at")
-    private LocalDateTime signedAt;
 }

@@ -19,7 +19,7 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = "petitions")
+@ToString(exclude = {"petitions", "signatures"})
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
 
@@ -40,8 +40,10 @@ public class UserEntity extends BaseEntity {
             fetch = FetchType.EAGER,
             mappedBy = "author",
             cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            targetEntity = PetitionEntity.class
+            orphanRemoval = true
     )
     private List<PetitionEntity> petitions;
+
+    @OneToMany(mappedBy = "signer")
+    private List<SignatureEntity> signatures;
 }

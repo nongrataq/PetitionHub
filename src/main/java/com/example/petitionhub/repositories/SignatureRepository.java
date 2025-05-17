@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 
 public interface SignatureRepository extends JpaRepository<SignatureEntity, UUID> {
-    boolean existsByUserAndPetition(UserEntity user, PetitionEntity petition);
+    boolean existsBySignerAndPetition(UserEntity signer, PetitionEntity petition);
 }

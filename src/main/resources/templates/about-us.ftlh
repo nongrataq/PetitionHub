@@ -121,21 +121,21 @@
         <a class="team-link" href="https://github.com/Novice2311" target="_blank">
             <div class="team-member">
                 <div class="member-name">Игорь Добрица</div>
-                <div class="member-role">Никто</div>
+                <div class="member-role">Backend разработчик</div>
             </div>
         </a>
 
         <a class="team-link" href="https://github.com/ReZorDos" target="_blank">
             <div class="team-member">
                 <div class="member-name">Булат Тимуршин</div>
-                <div class="member-role">Никто</div>
+                <div class="member-role">Backend разработчик</div>
             </div>
         </a>
 
-        <a class="team-link" href="https://github.com" target="_blank">
+        <a class="team-link" href="https://github.com/OERook" target="_blank">
         <div class="team-member">
             <div class="member-name">Олег Грачев</div>
-            <div class="member-role">Никто</div>
+            <div class="member-role">Frontend разработчик</div>
         </div>
         </a>
     </div>
