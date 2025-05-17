@@ -14,210 +14,8 @@
           integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/css/layout-style.css">
 
-    <style>
-        /* ===========================
-                Цветовая палитра
-        =========================== */
-        :root {
-          --nav-height: 70px;
-          --footer-height: 80px;
-          --shadow: rgba(0, 0, 0, 0.5);
-          --line-color: rgba(124, 77, 255, 0.5);
-          --node-color: rgba(130, 170, 255, 1);
-        }
-
-        /* Базовая “Robot” палитра */
-        :root.light-theme {
-          --bg-color: #F5F3FF;
-          --card-bg: #FFFFFF;
-          --accent-start: #C792EA;
-          --accent-end: #82AAFF;
-          --accent-start-reversed: #7C4DFF;
-          --accent-end-reversed: #2FD7D9;
-          --text-color: #2A2A3C;
-        }
-        :root.dark-theme {
-          --bg-color: #1A1B26;
-          --card-bg: #24283B;
-          --accent-start: #7C4DFF;
-          --accent-end: #2FD7D9;
-          --accent-start-reversed: #C792EA;
-          --accent-end-reversed: #82AAFF;
-          --text-color: #CFD8DC;
-        }
-
-        /* Ocean палитра */
-        :root.ocean.light-theme {
-          --bg-color: #e0f7fa;
-          --card-bg: #ffffff;
-          --accent-start: #00bcd4;
-          --accent-end: #009688;
-          --accent-start-reversed: #009688;
-          --accent-end-reversed: #00bcd4;
-          --text-color: #004d40;
-        }
-        :root.ocean.dark-theme {
-          --bg-color: #004d40;
-          --card-bg: #263238;
-          --accent-start: #ffffff;
-          --accent-end: #26a69a;
-          --accent-start-reversed: #26a69a;
-          --accent-end-reversed: #4dd0e1;
-          --text-color: #e0f2f1;
-        }
-
-        /* ===========================
-            Базовые правки Bootstrap
-    =========================== */
-    .text-muted,
-    .card-title a {
-        color: var(--text-color) !important;
-    }
-
-    html, body {
-        height: 100%;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        font-family: system-ui, sans-serif;
-        color: var(--text-color);
-        background-color: var(--bg-color);
-        padding-top: var(--nav-height);
-        transition: background-color 0.8s ease, color 0.8s ease;
-    }
-
-    /* ===========================
-            Canvas с фоном
-    =========================== */
-    #network-bg {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        z-index: -1;
-    }
-
-    /* ===========================
-            Навигация
-    =========================== */
-    nav {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%;
-        height: var(--nav-height);
-        background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
-        display: flex;
-        align-items: center;
-        padding: 0 1rem;
-        z-index: 10;
-        box-shadow: 0 2px 6px var(--shadow);
-        transition: background-color 0.8s ease, color 0.8s ease;
-    }
-
-    nav .navbar-brand {
-        color: #fff;
-        font-weight: 600;
-        text-decoration: none;
-    }
-
-    /* ===========================
-            Контент
-    =========================== */
-    main {
-        flex: 1;
-        margin: 1rem auto;
-        max-width: 1200px;
-    }
-
-    /* ===========================
-            Футер
-    =========================== */
-    footer {
-        height: var(--footer-height);
-        background: linear-gradient(90deg, var(--accent-end), var(--accent-start));
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-size: 0.9rem;
-        z-index: 10;
-        box-shadow: 0 -2px 6px var(--shadow);
-        transition: background-color 0.8s ease, color 0.8s ease;
-    }
-
-    .footer-contact {
-        color: var(--accent-start-reversed);
-        text-decoration: none;
-        transition: color 0.8s ease;
-    }
-
-    .footer-contact:hover {
-        color: var(--accent-end-reversed);
-        text-decoration: underline;
-    }
-
-    .text-info {
-        color: #FFFFFF !important;
-        text-decoration: none;
-        transition: color 0.8s ease;
-    }
-
-    .btn-outline-light {
-        transform: translateX(20px);
-    }
-
-    /* ===========================
-            Поле поиска
-    =========================== */
-    .form-control {
-        background-color: var(--card-bg);
-        color: var(--text-color);
-        border-radius: 8px;
-        box-shadow: 0 2px 6px var(--shadow);
-    }
-
-    .form-control::placeholder {
-        color: var(--text-color);
-        opacity: 0.7;
-        transition: color 0.8s ease;
-    }
-
-    .theme-select {
-      display: inline-block;
-      padding: 0.375rem 0.75rem;
-      font-size: 1rem;
-      line-height: 1.5;
-      border: 1px solid #fff;
-      border-radius: 0.375rem;
-      background-color: transparent;
-      color: #fff;
-      appearance: none;
-      position: relative;
-      cursor: pointer;
-      transition:
-      background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    }
-
-    .theme-select:hover {
-      background-color: #ffffff;
-      color: #000000;
-      border-color: #ffffff;
-    }
-
-    .theme-select option {
-      background: #fff;
-      color: #000;
-    }
-    </style>
 
 </head>
 <body>
@@ -253,6 +51,8 @@
         <select id="themeSelect" class="theme-select me-2">
             <option value="robot">Robot</option>
             <option value="ocean">Ocean</option>
+            <option value="forest">Forest</option>
+            <option value="sunset">Sunset</option>
         </select>
 
         <button id="themeToggle" class="btn btn-outline-light me-5">
@@ -282,7 +82,7 @@
     </div>
 </footer>
 
-<!-- Canvas background script… (оставьте без изменений) -->
+<!-- Canvas background script-->
 
 <script>
     const canvas = document.getElementById('network-bg');
@@ -371,7 +171,7 @@
     const root        = document.documentElement;
 
     function applyTheme(palette, mode) {
-      root.classList.remove('light-theme','dark-theme','robot','ocean');
+      root.classList.remove('light-theme','dark-theme','robot','ocean','forest','sunset');
       root.classList.add(mode + '-theme', palette);
       themeIcon.className = mode === 'dark'
         ? 'bi bi-sun-fill'
