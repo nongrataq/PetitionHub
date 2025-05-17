@@ -26,6 +26,6 @@ public class ProfileController {
             model.addAttribute("petitionDto", model.getAttribute("petitionDto"));
         }
 
-        return "profile";
+        return "user/profile";
     }
 }

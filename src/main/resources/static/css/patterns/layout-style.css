@@ -1,241 +1,328 @@
 /* ===========================
-                Цветовая палитра
-        =========================== */
-        :root {
-          --nav-height: 70px;
-          --footer-height: 80px;
-          --shadow: rgba(0, 0, 0, 0.5);
-          --line-color: rgba(124, 77, 255, 0.5);
-          --node-color: rgba(130, 170, 255, 1);
-        }
+Цветовая палитра
+=========================== */
+:root {
+  --nav-height: 70px;
+  --footer-height: 80px;
+  --shadow: rgba(0, 0, 0, 0.5);
+}
 
-        /* Базовая “Robot” палитра */
-        :root.light-theme {
-          --bg-color: #F5F3FF;
-          --card-bg: #FFFFFF;
-          --accent-start: #C792EA;
-          --accent-end: #82AAFF;
-          --accent-start-reversed: #7C4DFF;
-          --accent-end-reversed: #2FD7D9;
-          --text-color: #2A2A3C;
-        }
-        :root.dark-theme {
-          --bg-color: #1A1B26;
-          --card-bg: #24283B;
-          --accent-start: #7C4DFF;
-          --accent-end: #2FD7D9;
-          --accent-start-reversed: #C792EA;
-          --accent-end-reversed: #82AAFF;
-          --text-color: #CFD8DC;
-        }
+/* Базовая “Robot” палитра */
+:root.robot.light-theme {
+  --bg-color: #F5F3FF;
+  --card-bg: #FFFFFF;
+  --accent-start: #C792EA;
+  --accent-end: #82AAFF;
+  --accent-start-reversed: #7C4DFF;
+  --accent-end-reversed: #2FD7D9;
+  --text-color: #2A2A3C;
+  --line-color: rgba(124, 77, 255, 0.5);
+  --node-color: rgba(130, 170, 255, 1);
+}
+:root.robot.dark-theme {
+  --bg-color: #1A1B26;
+  --card-bg: #24283B;
+  --accent-start: #7C4DFF;
+  --accent-end: #2FD7D9;
+  --accent-start-reversed: #C792EA;
+  --accent-end-reversed: #82AAFF;
+  --text-color: #CFD8DC;
+  --line-color: rgba(124, 77, 255, 0.5);
+  --node-color: rgba(130, 170, 255, 1);
+}
 
-        /* Ocean палитра */
-        :root.ocean.light-theme {
-          --bg-color: #e0f7fa;
-          --card-bg: #ffffff;
-          --accent-start: #00bcd4;
-          --accent-end: #009688;
-          --accent-start-reversed: #009688;
-          --accent-end-reversed: #00bcd4;
-          --text-color: #004d40;
-        }
-        :root.ocean.dark-theme {
-          --bg-color: #004d40;
-          --card-bg: #263238;
-          --accent-start: #ffffff;
-          --accent-end: #26a69a;
-          --accent-start-reversed: #26a69a;
-          --accent-end-reversed: #4dd0e1;
-          --text-color: #e0f2f1;
-        }
+/* 1. Классическая (чёрно‑серо‑белая) */
+:root.classic.light-theme {
+  --bg-color: #FFFFFF;
+  --card-bg: #FDFDFD;
+  --accent-start: #666666;
+  --accent-end: #333333;
+  --accent-start-reversed: #444444;
+  --accent-end-reversed: #111111;
+  --text-color: #000000;
+  --line-color: rgba(51, 51, 51, 0.5);
+  --node-color: rgba(102, 102, 102, 1);
+}
+:root.classic.dark-theme {
+  --bg-color: #000000;
+  --card-bg: #111111;
+  --accent-start: #444444;
+  --accent-end: #111111;
+  --accent-start-reversed: #666666;
+  --accent-end-reversed: #333333;
+  --text-color: #FFFFFF;
+  --line-color: rgba(204, 204, 204, 0.5);
+  --node-color: rgba(153, 153, 153, 1);
+}
 
-        /* Forest палитра */
-        :root.forest.light-theme {
-          --bg-color: #e8f5e9;
-          --card-bg: #ffffff;
-          --accent-start: #2e7d32;
-          --accent-end: #1b5e20;
-          --accent-start-reversed: #1b5e20;
-          --accent-end-reversed: #2e7d32;
-          --text-color: #1b5e20;
-        }
-        :root.forest.dark-theme {
-          --bg-color: #1b5e20;
-          --card-bg: #2e7d32;
-          --accent-start: #a5d6a7;
-          --accent-end: #81c784;
-          --accent-start-reversed: #81c784;
-          --accent-end-reversed: #a5d6a7;
-          --text-color: #e8f5e9;
-        }
 
-        /* Sunset палитра */
-        :root.sunset.light-theme {
-          --bg-color: #fff3e0;
-          --card-bg: #ffffff;
-          --accent-start: #ff9800;
-          --accent-end: #ff5722;
-          --accent-start-reversed: #ff5722;
-          --accent-end-reversed: #ff9800;
-          --text-color: #bf360c;
-        }
-        :root.sunset.dark-theme {
-          --bg-color: #bf360c;
-          --card-bg: #ff5722;
-          --accent-start: #ffcc80;
-          --accent-end: #ffab91;
-          --accent-start-reversed: #ffab91;
-          --accent-end-reversed: #ffcc80;
-          --text-color: #fff3e0;
-        }
+/* 2. Пастельный нежный (лаванда + персик) */
+:root.pastel.light-theme {
+  --bg-color: #FFF7FE;
+  --card-bg: #FFFFFF;
+  --accent-start: #E6CBDD;
+  --accent-end: #FFD8CC;
+  --accent-start-reversed: #C49BB3;
+  --accent-end-reversed: #E6A088;
+  --text-color: #3C3A43;
+  --line-color: rgba(230, 203, 221, 0.5);
+  --node-color: rgba(255, 216, 204, 1);
+}
+:root.pastel.dark-theme {
+  --bg-color: #2A2933;
+  --card-bg: #383742;
+  --accent-start: #C49BB3;
+  --accent-end: #E6A088;
+  --accent-start-reversed: #E6CBDD;
+  --accent-end-reversed: #FFD8CC;
+  --text-color: #EDEAF0;
+  --line-color: rgba(196, 155, 179, 0.5);
+  --node-color: rgba(230, 160, 136, 1);
+}
 
-        /* ===========================
-            Базовые правки Bootstrap
-    =========================== */
-    .text-muted,
-    .card-title a {
-        color: var(--text-color) !important;
-    }
+/* 3. Современный технологический (кибер‑циан) */
+:root.modern.light-theme {
+  --bg-color: #F0F4F8;
+  --card-bg: #FFFFFF;
+  --accent-start: #00B8D9;
+  --accent-end: #0052CC;
+  --accent-start-reversed: #0086A5;
+  --accent-end-reversed: #003A8F;
+  --text-color: #1F2A37;
+  --line-color: rgba(0, 82, 204, 0.5);
+  --node-color: rgba(0, 184, 217, 1);
+}
+:root.modern.dark-theme {
+  --bg-color: #0D1117;
+  --card-bg: #161B22;
+  --accent-start: #0086A5;
+  --accent-end: #003A8F;
+  --accent-start-reversed: #00B8D9;
+  --accent-end-reversed: #0052CC;
+  --text-color: #C9D1D9;
+  --line-color: rgba(0, 134, 165, 0.5);
+  --node-color: rgba(0, 90, 143, 1);
+}
 
-    html, body {
-        height: 100%;
-    }
+/* 4. Сдержанный темно‑синий */
+:root.blue.light-theme {
+  --bg-color: #EBF1FA;
+  --card-bg: #FFFFFF;
+  --accent-start: #5A6F8A;
+  --accent-end: #8A9CBF;
+  --accent-start-reversed: #475673;
+  --accent-end-reversed: #6D82A3;
+  --text-color: #243449;
+  --line-color: rgba(90, 111, 138, 0.5);
+  --node-color: rgba(138, 156, 191, 1);
+}
+:root.blue.dark-theme {
+  --bg-color: #1A2332;
+  --card-bg: #2A3347;
+  --accent-start: #475673;
+  --accent-end: #6D82A3;
+  --accent-start-reversed: #5A6F8A;
+  --accent-end-reversed: #8A9CBF;
+  --text-color: #D1D9E5;
+  --line-color: rgba(71, 86, 115, 0.5);
+  --node-color: rgba(109, 130, 163, 1);
+}
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+/* 5. Стильный яркий (магenta + жёлтый) */
+:root.bright.light-theme {
+  --bg-color: #FFF5F8;
+  --card-bg: #FFFFFF;
+  --accent-start: #FF4081;
+  --accent-end: #FFDC4A;
+  --accent-start-reversed: #CC3366;
+  --accent-end-reversed: #CCAA3A;
+  --text-color: #2A2A3C;
+  --line-color: rgba(255, 64, 129, 0.5);
+  --node-color: rgba(255, 220, 74, 1);
+}
+:root.bright.dark-theme {
+  --bg-color: #1A1A1F;
+  --card-bg: #28282F;
+  --accent-start: #CC3366;
+  --accent-end: #CCAA3A;
+  --accent-start-reversed: #FF4081;
+  --accent-end-reversed: #FFDC4A;
+  --text-color: #E8E8F0;
+  --line-color: rgba(204, 51, 102, 0.5);
+  --node-color: rgba(255, 204, 58, 1);
+}
 
-    body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        font-family: system-ui, sans-serif;
-        color: var(--text-color);
-        background-color: var(--bg-color);
-        padding-top: var(--nav-height);
-        transition: background-color 0.8s ease, color 0.8s ease;
-    }
+/* 6. Строгий silver (эффект металла) */
+:root.silver.light-theme {
+  --bg-color: #F7F7F7;
+  --card-bg: #FFFFFF;
+  --accent-start: #D4D4D4;
+  --accent-end: #A3A3A3;
+  --accent-start-reversed: #B0B0B0;
+  --accent-end-reversed: #808080;
+  --text-color: #2E2E2E;
+  --line-color: rgba(163, 163, 163, 0.5);
+  --node-color: rgba(212, 212, 212, 1);
+}
+:root.silver.dark-theme {
+  --bg-color: #181818;
+  --card-bg: #242424;
+  --accent-start: #B0B0B0;
+  --accent-end: #808080;
+  --accent-start-reversed: #D4D4D4;
+  --accent-end-reversed: #A3A3A3;
+  --text-color: #DADADA;
+  --line-color: rgba(176, 176, 176, 0.5);
+  --node-color: rgba(212, 212, 212, 1);
+}
 
-    /* ===========================
-            Canvas с фоном
-    =========================== */
-    #network-bg {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        z-index: -1;
-    }
+/* ===========================
+Базовые правки Bootstrap
+=========================== */
+.text-muted,
+.card-title a {
+  color: var(--text-color) !important;
+}
 
-    /* ===========================
-            Навигация
-    =========================== */
-    nav {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%;
-        height: var(--nav-height);
-        background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
-        display: flex;
-        align-items: center;
-        padding: 0 1rem;
-        z-index: 10;
-        box-shadow: 0 2px 6px var(--shadow);
-        transition: background-color 0.8s ease, color 0.8s ease;
-    }
+html, body {
+  height: 100%;
+}
 
-    nav .navbar-brand {
-        color: #fff;
-        font-weight: 600;
-        text-decoration: none;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    /* ===========================
-            Контент
-    =========================== */
-    main {
-        flex: 1;
-        margin: 1rem auto;
-        max-width: 1200px;
-    }
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: system-ui, sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  padding-top: var(--nav-height);
+  transition: background-color 0.8s ease, color 0.8s ease;
+}
 
-    /* ===========================
-            Футер
-    =========================== */
-    footer {
-        height: var(--footer-height);
-        background: linear-gradient(90deg, var(--accent-end), var(--accent-start));
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-size: 0.9rem;
-        z-index: 10;
-        box-shadow: 0 -2px 6px var(--shadow);
-        transition: background-color 0.8s ease, color 0.8s ease;
-    }
+/* ===========================
+Canvas с фоном
+=========================== */
+#network-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+}
 
-    .footer-contact {
-        color: var(--accent-start-reversed);
-        text-decoration: none;
-        transition: color 0.8s ease;
-    }
+/* ===========================
+Навигация
+=========================== */
+nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 10;
+  box-shadow: 0 2px 6px var(--shadow);
+  transition: background-color 0.8s ease, color 0.8s ease;
+}
 
-    .footer-contact:hover {
-        color: var(--accent-end-reversed);
-        text-decoration: underline;
-    }
+nav .navbar-brand {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
 
-    .text-info {
-        color: #FFFFFF !important;
-        text-decoration: none;
-        transition: color 0.8s ease;
-    }
+/* ===========================
+Контент
+=========================== */
+main {
+  flex: 1;
+  margin: 1rem auto;
+  max-width: 1200px;
+}
 
-    .btn-outline-light {
-        transform: translateX(20px);
-    }
+/* ===========================
+Футер
+=========================== */
+footer {
+  height: var(--footer-height);
+  background: linear-gradient(90deg, var(--accent-end), var(--accent-start));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.9rem;
+  z-index: 10;
+  box-shadow: 0 -2px 6px var(--shadow);
+  transition: background-color 0.8s ease, color 0.8s ease;
+}
 
-    /* ===========================
-            Поле поиска
-    =========================== */
-    .form-control {
-        background-color: var(--card-bg);
-        color: var(--text-color);
-        border-radius: 8px;
-        box-shadow: 0 2px 6px var(--shadow);
-    }
+.footer-contact {
+  color: var(--accent-start-reversed);
+  text-decoration: none;
+  transition: color 0.8s ease;
+}
 
-    .form-control::placeholder {
-        color: var(--text-color);
-        opacity: 0.7;
-        transition: color 0.8s ease;
-    }
+.footer-contact:hover {
+  color: var(--accent-end-reversed);
+  text-decoration: underline;
+}
 
-    .theme-select {
-      display: inline-block;
-      padding: 0.375rem 0.75rem;
-      font-size: 1rem;
-      line-height: 1.5;
-      border: 1px solid #fff;
-      border-radius: 0.375rem;
-      background-color: transparent;
-      color: #fff;
-      appearance: none;
-      position: relative;
-      cursor: pointer;
-      transition:
-      background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    }
+.text-info {
+  color: #FFFFFF !important;
+  text-decoration: none;
+  transition: color 0.8s ease;
+}
 
-    .theme-select:hover {
-      background-color: #ffffff;
-      color: #000000;
-      border-color: #ffffff;
-    }
+.btn-outline-light {
+  transform: translateX(20px);
+}
 
-    .theme-select option {
-      background: #fff;
-      color: #000;
-    }
+/* ===========================
+Поле поиска
+=========================== */
+.form-control {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.form-control::placeholder {
+  color: var(--text-color);
+  opacity: 0.7;
+  transition: color 0.8s ease;
+}
+
+.theme-select {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border: 1px solid #fff;
+  border-radius: 0.375rem;
+  background-color: transparent;
+  color: #fff;
+  appearance: none;
+  position: relative;
+  cursor: pointer;
+  transition:
+  background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.theme-select:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.theme-select option {
+  background: #fff;
+  color: #000;
+}
