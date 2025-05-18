@@ -30,10 +30,7 @@
       <!-- Поиск + Авторизация -->
       <div class="d-flex align-items-center">
         <div class="search">
-          <form class="d-flex me-3" action="/search" method="get">
-            <label><input class="form-control me-2" type="search" name="query" placeholder="Поиск петиций"></label>
-            <button class="btn btn-outline-light" type="submit">Найти</button>
-          </form>
+          <a href="/search" class="btn btn-outline-light me-2"><span>Поиск петиций</span></a>
         </div>
         <#if isAuthenticated>
         <form action="/logout" method="post" class="me-2">
@@ -48,16 +45,22 @@
       </div>
 
       <!-- Темы + Лого -->
-      <div class="d-flex align-items-center ms-auto">
-        <select id="themeSelect" class="theme-select me-2">
-          <option value="classic">Для Богдана</option>
-          <option value="robot">Робот</option>
-          <option value="pastel">Нежный</option>
-          <option value="modern">Современный</option>
-          <option value="blue">Строгий синий</option>
-          <option value="bright">Яркий</option>
-          <option value="silver">Серебро</option>
-        </select>
+      <div class="d-flex align-items-center me-2">
+
+        <div class="theme-dropdown">
+          <select id="themeSelect"
+                  class="theme-select dropdown-toggle me-2"
+                  onchange="onThemeChange(this.value)">
+            <option value="" disabled selected hidden>Темы</option>
+            <option value="classic">Для Богдана</option>
+            <option value="robot">Робот</option>
+            <option value="pastel">Нежный</option>
+            <option value="modern">Современный</option>
+            <option value="blue">Строгий синий</option>
+            <option value="bright">Яркий</option>
+            <option value="silver">Серебро</option>
+          </select>
+        </div>
 
         <button id="themeToggle" class="btn btn-outline-light me-5">
           <i class="bi bi-moon-stars-fill" id="themeIcon"></i>

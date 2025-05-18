@@ -23,7 +23,7 @@ PetitionHub — это веб-приложение для создания, пр
 1. Склонируйте репозиторий:
 
    ```bash
-   git clone https://github.com/yourusername/PetitionHub.git
+   git clone https://github.com/nongrataq/PetitionHub.git
    cd PetitionHub
    ```
 2. Настройте подключение к базе данных в `src/main/resources/application.properties`.

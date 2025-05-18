@@ -41,6 +41,13 @@
 /* ===========================
 Кнопки
 =========================== */
+.btn-wrapper {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeInUp 0.6s forwards;
+  display: inline-block;
+}
+
 .btn-primary {
   background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
   color: #fff;
@@ -54,9 +61,6 @@
   font-size: 1.25rem;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
   display: inline-block;
-  opacity: 0;
-  transform: translateY(12px);
-  animation: fadeInUp 0.6s forwards;
 }
 
 /* Эффекты при наведении на кнопку */
@@ -99,4 +103,13 @@
 
 .card-title a:hover {
   background-size: 100% 2px;
+}
+
+.description-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }

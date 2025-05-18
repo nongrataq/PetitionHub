@@ -1,0 +1,90 @@
+.btn-wrapper {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeInUp 0.6s forwards;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  color: #fff;
+  padding: 0.25rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 200;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  font-size: 0.85rem;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.5);
+}
+
+.autocomplete-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border: 1px solid #ccc;
+    border-top: none;
+    background: white;
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.autocomplete-list li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.autocomplete-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.quick-tags .btn {
+    transition: 0.3s ease;
+}
+
+.quick-tags .btn:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.card.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.input-gradient-border {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background-image: linear-gradient(var(--card-bg), var(--card-bg)),
+    linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.input-gradient-border:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.dropdown-toggle::after {
+  content: none !important;
+}
