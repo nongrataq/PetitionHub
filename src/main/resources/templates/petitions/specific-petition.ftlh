@@ -17,7 +17,7 @@ styles='<link rel="stylesheet" href="/css/petitions/specific-petition-style.css"
     </div>
   </div>
   <div class="card-footer">
-    <p class="label">Количество подписей: ${current_petition.numberOfSignatures}</p>
+    <p class="label">Количество подписей: ${current_petition.getSignatureCount()}</p>
     <p class="text-muted">
       <span class="label">Автор:</span>
       <a class="author-link" href="/profile/${current_petition.author.username}">${current_petition.author.username}</a>

@@ -24,12 +24,13 @@ public class PetitionDto {
 
     private LocalDateTime date;
     private String authorUsername;
-    private Integer numberOfSignatures;
+    private int numberOfSignatures;
 
     public String getFormattedDateOfCreation() {
         if (date == null) return "";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         return date.format(formatter);
     }
+
 }
 

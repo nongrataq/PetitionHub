@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
-
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
@@ -15,7 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(
         name = "signatures",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "petition_id"})
+        uniqueConstraints = @UniqueConstraint(columnNames = {"signer_id", "petition_id"})
 )
 public class SignatureEntity extends BaseEntity {
 

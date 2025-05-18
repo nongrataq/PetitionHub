@@ -6,6 +6,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.UUID;
 
 @MappedSuperclass
@@ -21,6 +22,13 @@ public abstract class BaseEntity {
 
     @Column(name = "date")
     private LocalDateTime date;
+
+    @PrePersist
+    protected void onCreate() {
+        if (Objects.isNull(date)) {
+            date = LocalDateTime.now();
+        }
+    }
 
     @Transient
     public String getFormattedDateOfCreation() {
