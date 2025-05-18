@@ -12,7 +12,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @Table(
         name = "signatures",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "petition_id"})
+        uniqueConstraints = @UniqueConstraint(columnNames = {"signer_id", "petition_id"})
 )
 public class SignatureEntity extends BaseEntity {
 

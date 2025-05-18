@@ -1,36 +1,46 @@
 <#import "../patterns/layout.ftlh" as layout>
-<@layout.main title="Petition: ${current_petition.title}"
-styles='<link rel="stylesheet" href="/css/petitions/specific-petition-style.css">'>
+<@layout.main title="Petition Platform"
+styles='<link rel="stylesheet" href="/css/home/home-style.css">'>
 
-<!-- Карточка петиции -->
-<div class="card petition-card">
-  <div class="card-header">
-    <div class="label-block">
-      <div class="label-title">Заголовок</div>
-      <h5 class="card-title">${current_petition.title}</h5>
+  <!-- Навигация -->
+  <nav>
+    <a href="/" class="navbar-brand">Petition Platform</a>
+  </nav>
+
+  <!-- Основной контент -->
+  <main class="container">
+
+    <!-- Кнопка создания новой петиции -->
+    <div class="text-center my-5 py-4">
+      <a href="/create-petition" class="btn-primary btn-lg"><span>Создать петицию</span></a>
     </div>
-  </div>
-  <div class="card-body">
-    <div class="label-block">
-      <div class="label-title">Описание</div>
-      <p class="card-text">${current_petition.description}</p>
-    </div>
-  </div>
-  <div class="card-footer">
-    <p class="label">Количество подписей: ${current_petition.numberOfSignatures}</p>
-    <p class="text-muted">
-      <span class="label">Автор:</span>
-      <a class="author-link" href="/profile/${current_petition.author.username}">${current_petition.author.username}</a>
-    </p>
-    <div class="button-wrapper">
-      <#if hasSigned?? && hasSigned>
-      <p class="signed-message">Вы уже подписали эту петицию</p>
-      <#else>
-      <form action="/sign/${current_petition.id}" method="post">
-        <button class="btn-primary">Подписать петицию</button>
-      </form>
+
+    <!-- Заголовок секции -->
+    <h3 class="mb-4">Недавние петиции</h3>
+    <div class="row g-4">
+      <#if petitions?has_content>
+        <#list petitions as petition>
+          <div class="col-md-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title petition-title">
+                  <a href="/specific-petition/${petition.id}">${petition.title}</a>
+                </h5>
+                <p class="card-text text-muted">${petition.description}</p>
+                <div class="d-flex justify-content-between text-muted small">
+            <span>
+              <i class="bi bi-check-circle me-1 text-success"></i>${petition.getSignatureCount()} подписей
+            </span>
+                  <span>
+              <i class="bi bi-calendar-event me-1 text-primary"></i>${petition.formattedDateOfCreation}
+            </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </#list>
+      <#else> Пока петиций нет!
       </#if>
     </div>
-  </div>
-</div>
+  </main>
 </@layout.main>

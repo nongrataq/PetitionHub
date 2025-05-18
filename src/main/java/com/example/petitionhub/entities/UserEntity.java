@@ -42,7 +42,7 @@ public class UserEntity extends BaseEntity {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<PetitionEntity> petitions;
+    private List<PetitionEntity> petitions = new ArrayList<>();
 
     @OneToMany(mappedBy = "signer")
     private List<SignatureEntity> signatures;

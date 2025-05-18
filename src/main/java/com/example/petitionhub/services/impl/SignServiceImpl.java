@@ -25,15 +25,12 @@ public class SignServiceImpl implements SignService {
         SignatureEntity signature = SignatureEntity.builder()
                 .signer(signer)
                 .petition(petition)
-                .date(LocalDateTime.now())
                 .build();
+
+        petition.getSignatures().add(signature);
 
         signatureRepository.save(signature);
 
-        int currentSignaturesCount = petition.getNumberOfSignatures() != null
-                ? petition.getNumberOfSignatures()
-                : 0;
-        petition.setNumberOfSignatures(currentSignaturesCount + 1);
         petitionRepository.save(petition);
     }
 

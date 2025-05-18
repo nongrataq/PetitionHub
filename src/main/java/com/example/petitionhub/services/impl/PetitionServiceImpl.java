@@ -41,9 +41,7 @@ public class PetitionServiceImpl implements PetitionService {
         PetitionEntity petition = petitionEntityMapper.toPetitionEntity(petitionDto);
 
         petition.setAuthor(currentUser);
-        petition.setDate(LocalDateTime.now());
         currentUser.getPetitions().add(petition);
-        petition.setNumberOfSignatures(0);
 
         PetitionEntity savedPetition = petitionRepository.save(petition);
 
