@@ -59,7 +59,13 @@ public class PetitionServiceImpl implements PetitionService {
     }
 
     @Override
+    public List<PetitionEntity> searchPetitionByTitle(String query) {
+        return petitionRepository.findByTitleContainingIgnoreCase(query);
+    }
+
+    @Override
     public List<PetitionEntity> findAll() {
         return petitionRepository.findAll();
     }
+
 }
