@@ -49,9 +49,38 @@ styles='<link rel="stylesheet" href="/css/petitions/search-style.css">'>
         </div>
     </div>
 
-    <!-- Результаты поиска-->
+    <!-- Результаты поиска -->
     <div id="resultsContainer" class="row gy-4">
-        <!-- Обычные карточки петиции как с главной страницы -->
+        <#if petitions?? && petitions?size gt 0>
+            <#list petitions as petition>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">${petition.title!''}</h5>
+                            <p class="card-text">
+                                <#if petition.description?length gt 150>
+                                    ${petition.description?substring(0, 150)}...
+                                <#else>
+                                    ${petition.description!''}
+                                </#if>
+                            </p>
+                            <!-- Ссылка на полную петицию -->
+                            <a href="/specific-petition/${petition.id}" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            </#list>
+        <#else>
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <#if query?has_content>
+                        По запросу "${query}" ничего не найдено.
+                    <#else>
+                        Введите поисковый запрос
+                    </#if>
+                </div>
+            </div>
+        </#if>
     </div>
 
 </div>

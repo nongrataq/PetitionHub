@@ -11,4 +11,5 @@ public interface PetitionService {
     List<PetitionDto> findAllByAuthor(UserEntity author);
     List<PetitionEntity> findAll();
     PetitionEntity findPetitionById(UUID id);
+    List<PetitionEntity> searchPetitionByTitle(String query);
 }
