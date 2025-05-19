@@ -11,6 +11,6 @@ import java.util.UUID;
 public interface PetitionRepository extends JpaRepository<PetitionEntity, UUID> {
     @EntityGraph(attributePaths = {"author"})
     List<PetitionEntity> findAllByAuthor(UserEntity author);
-
     List<PetitionEntity> findByTitleContainingIgnoreCase(String title);
+    List<PetitionEntity> findPetitionEntitiesByAuthor_Username(String authorUsername);
 }

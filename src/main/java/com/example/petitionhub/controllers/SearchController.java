@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SearchController {
 
-    private final PetitionService petitionService;
+    private final PetitionService   petitionService;
 
     @GetMapping
     public String search(@RequestParam(value = "query", required = false) String query, Model model) {

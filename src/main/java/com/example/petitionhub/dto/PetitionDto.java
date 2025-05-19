@@ -30,7 +30,9 @@ public class PetitionDto {
     private String title;
 
     private LocalDateTime date;
+
     private String authorUsername;
+
     private int numberOfSignatures;
 
     public String getFormattedDateOfCreation() {

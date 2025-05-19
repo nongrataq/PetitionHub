@@ -85,6 +85,6 @@ styles='<link rel="stylesheet" href="/css/petitions/search-style.css">'>
 
 </div>
 
-<script src="/js/petitions/search-searching-script.js"></script>
+<script src="static/js/patterns/petitions/search-searching-script.js"></script>
 
 </@layout.main>
