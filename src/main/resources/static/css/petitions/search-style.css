@@ -88,3 +88,13 @@
 .dropdown-toggle::after {
   content: none !important;
 }
+
+#searchInput {
+    color: var(--accent-start);
+}
+
+#searchInput::placeholder {
+    color: var(--accent-start);
+    opacity: 1;
+}
+

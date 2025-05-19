@@ -29,15 +29,17 @@ styles='<link rel="stylesheet" href="/css/user/profile-style.css">'>
     <div class="card-body">
       <h5 class="card-title">${p.title}</h5>
       <p class="card-text">${p.description}</p>
-      <p>Подписей: ${p.numberOfSignatures}</p>  <div class="card-body">
+      <p>Подписей: ${p.numberOfSignatures}</p>
     </div>
-      <div class="card-footer text-muted mb-3">
-        <#if p.formattedDateOfCreation?? && p.formattedDateOfCreation?length != 0>
+
+    <div class="card-footer text-muted mb-3">
+      <#if p.formattedDateOfCreation?? && p.formattedDateOfCreation?length != 0>
         Дата создания: ${p.formattedDateOfCreation}
-        <#else>
+      <#else>
         Дата не указана
       </#if>
     </div>
+  </div>
 </section>
 </#list>
 <#else>

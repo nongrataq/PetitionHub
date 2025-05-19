@@ -31,7 +31,7 @@ styles='<link rel="stylesheet" href="/css/home/home-style.css">'>
           <p class="card-text text-muted description-truncate">${petition.description}</p>
           <div class="d-flex justify-content-between text-muted small">
             <span>
-              <i class="bi bi-people text-success"></i>${petition.getSignatureCount()}
+              <i class="bi bi-people text-success"></i> ${petition.getSignatureCount()}
             </span>
             <span>
               <i class="bi bi-calendar-event me-1 text-primary"></i>${petition.formattedDateOfCreation}
