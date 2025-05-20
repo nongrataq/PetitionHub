@@ -8,7 +8,7 @@ styles='<link rel="stylesheet" href="/css/home/home-style.css">'>
 </nav>
 
 <!-- Основной контент -->
-<main class="container">
+<div class="container">
 
   <!-- Кнопка создания новой петиции -->
   <div class="text-center my-5 py-4">
@@ -44,5 +44,5 @@ styles='<link rel="stylesheet" href="/css/home/home-style.css">'>
     <#else> Пока петиций нет!
     </#if>
   </div>
-</main>
+</div>
 </@layout.main>
