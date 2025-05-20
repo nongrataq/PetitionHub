@@ -4,11 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/about-us")
+@RequestMapping("/notifications")
 @Controller
-public class AboutUsController {
+public class NotificationsController {
     @GetMapping
-    public String aboutUs() {
-        return "informationPages/about-us";
+    public String notifications() {
+        return "user/notifications";
     }
 }
