@@ -53,33 +53,33 @@ styles='<link rel="stylesheet" href="/css/petitions/search-style.css">'>
     <div id="resultsContainer" class="row gy-4">
         <#if petitions?? && petitions?size gt 0>
             <#list petitions as petition>
-                <div class="col-md-6 col-lg-4 mb-4">
+                <div class="col-md-4">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">${petition.title!''}</h5>
-                            <p class="card-text">
-                                <#if petition.description?length gt 150>
-                                    ${petition.description?substring(0, 150)}...
-                                <#else>
-                                    ${petition.description!''}
-                                </#if>
-                            </p>
-                            <!-- Ссылка на полную петицию -->
-                            <a href="/specific-petition/${petition.id}" class="stretched-link"></a>
+                            <h5 class="card-title petition-title">
+                                <a href="/specific-petition/${petition.id}">${petition.title!''}</a>
+                            </h5>
+                            <p class="card-text text-muted description-truncate">${petition.description!''}</p>
+                            <div class="d-flex justify-content-between text-muted small">
+                                <span>
+                                  <i class="bi bi-people text-success"></i> ${petition.getSignatureCount()}
+                                </span>
+                                <span>
+                                  <i class="bi bi-calendar-event me-1 text-primary"></i>${petition.formattedDateOfCreation}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </#list>
         <#else>
-            <div class="col-12">
-                <div class="alert alert-info">
-                    <#if query?has_content>
+            <#if query?has_content>
+                <div class="result-card w-75 mx-auto">
+                    <h5 class="result-text">
                         По запросу "${query}" ничего не найдено.
-                    <#else>
-                        Введите поисковый запрос
-                    </#if>
+                    </h5>
                 </div>
-            </div>
+            </#if>
         </#if>
     </div>
 
