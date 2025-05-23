@@ -17,10 +17,10 @@ styles='<link rel="stylesheet" href="/css/petitions/specific-petition-style.css"
     </div>
   </div>
   <div class="card-footer">
-    <p class="label">Количество подписей: ${current_petition.getSignatureCount()}</p>
+    <p class="label">Количество подписей: ${current_petition.countOfSignatures}</p>
     <p class="text-muted">
       <span class="label">Автор:</span>
-      <a class="author-link" href="/profile/${current_petition.author.username}">${current_petition.author.username}</a>
+      <a class="author-link" href="/profile/${current_petition.authorUsername}">${current_petition.authorUsername}</a>
     </p>
     <div class="button-wrapper">
       <#if hasSigned?? && hasSigned>

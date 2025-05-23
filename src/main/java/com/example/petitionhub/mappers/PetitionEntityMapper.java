@@ -11,7 +11,6 @@ import java.util.List;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface PetitionEntityMapper {
     @Mapping(source = "author.username", target = "authorUsername")
-    @Mapping(source = "signatureCount", target = "numberOfSignatures")
     PetitionDto toPetitionDto(PetitionEntity entity);
     PetitionEntity toPetitionEntity(PetitionDto dto);
     List<PetitionDto> toPetitionDtos(List<PetitionEntity> entities);

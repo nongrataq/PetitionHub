@@ -12,10 +12,11 @@ import com.example.petitionhub.services.PetitionService;
 import com.example.petitionhub.services.SignService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,26 +32,17 @@ public class PetitionServiceImpl implements PetitionService {
     @Override
     @Transactional
     public PetitionDto createPetition(PetitionDto petitionDto) {
-
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        UserEntity currentUser = userRepository.findUserEntityByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not registered"));
-
+        UserEntity userEntity = userRepository.findUserEntityByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
         PetitionEntity petition = petitionEntityMapper.toPetitionEntity(petitionDto);
-
-        petition.setAuthor(currentUser);
-        currentUser.getPetitions().add(petition);
+        petition.setAuthor(userEntity);
 
         PetitionEntity savedPetition = petitionRepository.save(petition);
 
         return petitionEntityMapper.toPetitionDto(savedPetition);
-    }
-
-    @Override
-    public List<PetitionDto> findAllByAuthor(UserEntity author) {
-        return petitionEntityMapper.toPetitionDtos(petitionRepository.findAllByAuthor(author));
     }
 
     @Override
@@ -64,8 +56,8 @@ public class PetitionServiceImpl implements PetitionService {
     }
 
     @Override
-    public List<PetitionEntity> findAll() {
-        return petitionRepository.findAll();
+    public Page<PetitionEntity> findAll(Pageable pageable) {
+        return petitionRepository.findAll(pageable);
     }
 
 }

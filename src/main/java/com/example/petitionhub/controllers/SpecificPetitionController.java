@@ -2,6 +2,7 @@ package com.example.petitionhub.controllers;
 
 import com.example.petitionhub.entities.PetitionEntity;
 import com.example.petitionhub.entities.UserEntity;
+import com.example.petitionhub.mappers.PetitionEntityMapper;
 import com.example.petitionhub.security.details.UserEntityDetails;
 import com.example.petitionhub.services.PetitionService;
 import com.example.petitionhub.services.SignService;
@@ -21,6 +22,7 @@ import java.util.UUID;
 public class SpecificPetitionController {
     private final PetitionService petitionService;
     private final SignService signService;
+    private final PetitionEntityMapper petitionEntityMapper;
 
     @GetMapping
     public String showSpecificPetition(
@@ -30,7 +32,7 @@ public class SpecificPetitionController {
     ) {
         PetitionEntity currentPetition = petitionService.findPetitionById(id);
 
-        model.addAttribute("current_petition", currentPetition);
+        model.addAttribute("current_petition", petitionEntityMapper.toPetitionDto(currentPetition));
 
         boolean hasSigned = false;
 

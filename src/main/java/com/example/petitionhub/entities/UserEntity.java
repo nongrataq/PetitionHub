@@ -5,12 +5,7 @@ import com.example.petitionhub.enums.Status;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -37,13 +32,15 @@ public class UserEntity extends BaseEntity {
 
 
     @OneToMany(
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             mappedBy = "author",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @Builder.Default
     private List<PetitionEntity> petitions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "signer")
-    private List<SignatureEntity> signatures;
+    @OneToMany(mappedBy = "signer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<SignatureEntity> signatures = new ArrayList<>();
 }

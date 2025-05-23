@@ -1,4 +1,5 @@
 <#macro main title="PetitionHub" styles="">
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +28,7 @@
   <nav class="navbar navbar-expand-lg fixed-top shadow-sm">
     <div class="container-fluid">
 
-      <!-- Поиск + Авторизация -->
+      <!-- Поиск + Авторизация + Уведы -->
       <div class="d-flex align-items-center">
         <div class="search">
           <a href="/search" class="btn btn-outline-light me-2"><span>Поиск петиций</span></a>
@@ -36,7 +37,11 @@
         <form action="/logout" method="post" class="me-2">
           <button type="submit" class="btn btn-outline-light">Выйти</button>
         </form>
-        <a href="/profile" class="btn btn-outline-light"><i class="bi bi-person-circle"></i> Профиль</a>
+        <a href="/profile" class="btn btn-outline-light me-2"><i class="bi bi-person-circle"></i> Профиль</a>
+        <!-- TODO: Сделать проверку: если есть непрочитанные уведы, то иконку с красным кружком -->
+        <div class="notification-btn me-2">
+          <a href="/notifications" class="btn btn-outline-light"><i class="bi bi-bell"></i></a>
+        </div>
         <#else>
         <form action="/auth/sign-in" method="get">
           <button type="submit" class="btn btn-outline-light">Войти</button>
