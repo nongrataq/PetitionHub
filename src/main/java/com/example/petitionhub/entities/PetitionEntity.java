@@ -26,10 +26,10 @@ public class PetitionEntity extends BaseEntity {
     @JoinColumn(name = "author_id")
     private UserEntity author;
 
-    @OneToMany(mappedBy = "petition", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<SignatureEntity> signatures;
+    @Builder.Default
+    private Integer countOfSignatures = 0;
 
-    public int getSignatureCount() {
-        return signatures != null ? signatures.size() : 0;
-    }
+    @OneToMany(mappedBy = "petition", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<SignatureEntity> signatures = new ArrayList<>();
 }

@@ -1,6 +1,7 @@
 package com.example.petitionhub.controllers;
 
 import com.example.petitionhub.entities.PetitionEntity;
+import com.example.petitionhub.mappers.PetitionEntityMapper;
 import com.example.petitionhub.services.PetitionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import java.util.List;
 public class SearchController {
 
     private final PetitionService petitionService;
+    private final PetitionEntityMapper petitionEntityMapper;
 
     @GetMapping
     public String search(@RequestParam(value = "query", required = false) String query, Model model) {
@@ -27,7 +29,7 @@ public class SearchController {
             petitions = petitionService.searchPetitionByTitle(query.trim());
         }
 
-        model.addAttribute("petitions", petitions);
+        model.addAttribute("petitions", petitionEntityMapper.toPetitionDtos(petitions));
         model.addAttribute("query", query != null ? query : "");
         return "petitions/search";
     }
