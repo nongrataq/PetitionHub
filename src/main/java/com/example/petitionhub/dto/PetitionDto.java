@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -28,10 +29,10 @@ public class PetitionDto {
             message = "Заголовок должен содержать буквы (кириллицу или латиницу), цифры и разрешённые символы."
     )
     private String title;
-
+    private UUID id;
     private LocalDateTime date;
     private String authorUsername;
-    private int numberOfSignatures;
+    private int countOfSignatures;
 
     public String getFormattedDateOfCreation() {
         if (date == null) return "";

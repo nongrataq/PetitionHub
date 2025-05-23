@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.List;
 
 
 @RequestMapping("/profile")
@@ -29,12 +30,13 @@ public class ProfileController {
 
     @GetMapping("/{name}")
     public String profile(Model model, @PathVariable(name = "name", required = false) String name) {
+        List<PetitionDto> petitions = profileService.findPetitionsByAuthor_Username(name);
 
-        model.addAttribute("petitions", profileService.findPetitionsByAuthor_Username(name));
+        model.addAttribute("petitions", petitions);
         model.addAttribute("authorName", name);
-        model.addAttribute("count" , profileService.findPetitionsByAuthor_Username(name).size());
-        model.addAttribute("countOfSub", profileService.findPetitionsByAuthor_Username(name).stream()
-                .map(PetitionDto::getNumberOfSignatures)
+        model.addAttribute("count" , petitions.size());
+        model.addAttribute("countOfSub", petitions.stream()
+                .map(PetitionDto::getCountOfSignatures)
                 .reduce(Integer::sum)
                 .orElse(0));
 

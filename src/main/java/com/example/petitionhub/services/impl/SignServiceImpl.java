@@ -28,6 +28,7 @@ public class SignServiceImpl implements SignService {
                 .build();
 
         petition.getSignatures().add(signature);
+        petition.setCountOfSignatures(petition.getCountOfSignatures() + 1);
 
         signatureRepository.save(signature);
 
