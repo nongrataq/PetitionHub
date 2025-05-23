@@ -1,62 +1,76 @@
 <#import "../patterns/layout.ftlh" as layout>
-<@layout.main title="Profile"
-styles='<link rel="stylesheet" href="/css/user/profile-style.css">'>
+<@layout.main title="Профиль"
+styles='<link rel="stylesheet" href="/css/user/profile-style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">'>
 
-    <section class="user-info">
-        <img src="" alt="Аватар" class="avatar">
-        <!-- TODO: переопределить цвет у authorName на var(--accent-start) -->
-        <h2>${authorName}</h2>
-        <p>Петиций: ${count}</p>
-        <p>Собранные голоса: ${countOfSub}</p>
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="profile-icon">
+            <i class="bi bi-person-circle"></i>
+        </div>
+        <h2 class="profile-name">${authorName}</h2>
+    </div>
 
-        <p class="description"></p>
-    </section>
+    <div class="profile-stats">
+        <div class="stat-item">
+            <span class="stat-number">${count}</span>
+            <span class="stat-label">Петиций</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">${countOfSub}</span>
+            <span class="stat-label">Голосов</span>
+        </div>
+    </div>
 
-    <button id="togglePetitionsBtn" class="btn btn-primary">Показать петиции</button>
+    <#if description??>
+    <div class="profile-description">
+        <p>${description}</p>
+    </div>
+    </#if>
 
-    /*                  !!! ALARM !!!
-    Баг с тем, что петиции накладываются друг друга и не исчезают
-    полностью после нажатия кнопки "скрыть петиции" решается
-    заменой нынешних ущербных карточек петиций в профиле на карточки как
-    на главной странице.
-    */
+    <div class="profile-actions">
+        <button id="togglePetitionsBtn" class="btn btn-primary">
+            <i class="bi bi-list"></i>
+            <span>Мои петиции</span>
+        </button>
+        <a href="/create-petition" class="btn btn-transparent">
+            <i class="bi bi-plus-lg"></i>
+            <span>Создать петицию</span>
+        </a>
+    </div>
+</div>
 
-    <section id="petitionsSection" style="display:none; margin-top: 20px;">
-        <#if petitions?? && petitions?has_content>
-            <#list petitions as p>
-                <div class="card mb-3">
-                    <div class="card-header collapsed">Петиция</div>
-                    <div class="card-body">
-                        <h5 class="card-title">${p.title}</h5>
-                        <p class="card-text">${p.description}</p>
-                        <p>Подписей: ${p.countOfSignatures}</p>
-                    </div>
-
-                    <div class="card-footer text-muted mb-3">
+<section id="petitionsSection" style="display:none; margin-top: 20px;">
+    <#if petitions?? && petitions?has_content>
+    <div class="petitions-grid">
+        <#list petitions as p>
+        <div class="petition-card">
+            <div class="petition-content">
+                <h3 class="petition-title">${p.title}</h3>
+                <p class="petition-description">${p.description}</p>
+                <div class="petition-meta">
+                    <span class="petition-signatures">
+                        <i class="bi bi-people-fill"></i> ${p.numberOfSignatures} подписей
+                    </span>
+                    <span class="petition-date">
+                        <i class="bi bi-calendar"></i>
                         <#if p.formattedDateOfCreation?? && p.formattedDateOfCreation?length != 0>
-                            Дата создания: ${p.formattedDateOfCreation}
+                            ${p.formattedDateOfCreation}
                         <#else>
                             Дата не указана
                         </#if>
-                    </div>
+                    </span>
                 </div>
-            </#list>
-        <#else>
-            <div class="alert alert-info">Петиций пока нет.</div>
-        </#if>
-    </section>
+            </div>
+            <a href="/petition/${p.id}" class="petition-link">Подробнее</a>
+        </div>
+        </#list>
+    </div>
+    <#else>
+    <div class="alert alert-info">Петиций пока нет.</div>
+    </#if>
+</section>
 
-    <!-- TODO: вынести скрипт кнопки в отдельный js файл в соответствующую папку -->
-    <script>
-        const btn = document.getElementById('togglePetitionsBtn');
-        const petitionsSection = document.getElementById('petitionsSection');
-        let visible = false;
-
-        btn.addEventListener('click', () => {
-            visible = !visible;
-            petitionsSection.style.display = visible ? 'block' : 'none';
-            btn.textContent = visible ? 'Скрыть петиции' : 'Показать петиции';
-        });
-    </script>
+<script src="/js/user/profile.js"></script>
 
 </@layout.main>

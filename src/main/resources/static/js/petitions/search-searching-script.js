@@ -30,4 +30,71 @@ document.addEventListener('DOMContentLoaded', function() {
             handleSearch();
         }
     });
+
+    /* Аватар пользователя */
+    .avatar-container {
+      margin: 0 auto 20px;
+      width: 120px;
+      height: 120px;
+    }
+
+    .avatar, .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent-start);
+    }
+
+    .avatar-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f0f0f0;
+      font-size: 3rem;
+      color: var(--accent-start);
+    }
+
+    /* Имя пользователя */
+    .author-name {
+      color: var(--accent-start);
+      margin-bottom: 1rem;
+    }
+
+    /* Статистика */
+    .user-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .user-stats p {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0;
+    }
+
+    /* Описание пользователя */
+    .user-description {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    /* Адаптация */
+    @media (max-width: 576px) {
+      .user-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .avatar-container {
+        width: 100px;
+        height: 100px;
+      }
+    }
 });
