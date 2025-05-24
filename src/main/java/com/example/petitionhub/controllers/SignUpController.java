@@ -25,22 +25,27 @@ public class SignUpController {
     }
 
     @PostMapping
-    public String signUp(@Valid @ModelAttribute(name = "signUpDto") SignUpDto signUpDto,
+    public String signUp(@Valid SignUpDto signUpDto,
                          BindingResult bindingResult,
                          Model model,
                          RedirectAttributes redirectAttributes
     ) {
 
+        model.addAttribute("isFormSubmitted", true);
+
         if (bindingResult.hasErrors()) {
-            model.addAttribute("errors", bindingResult.getFieldErrors());
+            model.addAttribute("fieldErrors", bindingResult.getFieldErrors());
+            model.addAttribute("signUpDto", signUpDto);
             return "auth/sign-up";
         }
+
         try {
             signUpService.signUp(signUpDto);
-            redirectAttributes.addFlashAttribute("message", "Sign up successful");
+            redirectAttributes.addFlashAttribute("message", "Вы успешно зарегистрировались!");
             return "redirect:/auth/sign-in";
         } catch (IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("userAlreadyExist", e.getMessage());
+            model.addAttribute("signUpDto", signUpDto);
             return "redirect:/auth/sign-up";
         }
     }

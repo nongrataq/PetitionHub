@@ -48,3 +48,35 @@
   background-color: var(--card-bg) !important;
   color: var(--text-color) !important;
 }
+
+.alert-success-custom {
+  background-color: #f8f9fa;
+  border: 1px solid #d1e7dd;
+  color: #0f5132;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border-left: 4px solid #198754;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.alert-success-custom:before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23198754"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>') no-repeat;
+}
+
+.alert-success-custom {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

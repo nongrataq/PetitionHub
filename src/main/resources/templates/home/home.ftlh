@@ -26,17 +26,30 @@ styles='<link rel="stylesheet" href="/css/home/home-style.css">'>
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title petition-title">
-                                    <a href="/specific-petition/${petition.id}">${petition.title}</a>
+                                    <a href="/specific-petition/${petition.id}">Проблема: ${petition.title}</a>
                                 </h5>
-                                <p class="card-text text-muted description-truncate">${petition.description}</p>
+                                <p class="card-text text-muted description-truncate">Описание: ${petition.description}</p>
                                 <p>Автор: ${petition.authorUsername}</p>
                                 <div class="d-flex justify-content-between text-muted small">
-            <span>
-              <i class="bi bi-people text-success"></i> ${petition.countOfSignatures}
-            </span>
                                     <span>
-              <i class="bi bi-calendar-event me-1 text-primary"></i>${petition.formattedDateOfCreation}
-            </span>
+                                        <i class="bi bi-people text-success"></i>
+                                        <#assign count = petition.countOfSignatures>
+                                        <#assign lastDigit = count % 10>
+                                        <#assign lastTwoDigits = count % 100>
+
+                                        <#if lastTwoDigits gte 11 && lastTwoDigits lte 14>
+                                            ${count} подписей
+                                        <#elseif lastDigit == 1>
+                                            ${count} подпись
+                                        <#elseif lastDigit gte 2 && lastDigit lte 4>
+                                            ${count} подписи
+                                        <#else>
+                                            ${count} подписей
+                                        </#if>
+                                    </span>
+                                    <span>
+                                        <i class="bi bi-calendar-event me-1 text-primary"></i>${petition.formattedDateOfCreation}
+                                    </span>
                                 </div>
                             </div>
                         </div>

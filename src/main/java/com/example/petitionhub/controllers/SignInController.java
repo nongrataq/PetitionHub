@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SignInController {
     @GetMapping
-    public String getSignInPage(@AuthenticationPrincipal UserEntityDetails userDetails) {
-        if (userDetails != null) {
-            return "redirect:/";
-        }
+    public String getSignInPage() {
         return "auth/sign-in";
     }
 }

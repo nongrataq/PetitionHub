@@ -29,12 +29,11 @@ public class ProfileController {
     private final ProfileService profileService;
 
     @GetMapping("/{name}")
-    public String profile(Model model, @PathVariable(name = "name", required = false) String name) {
+    public String profile(Model model, @PathVariable(name = "name", required = false) String name, Principal principal) {
         List<PetitionDto> petitions = profileService.findPetitionsByAuthor_Username(name);
 
         model.addAttribute("petitions", petitions);
         model.addAttribute("authorName", name);
-        model.addAttribute("count" , petitions.size());
         model.addAttribute("countOfSub", petitions.stream()
                 .map(PetitionDto::getCountOfSignatures)
                 .reduce(Integer::sum)

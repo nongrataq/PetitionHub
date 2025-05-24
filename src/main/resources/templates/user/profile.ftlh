@@ -13,7 +13,7 @@ styles='<link rel="stylesheet" href="/css/user/profile-style.css">
 
         <div class="profile-stats">
             <div class="stat-item">
-                <span class="stat-number">${count}</span>
+                <span class="stat-number">${petitions?size}</span>
                 <span class="stat-label">Петиций</span>
             </div>
             <div class="stat-item">
@@ -21,7 +21,11 @@ styles='<link rel="stylesheet" href="/css/user/profile-style.css">
                 <span class="stat-label">Голосов</span>
             </div>
         </div>
+        <#if petitionDto??>
+            <p>${petitionDto.title} успешно создана</p>
+        </#if>
 
+        <!--добавить описание профиля-->
         <#if description??>
             <div class="profile-description">
                 <p>Профиль</p>
@@ -31,12 +35,14 @@ styles='<link rel="stylesheet" href="/css/user/profile-style.css">
         <div class="profile-actions">
             <button id="togglePetitionsBtn" class="btn btn-primary">
                 <i class="bi bi-list"></i>
-                <span>Мои петиции</span>
+                <span>Показать петиции</span>
             </button>
-            <a href="/create-petition" class="btn btn-transparent">
-                <i class="bi bi-plus-lg"></i>
-                <span>Создать петицию</span>
-            </a>
+            <#if authorName == principal>
+                <a href="/create-petition" class="btn btn-transparent">
+                    <i class="bi bi-plus-lg"></i>
+                    <span>Создать петицию</span>
+                </a>
+            </#if>
         </div>
     </div>
 
@@ -46,20 +52,33 @@ styles='<link rel="stylesheet" href="/css/user/profile-style.css">
                 <#list petitions as p>
                     <div class="petition-card">
                         <div class="petition-content">
-                            <h3 class="petition-title">${p.title}</h3>
-                            <p class="petition-description">${p.description}</p>
+                            <h3 class="petition-title">Проблема: ${p.title}</h3>
+                            <p class="petition-description">Описание: ${p.description}</p>
                             <div class="petition-meta">
-                    <span class="petition-signatures">
-                        <i class="bi bi-people-fill"></i> ${p.countOfSignatures} подписей
-                    </span>
+                                <span class="petition-signatures">
+                                    <i class="bi bi-people text-success"></i>
+                                    <#assign count = p.countOfSignatures>
+                                    <#assign lastDigit = count % 10>
+                                    <#assign lastTwoDigits = count % 100>
+
+                                    <#if lastTwoDigits gte 11 && lastTwoDigits lte 14>
+                                        ${count} подписей
+                                    <#elseif lastDigit == 1>
+                                        ${count} подпись
+                                    <#elseif lastDigit gte 2 && lastDigit lte 4>
+                                        ${count} подписи
+                                    <#else>
+                                        ${count} подписей
+                                    </#if>
+                                </span>
                                 <span class="petition-date">
-                        <i class="bi bi-calendar"></i>
-                        <#if p.formattedDateOfCreation?? && p.formattedDateOfCreation?length != 0>
-                            ${p.formattedDateOfCreation}
-                        <#else>
-                            Дата не указана
-                        </#if>
-                    </span>
+                                    <i class="bi bi-calendar"></i>
+                                    <#if p.formattedDateOfCreation?? && p.formattedDateOfCreation?length != 0>
+                                        ${p.formattedDateOfCreation}
+                                    <#else>
+                                        Дата не указана
+                                    </#if>
+                                </span>
                             </div>
                         </div>
                         <a href="/specific-petition/${p.id}" class="petition-link">Подробнее</a>

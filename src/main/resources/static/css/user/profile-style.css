@@ -60,7 +60,7 @@
 }
 
 .btn-primary {
-    background-color: #0d6efd;
+    background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
     color: white;
     border: none;
     padding: 10px 20px;
