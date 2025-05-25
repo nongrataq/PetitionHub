@@ -1,15 +1,14 @@
 package com.example.petitionhub.services.impl;
 
+import com.example.petitionhub.dto.PetitionCreationResultDto;
 import com.example.petitionhub.dto.PetitionDto;
 import com.example.petitionhub.entities.PetitionEntity;
-import com.example.petitionhub.entities.SignatureEntity;
 import com.example.petitionhub.entities.UserEntity;
+import com.example.petitionhub.exceptions.PetitionDoesNotExistException;
 import com.example.petitionhub.mappers.PetitionEntityMapper;
 import com.example.petitionhub.repositories.PetitionRepository;
-import com.example.petitionhub.repositories.SignatureRepository;
 import com.example.petitionhub.repositories.UserRepository;
 import com.example.petitionhub.services.PetitionService;
-import com.example.petitionhub.services.SignService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -17,7 +16,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import java.util.List;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 
@@ -29,30 +30,34 @@ public class PetitionServiceImpl implements PetitionService {
     private final PetitionEntityMapper petitionEntityMapper;
 
 
-    @Override
     @Transactional
-    public PetitionDto createPetition(PetitionDto petitionDto) {
+    @Override
+    public PetitionCreationResultDto createPetitionWithTimeCheck(PetitionDto petitionDto) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-
         UserEntity userEntity = userRepository.findUserEntityByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
+        if (!userEntity.getPetitions().isEmpty()) {
+            LocalDateTime lastDate = userEntity.getPetitions().get(userEntity.getPetitions().size() - 1).getDate();
+            long secondsPassed = Duration.between(lastDate, LocalDateTime.now()).getSeconds();
+
+            if (secondsPassed < 20) {
+                return new PetitionCreationResultDto(null, 20 - secondsPassed);
+            }
+        }
+
         PetitionEntity petition = petitionEntityMapper.toPetitionEntity(petitionDto);
         petition.setAuthor(userEntity);
+        petition.setDate(LocalDateTime.now());
 
         PetitionEntity savedPetition = petitionRepository.save(petition);
-
-        return petitionEntityMapper.toPetitionDto(savedPetition);
+        userEntity.getPetitions().add(savedPetition);
+        return new PetitionCreationResultDto(petitionEntityMapper.toPetitionDto(savedPetition), 0);
     }
 
     @Override
     public PetitionEntity findPetitionById(UUID id) {
-        return petitionRepository.findById(id).orElseThrow(() -> new NullPointerException("Несуществующая петиция"));
-    }
-
-    @Override
-    public List<PetitionEntity> searchPetitionByTitle(String query) {
-        return petitionRepository.findByTitleContainingIgnoreCase(query);
+        return petitionRepository.findById(id).orElseThrow(() -> new PetitionDoesNotExistException("Несуществующая петиция"));
     }
 
     @Override

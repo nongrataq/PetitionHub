@@ -22,7 +22,7 @@
                                        id="username"
                                        name="username"
                                        value="${(signUpDto.username)!''}"
-                                       required>
+                                >
                                 <#if fieldErrors??>
                                     <#list fieldErrors as error>
                                         <#if error.field == 'username'>
@@ -42,7 +42,7 @@
                                        id="password"
                                        name="password"
                                        value="${(signUpDto.password)!''}"
-                                       required>
+                                >
                                 <#if fieldErrors??>
                                     <#list fieldErrors as error>
                                         <#if error.field == 'password'>

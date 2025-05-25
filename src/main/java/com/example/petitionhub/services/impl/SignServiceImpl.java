@@ -3,6 +3,7 @@ package com.example.petitionhub.services.impl;
 import com.example.petitionhub.entities.PetitionEntity;
 import com.example.petitionhub.entities.SignatureEntity;
 import com.example.petitionhub.entities.UserEntity;
+import com.example.petitionhub.exceptions.AlreadySignedException;
 import com.example.petitionhub.repositories.PetitionRepository;
 import com.example.petitionhub.repositories.SignatureRepository;
 import com.example.petitionhub.services.SignService;
@@ -22,21 +23,25 @@ public class SignServiceImpl implements SignService {
     @Transactional
     public void signPetition(PetitionEntity petition, UserEntity signer) {
 
+        if (signatureRepository.existsBySignerAndPetition(signer, petition)) {
+            throw new AlreadySignedException(String.format("Пользователь %s уже подписал петицию %s",
+                    signer.getUsername(), petition.getTitle()));
+        }
+
         SignatureEntity signature = SignatureEntity.builder()
                 .signer(signer)
                 .petition(petition)
                 .build();
 
         petition.getSignatures().add(signature);
-        petition.setCountOfSignatures(petition.getCountOfSignatures() + 1);
+        petitionRepository.incrementSignatureCount(petition.getId());
 
         signatureRepository.save(signature);
-
         petitionRepository.save(petition);
     }
 
     @Override
     public boolean hasUserSignedPetition(UserEntity signer, PetitionEntity petition) {
-        return signatureRepository.existsBySignerAndPetition(signer, petition);
+       return signatureRepository.existsBySignerAndPetition(signer, petition);
     }
 }

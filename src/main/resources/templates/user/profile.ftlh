@@ -13,17 +13,14 @@ styles='<link rel="stylesheet" href="/css/user/profile-style.css">
 
         <div class="profile-stats">
             <div class="stat-item">
+                <span class="stat-label">Петиций: </span>
                 <span class="stat-number">${petitions?size}</span>
-                <span class="stat-label">Петиций</span>
             </div>
             <div class="stat-item">
+                <span class="stat-label">Голосов: </span>
                 <span class="stat-number">${countOfSub}</span>
-                <span class="stat-label">Голосов</span>
             </div>
         </div>
-        <#if petitionDto??>
-            <p>${petitionDto.title} успешно создана</p>
-        </#if>
 
         <!--добавить описание профиля-->
         <#if description??>

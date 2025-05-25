@@ -28,7 +28,8 @@ styles='<link rel="stylesheet" href="/css/home/home-style.css">'>
                                 <h5 class="card-title petition-title">
                                     <a href="/specific-petition/${petition.id}">Проблема: ${petition.title}</a>
                                 </h5>
-                                <p class="card-text text-muted description-truncate">Описание: ${petition.description}</p>
+                                <p class="card-text text-muted description-truncate">
+                                    Описание: ${petition.description}</p>
                                 <p>Автор: ${petition.authorUsername}</p>
                                 <div class="d-flex justify-content-between text-muted small">
                                     <span>
@@ -59,12 +60,16 @@ styles='<link rel="stylesheet" href="/css/home/home-style.css">'>
                 Пока петиций нет!
             </#if>
         </div>
-        <!-- доделать кнопку подгрузки с базы
-        <#if hasNext && hasNext??>
-            <form action="/load-more" method="post">
-            <button type="submit">Посмотреть еще</button>
-            </form>
+        <#if hasNext>
+            <div class="text-center mt-4">
+                <form action="/load-more" method="get">
+                    <input type="hidden" name="page" value="${currentPage + 1}">
+                    <input type="hidden" name="size" value="6">
+                    <button type="submit" class="btn btn-primary">
+                        Следующая страница
+                    </button>
+                </form>
+            </div>
         </#if>
-       -->
     </div>
 </@layout.main>

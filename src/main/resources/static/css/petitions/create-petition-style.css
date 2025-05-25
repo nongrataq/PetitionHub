@@ -38,3 +38,7 @@
   background-color: var(--card-bg) !important;
   color: var(--text-color) !important;
 }
+
+#submit-button {
+  transition: all 0.3s ease;
+}

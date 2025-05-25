@@ -32,7 +32,8 @@ public class WebSecurityConfig {
                                 "/search",
                                 "/specific-petition/**",
                                 "/about-us",
-                                "/static/**"
+                                "/static/**",
+                                "/load-more"
                         ).permitAll()
                         .anyRequest().hasRole("COMMON_USER")
                 )

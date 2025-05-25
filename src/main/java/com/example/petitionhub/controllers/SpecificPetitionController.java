@@ -34,12 +34,9 @@ public class SpecificPetitionController {
 
         model.addAttribute("current_petition", petitionEntityMapper.toPetitionDto(currentPetition));
 
-        boolean hasSigned = false;
-
-        if (userDetails != null) {
-            hasSigned = signService.hasUserSignedPetition(userDetails.getUserEntity(), currentPetition);
-        }
-        model.addAttribute("hasSigned", hasSigned);
+        model.addAttribute("hasSigned",
+                signService.hasUserSignedPetition(userDetails.getUserEntity(), currentPetition)
+        );
         return "petitions/specific-petition";
     }
 }
