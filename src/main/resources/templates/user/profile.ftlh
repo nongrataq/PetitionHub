@@ -22,7 +22,7 @@ styles='<link rel="stylesheet" href="/css/user/profile-style.css">
             </div>
         </div>
 
-        <!--добавить описание профиля-->
+        <!-- TODO: добавить описание профиля-->
         <#if description??>
             <div class="profile-description">
                 <p>Профиль</p>
@@ -35,7 +35,7 @@ styles='<link rel="stylesheet" href="/css/user/profile-style.css">
                 <span>Показать петиции</span>
             </button>
             <#if authorName == principal>
-                <a href="/create-petition" class="btn btn-transparent">
+                <a href="/create-petition" class="btn btn-primary reversed-gradient">
                     <i class="bi bi-plus-lg"></i>
                     <span>Создать петицию</span>
                 </a>
@@ -49,8 +49,8 @@ styles='<link rel="stylesheet" href="/css/user/profile-style.css">
                 <#list petitions as p>
                     <div class="petition-card">
                         <div class="petition-content">
-                            <h3 class="petition-title">Проблема: ${p.title}</h3>
-                            <p class="petition-description">Описание: ${p.description}</p>
+                            <h3 class="petition-title">${p.title}</h3>
+                            <p class="petition-description">${p.description}</p>
                             <div class="petition-meta">
                                 <span class="petition-signatures">
                                     <i class="bi bi-people text-success"></i>
