@@ -23,18 +23,19 @@ public class HomeController {
     private final PetitionEntityMapper petitionEntityMapper;
 
     @GetMapping
-    public String home(Model model,@PageableDefault(sort = "date", direction = Sort.Direction.DESC, size = 6) Pageable pageable) {
+    public String home(Model model,@PageableDefault(sort = "date", direction = Sort.Direction.DESC, size = 9) Pageable pageable) {
         Page<PetitionEntity> petitionPage = petitionService.findAll(pageable);
         model.addAttribute("petitions", petitionEntityMapper.toPetitionDtos(petitionPage.getContent()));
         model.addAttribute("currentPage", pageable.getPageNumber());
         model.addAttribute("hasNext", petitionPage.hasNext());
+        model.addAttribute("hasPrevious", petitionPage.hasPrevious());
         return "home/home";
     }
 
     @GetMapping("/load-more")
     public String loadMore(
             @RequestParam(name = "page", defaultValue = "0") int page,
-            @RequestParam(name = "size", defaultValue = "6") int size,
+            @RequestParam(name = "size", defaultValue = "9") int size,
             Model model) {
 
         Pageable pageable = PageRequest.of(page, size, Sort.by("date").descending());
@@ -43,6 +44,7 @@ public class HomeController {
         model.addAttribute("petitions", petitionEntityMapper.toPetitionDtos(petitionPage.getContent()));
         model.addAttribute("currentPage", page);
         model.addAttribute("hasNext", petitionPage.hasNext());
+        model.addAttribute("hasPrevious", petitionPage.hasPrevious());
 
         return "home/home";
     }

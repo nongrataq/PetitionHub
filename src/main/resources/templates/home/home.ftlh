@@ -63,19 +63,32 @@ styles='<link rel="stylesheet" href="/css/home/home-style.css">'>
                 Пока петиций нет!
             </#if>
         </div>
-        <#if hasNext>
-            <div class="text-center mt-4">
-                <form action="/load-more" method="get">
-                    <input type="hidden" name="page" value="${currentPage + 1}">
-                    <input type="hidden" name="size" value="6">
+        <!-- ... предыдущий код остается без изменений до кнопок навигации ... -->
+
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <#if hasPrevious>
+                <form action="/load-more" method="get" class="me-2" onsubmit="saveScrollPosition()">
+                    <input type="hidden" name="page" value="${currentPage - 1}">
+                    <input type="hidden" name="size" value="9">
                     <button type="submit" class="btn btn-outline-primary rounded-circle page-toggle-btn">
                         <i class="bi bi-chevron-left text-muted"></i>
                     </button>
+                </form>
+            <#else>
+                <div></div>
+            </#if>
+
+            <#if hasNext>
+                <form action="/load-more" method="get" class="ms-2" onsubmit="saveScrollPosition()">
+                    <input type="hidden" name="page" value="${currentPage + 1}">
+                    <input type="hidden" name="size" value="9">
                     <button type="submit" class="btn btn-outline-primary rounded-circle page-toggle-btn">
                         <i class="bi bi-chevron-right text-muted"></i>
                     </button>
                 </form>
-            </div>
-        </#if>
+            </#if>
+        </div>
+
+        <script src="js/home/scroll-position.js"></script>
     </div>
 </@layout.main>
