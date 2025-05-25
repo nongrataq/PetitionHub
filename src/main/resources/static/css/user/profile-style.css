@@ -68,17 +68,15 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.btn-transparent {
-    background-color: transparent;
-    border: 1px solid #0d6efd;
-    color: #0d6efd;
-    padding: 10px 20px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.reversed-gradient {
+    background: linear-gradient(90deg, var(--accent-end), var(--accent-start));
+}
+
+.btn-primary:hover {
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
 }
 
 /* Стили для карточек петиций (как на главной странице) */

@@ -26,11 +26,14 @@ styles='<link rel="stylesheet" href="/css/home/home-style.css">'>
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title petition-title">
-                                    <a href="/specific-petition/${petition.id}">Проблема: ${petition.title}</a>
+                                    <a href="/specific-petition/${petition.id}">${petition.title}</a>
                                 </h5>
                                 <p class="card-text text-muted description-truncate">
-                                    Описание: ${petition.description}</p>
-                                <p>Автор: ${petition.authorUsername}</p>
+                                    ${petition.description}</p>
+                                <span>
+                                    <i class="bi bi-person-circle text-danger"></i>
+                                    <span class="text-muted"> ${petition.authorUsername}</span>
+                                </span>
                                 <div class="d-flex justify-content-between text-muted small">
                                     <span>
                                         <i class="bi bi-people text-success"></i>
@@ -65,8 +68,11 @@ styles='<link rel="stylesheet" href="/css/home/home-style.css">'>
                 <form action="/load-more" method="get">
                     <input type="hidden" name="page" value="${currentPage + 1}">
                     <input type="hidden" name="size" value="6">
-                    <button type="submit" class="btn btn-primary">
-                        Следующая страница
+                    <button type="submit" class="btn btn-outline-primary rounded-circle page-toggle-btn">
+                        <i class="bi bi-chevron-left text-muted"></i>
+                    </button>
+                    <button type="submit" class="btn btn-outline-primary rounded-circle page-toggle-btn">
+                        <i class="bi bi-chevron-right text-muted"></i>
                     </button>
                 </form>
             </div>

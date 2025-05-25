@@ -64,11 +64,14 @@ styles='<link rel="stylesheet" href="/css/petitions/search-style.css">'>
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title petition-title">
-                                    <a href="/specific-petition/${petition.id}">Проблема: ${petition.title}</a>
+                                    <a href="/specific-petition/${petition.id}">${petition.title}</a>
                                 </h5>
                                 <p class="card-text text-muted description-truncate">
-                                    Описание: ${petition.description}</p>
-                                <p>Автор: ${petition.authorUsername}</p>
+                                    ${petition.description}</p>
+                                <span>
+                                    <i class="bi bi-person-circle text-danger"></i>
+                                    <span>${petition.authorUsername}</span>
+                                </span>
                                 <div class="d-flex justify-content-between text-muted small">
                                     <span>
                                         <i class="bi bi-people text-success"></i>

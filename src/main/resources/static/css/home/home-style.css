@@ -113,3 +113,14 @@
   text-overflow: ellipsis;
   white-space: normal;
 }
+
+.page-toggle-btn {
+  border-color: var(--accent-end);
+  background-color: transparent;
+  border-width: 2px;
+}
+
+.page-toggle-btn:hover {
+  background-color: var(--accent-end);
+  border-color: var(--accent-end);
+}
