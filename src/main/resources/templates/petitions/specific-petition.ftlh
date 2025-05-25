@@ -15,9 +15,17 @@ styles='<link rel="stylesheet" href="/css/petitions/specific-petition-style.css"
                 <div class="label-title">Описание</div>
                 <p class="card-text">${current_petition.description}</p>
             </div>
+
+            <#if current_petition.tagName?has_content>
+                <div class="label-block mt-3">
+                    <div class="label-title">Тег</div>
+                    <span class="badge bg-primary">#${current_petition.tagName}</span>
+                </div>
+            </#if>
         </div>
         <div class="card-footer">
             <p class="label">Количество подписей: ${current_petition.countOfSignatures}</p>
+
             <p class="text-muted">
                 <span class="label">Автор:</span>
                 <a class="author-link"

@@ -32,4 +32,8 @@ public class PetitionEntity extends BaseEntity {
     @OneToMany(mappedBy = "petition", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<SignatureEntity> signatures = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "tag_id")
+    private TagEntity tagEntity;
 }

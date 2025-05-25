@@ -3,12 +3,15 @@ package com.example.petitionhub.services.impl;
 import com.example.petitionhub.dto.PetitionCreationResultDto;
 import com.example.petitionhub.dto.PetitionDto;
 import com.example.petitionhub.entities.PetitionEntity;
+import com.example.petitionhub.entities.TagEntity;
 import com.example.petitionhub.entities.UserEntity;
 import com.example.petitionhub.exceptions.PetitionDoesNotExistException;
 import com.example.petitionhub.mappers.PetitionEntityMapper;
 import com.example.petitionhub.repositories.PetitionRepository;
+import com.example.petitionhub.repositories.TagRepository;
 import com.example.petitionhub.repositories.UserRepository;
 import com.example.petitionhub.services.PetitionService;
+import com.example.petitionhub.services.TagService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,12 +25,14 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 
+
 @RequiredArgsConstructor
 @Service
 public class PetitionServiceImpl implements PetitionService {
     private final PetitionRepository petitionRepository;
     private final UserRepository userRepository;
     private final PetitionEntityMapper petitionEntityMapper;
+    private final TagService tagService;
 
 
     @Transactional
@@ -50,9 +55,14 @@ public class PetitionServiceImpl implements PetitionService {
         petition.setAuthor(userEntity);
         petition.setDate(LocalDateTime.now());
 
+        TagEntity tagEntity = tagService.findTagByName(petitionDto.getTagName());
+        petition.setTagEntity(tagEntity);
+
         PetitionEntity savedPetition = petitionRepository.save(petition);
         userEntity.getPetitions().add(savedPetition);
         return new PetitionCreationResultDto(petitionEntityMapper.toPetitionDto(savedPetition), 0);
+
+
     }
 
     @Override
