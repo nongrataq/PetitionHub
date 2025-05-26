@@ -42,3 +42,16 @@
 #submit-button {
   transition: all 0.3s ease;
 }
+
+#tagCustom:checked ~ #tagName {
+  display: block !important;
+}
+#tagCustom:checked ~ #tagList {
+  display: none;
+}
+#tagFromList:checked ~ #tagList {
+  display: block;
+}
+#tagFromList:checked ~ #tagName {
+  display: none !important;
+}

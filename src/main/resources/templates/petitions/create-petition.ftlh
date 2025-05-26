@@ -10,15 +10,17 @@ styles='<link rel="stylesheet" href="/css/petitions/create-petition-style.css">'
             <label for="title" class="form-label">Название</label>
             <input type="text"
                    class="form-control ${(errors?? && errors?filter(e -> e.field == 'title')?size == 0)?then('is-valid', '')}
-                   ${(errors?? && errors?filter(e -> e.field == 'title')?size > 0)?then('is-invalid', '')}"
+          ${(errors?? && errors?filter(e -> e.field == 'title')?size > 0)?then('is-invalid', '')}"
                    id="title"
                    name="title"
                    value="${(petitionDto.title)!''?trim}">
             <#if errors?? && errors?has_content>
-                <#list errors?filter(e -> e.field == 'title') as error>
-                    <div class="invalid-feedback">
-                        ${error.defaultMessage}
-                    </div>
+                <#list errors as error>
+                    <#if error.field == 'title'>
+                        <div class="invalid-feedback">
+                            ${error.defaultMessage}
+                        </div>
+                    </#if>
                 </#list>
             </#if>
         </div>
@@ -33,35 +35,54 @@ styles='<link rel="stylesheet" href="/css/petitions/create-petition-style.css">'
                     name="description"
                     rows="5">${(petitionDto.description)!''?trim}</textarea>
             <#if errors?? && errors?has_content>
-                <#list errors?filter(e -> e.field == 'description') as error>
-                    <div class="invalid-feedback">
-                        ${error.defaultMessage}
-                    </div>
+                <#list errors as error>
+                    <#if error.field == 'description'>
+                        <div class="invalid-feedback">
+                            ${error.defaultMessage}
+                        </div>
+                    </#if>
                 </#list>
             </#if>
         </div>
 
-        <!-- Тег -->
+        <!--Тэг-->
         <div class="mb-3">
             <label for="tagName" class="form-label">Тег</label>
-            <select
-                    class="form-control ${(errors?? && errors?filter(e -> e.field == 'tagName')?size == 0)?then('is-valid', '')}
-                    ${(errors?? && errors?filter(e -> e.field == 'tagName')?size > 0)?then('is-invalid', '')}"
-                    id="tagName"
-                    name="tagName"
-                    required>
-                <option value="">Выберите тег</option>
-                <#list tags as tag>
-                    <option value="${tag.name}" <#if petitionDto.tagName?? && petitionDto.tagName == tag.name>selected</#if>>
-                        ${tag.name}
-                    </option>
-                </#list>
+
+            <!-- Выбор из списка -->
+            <select class="form-control mb-2"
+                    id="tagList"
+                    name="tagList">
+                <option value="" selected disabled hidden>Самые популярные теги</option>
+                <option value="Экология">Экология</option>
+                <option value="Образование">Образование</option>
+                <option value="Транспорт">Транспорт</option>
+                <option value="Медицина">Медицина</option>
+                <option value="Права_человека">Права человека</option>
+                <option value="Экономика">Экономика</option>
+                <option value="Культура">Культура</option>
+                <option value="Спорт">Спорт</option>
+                <option value="Технологии">Технологии</option>
             </select>
+
+            <!-- Разделитель -->
+            <div class="text-center my-2 text-muted fw-bold">ИЛИ</div>
+
+            <!-- Свое поле -->
+            <input type="text"
+                   class="form-control ${(errors?? && errors?filter(e -> e.field == 'tagName')?size == 0)?then('is-valid', '')}
+           ${(errors?? && errors?filter(e -> e.field == 'tagName')?size > 0)?then('is-invalid', '')}"
+                   id="tagName"
+                   name="tagName"
+                   placeholder="Введите свой тег"
+                   value="${(petitionDto.tagName)!''?trim}">
             <#if errors?? && errors?has_content>
-                <#list errors?filter(e -> e.field == 'tagName') as error>
-                    <div class="invalid-feedback">
-                        ${error.defaultMessage}
-                    </div>
+                <#list errors as error>
+                    <#if error.field == 'tagName'>
+                        <div class="invalid-feedback">
+                            ${error.defaultMessage}
+                        </div>
+                    </#if>
                 </#list>
             </#if>
         </div>

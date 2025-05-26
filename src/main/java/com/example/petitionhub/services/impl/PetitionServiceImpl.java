@@ -22,6 +22,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -32,7 +34,7 @@ public class PetitionServiceImpl implements PetitionService {
     private final PetitionRepository petitionRepository;
     private final UserRepository userRepository;
     private final PetitionEntityMapper petitionEntityMapper;
-    private final TagService tagService;
+    private final TagRepository tagRepository;
 
 
     @Transactional
@@ -43,27 +45,37 @@ public class PetitionServiceImpl implements PetitionService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
         if (!userEntity.getPetitions().isEmpty()) {
-            LocalDateTime lastDate = userEntity.getPetitions().get(userEntity.getPetitions().size() - 1).getDate();
-            long secondsPassed = Duration.between(lastDate, LocalDateTime.now()).getSeconds();
+            LocalDateTime lastDate = userEntity.getPetitions().stream()
+                    .max(Comparator.comparing(PetitionEntity::getDate))
+                    .get()
+                    .getDate();
 
+
+            long secondsPassed = Duration.between(lastDate, LocalDateTime.now()).getSeconds();
             if (secondsPassed < 20) {
                 return new PetitionCreationResultDto(null, 20 - secondsPassed);
             }
         }
 
+        String normalizedTagName = Optional.ofNullable(petitionDto.getTagName())
+                .map(String::trim)
+                .orElseThrow(() -> new IllegalArgumentException("Тег не может быть пустым."));
+
+        TagEntity tagEntity = tagRepository.findTagEntityByName(normalizedTagName)
+                .orElseGet(() -> tagRepository.save(
+                        TagEntity.builder()
+                                .name(normalizedTagName)
+                                .build()
+                ));
+
         PetitionEntity petition = petitionEntityMapper.toPetitionEntity(petitionDto);
         petition.setAuthor(userEntity);
-        petition.setDate(LocalDateTime.now());
-
-        TagEntity tagEntity = tagService.findTagByName(petitionDto.getTagName());
         petition.setTagEntity(tagEntity);
 
         PetitionEntity savedPetition = petitionRepository.save(petition);
-        userEntity.getPetitions().add(savedPetition);
         return new PetitionCreationResultDto(petitionEntityMapper.toPetitionDto(savedPetition), 0);
-
-
     }
+
 
     @Override
     public PetitionEntity findPetitionById(UUID id) {

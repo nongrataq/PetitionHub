@@ -29,12 +29,19 @@ public class PetitionDto {
             message = "Заголовок должен содержать буквы (кириллицу или латиницу), цифры и разрешённые символы."
     )
     private String title;
+
+    @NotBlank(message = "Тег не может быть пустым.")
+    @Size(min = 3, max = 30, message = "Размер тэга: 3-30 символов.")
+    @Pattern(
+            regexp = "^(?=.*[A-Za-zА-Яа-яёЁ])[A-Za-zА-Яа-яёЁ0-9_-]+$",
+            message = "Разрешены буквы, цифры, дефисы и нижние подчёркивания. Обязательна хотя бы одна буква."
+    )
+    private String tagName;
+
     private UUID id;
     private LocalDateTime date;
     private String authorUsername;
     private int countOfSignatures;
-
-    private String tagName;
 
     public String getFormattedDateOfCreation() {
         if (date == null) return "";

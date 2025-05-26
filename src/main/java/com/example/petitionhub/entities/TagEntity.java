@@ -1,18 +1,16 @@
 package com.example.petitionhub.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TagEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column(nullable = false, unique = true)
+public class TagEntity extends BaseEntity {
+    @Column(nullable = false)
     private String name;
 }

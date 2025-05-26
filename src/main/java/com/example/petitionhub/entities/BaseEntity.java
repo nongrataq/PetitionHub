@@ -3,6 +3,7 @@ package com.example.petitionhub.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
