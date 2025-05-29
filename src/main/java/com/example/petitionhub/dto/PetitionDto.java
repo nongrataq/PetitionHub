@@ -43,15 +43,5 @@ public class PetitionDto {
     private String authorUsername;
     private int countOfSignatures;
 
-    public String getFormattedDateOfCreation() {
-        if (date == null) return "";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        return date.format(formatter);
-    }
-
-
-
-
-
 }
 

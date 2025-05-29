@@ -16,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -28,29 +29,21 @@ public class PetitionCreationController {
     @PostMapping
     public String createPetition(
             @RequestParam(required = false, name = "tagList") String tagList,
-            @RequestParam(required = false, name = "tagName") String tagName,
             @Valid PetitionDto petitionDto,
             BindingResult bindingResult,
             Model model
     ) {
-        // Обработка тега
-        if (tagName != null && !tagName.trim().isEmpty()) {
-            // Если введен тег вручную - валидируем его
-            petitionDto.setTagName(tagName.trim());
-        } else if (tagList != null && !tagList.trim().isEmpty()) {
-            // Если выбран тег из списка - просто устанавливаем без валидации
+        if (Objects.nonNull(tagList) && !tagList.trim().isEmpty()) {
             petitionDto.setTagName(tagList.trim());
+            model.addAttribute("selectedTag", "is-valid");
+            petitionService.createPetitionWithTimeCheck(petitionDto);
+            return "redirect:/profile";
         } else {
-            bindingResult.rejectValue("tagName", "error.tagName", "Выберите или введите тег");
+            model.addAttribute("selectedTag", "is-invalid");
         }
 
-
         if (bindingResult.hasErrors()) {
-            List<FieldError> errorsToShow = bindingResult.getFieldErrors().stream()
-                    .filter(error -> !(error.getField().equals("tagName") && tagList != null && !tagList.trim().isEmpty()))
-                    .collect(Collectors.toList());
-
-            model.addAttribute("errors", errorsToShow);
+            model.addAttribute("errors", bindingResult.getFieldErrors());
             model.addAttribute("petitionDto", petitionDto);
             return "petitions/create-petition";
         }
