@@ -3,6 +3,7 @@ package com.example.petitionhub.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.BatchSize;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
+@BatchSize(size = 32)
 @Table(name = "petitions")
 public class PetitionEntity extends BaseEntity {
 
@@ -36,4 +38,5 @@ public class PetitionEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "tag_id")
     private TagEntity tagEntity;
+
 }

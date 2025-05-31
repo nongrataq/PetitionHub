@@ -1,9 +1,11 @@
 package com.example.petitionhub.services.impl;
 
+import com.example.petitionhub.entities.NotificationEntity;
 import com.example.petitionhub.entities.PetitionEntity;
 import com.example.petitionhub.entities.SignatureEntity;
 import com.example.petitionhub.entities.UserEntity;
 import com.example.petitionhub.exceptions.AlreadySignedException;
+import com.example.petitionhub.repositories.NotificationRepository;
 import com.example.petitionhub.repositories.PetitionRepository;
 import com.example.petitionhub.repositories.SignatureRepository;
 import com.example.petitionhub.services.SignService;
@@ -18,6 +20,7 @@ import java.time.LocalDateTime;
 public class SignServiceImpl implements SignService {
     private final PetitionRepository petitionRepository;
     private final SignatureRepository signatureRepository;
+    private final NotificationRepository notificationRepository;
 
     @Override
     @Transactional
@@ -33,7 +36,17 @@ public class SignServiceImpl implements SignService {
                 .petition(petition)
                 .build();
 
+
+        NotificationEntity notificationEntity = NotificationEntity.builder()
+                .sender(signer)
+                .petition(petition)
+                .recipient(petition.getAuthor())
+                .isRead(false)
+                .build();
+
         petition.getSignatures().add(signature);
+
+        notificationRepository.save(notificationEntity);
         petitionRepository.incrementSignatureCount(petition.getId());
 
         signatureRepository.save(signature);

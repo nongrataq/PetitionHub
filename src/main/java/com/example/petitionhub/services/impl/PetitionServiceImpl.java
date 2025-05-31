@@ -2,6 +2,7 @@ package com.example.petitionhub.services.impl;
 
 import com.example.petitionhub.dto.PetitionCreationResultDto;
 import com.example.petitionhub.dto.PetitionDto;
+import com.example.petitionhub.dto.projections.PetitionProjection;
 import com.example.petitionhub.entities.PetitionEntity;
 import com.example.petitionhub.entities.TagEntity;
 import com.example.petitionhub.entities.UserEntity;
@@ -25,7 +26,6 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.UUID;
-
 
 
 @RequiredArgsConstructor
@@ -80,6 +80,11 @@ public class PetitionServiceImpl implements PetitionService {
     @Override
     public PetitionEntity findPetitionById(UUID id) {
         return petitionRepository.findById(id).orElseThrow(() -> new PetitionDoesNotExistException("Несуществующая петиция"));
+    }
+
+    @Override
+    public Page<PetitionProjection> findAllProjections(Pageable pageable) {
+        return petitionRepository.findAllProjections(pageable);
     }
 
     @Override

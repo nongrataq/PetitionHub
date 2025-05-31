@@ -1,5 +1,6 @@
 package com.example.petitionhub.controllers;
 
+import com.example.petitionhub.dto.projections.PetitionProjection;
 import com.example.petitionhub.entities.PetitionEntity;
 import com.example.petitionhub.mappers.PetitionEntityMapper;
 import com.example.petitionhub.services.SearchService;
@@ -18,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequiredArgsConstructor
 public class SearchController {
-
     private final SearchService searchService;
-    private final PetitionEntityMapper petitionEntityMapper;
 
     @GetMapping
     public String search(
@@ -30,8 +29,8 @@ public class SearchController {
     ) {
 
         if (query != null && !query.trim().isEmpty()) {
-            Page<PetitionEntity> petitions = searchService.searchPetitionByTitle(query.trim(), pageable);
-            model.addAttribute("petitions", petitionEntityMapper.toPetitionDtos(petitions.getContent()));
+            Page<PetitionProjection> petitions = searchService.searchPetitionByTitle(query.trim(), pageable);
+            model.addAttribute("petitions", petitions.getContent());
             model.addAttribute("query", query);
         }
 

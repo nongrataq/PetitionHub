@@ -5,16 +5,20 @@ import com.example.petitionhub.enums.Status;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.BatchSize;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Data
+@Getter
+@Setter
 @SuperBuilder
 @NoArgsConstructor
+@ToString(exclude = {"petitions", "signatures", "receivedNotifications", "sentNotifications"})
+@BatchSize(size = 32)
 @AllArgsConstructor
-@ToString(exclude = {"petitions", "signatures"})
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
 
@@ -43,4 +47,11 @@ public class UserEntity extends BaseEntity {
     @OneToMany(mappedBy = "signer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @Builder.Default
     private List<SignatureEntity> signatures = new ArrayList<>();
+
+    @OneToMany(mappedBy = "recipient", fetch = FetchType.EAGER)
+    private List<NotificationEntity> receivedNotifications;
+
+    @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)
+    private List<NotificationEntity> sentNotifications;
+
 }

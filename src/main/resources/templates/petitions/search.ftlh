@@ -12,7 +12,7 @@ styles='<link rel="stylesheet" href="/css/petitions/search-style.css">'>
                     <input type="text"
                            id="searchInput"
                            class="form-control form-control-lg input-gradient-border flex-grow-1"
-                           placeholder="Найдите петицию по теме или автору...">
+                           placeholder="Найдите петицию по теме...">
                     <button id="searchBtn"
                             class="btn btn-primary btn-lg d-flex align-items-center px-4"
                             style="font-size: 1.25rem; font-weight: 500;"
@@ -56,7 +56,6 @@ styles='<link rel="stylesheet" href="/css/petitions/search-style.css">'>
         </div>
 
         <!-- Результаты поиска -->
-        <!-- Результаты поиска -->
         <div id="resultsContainer" class="row gy-4">
             <#if petitions?has_content>
                 <#list petitions as petition>
@@ -70,7 +69,7 @@ styles='<link rel="stylesheet" href="/css/petitions/search-style.css">'>
                                     ${petition.description}</p>
                                 <span>
                                     <i class="bi bi-person-circle text-danger"></i>
-                                    <span>${petition.authorUsername}</span>
+                                    <span class="text-muted">${petition.authorUsername}</span>
                                 </span>
                                 <div class="d-flex justify-content-between text-muted small">
                                     <span>

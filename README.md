@@ -42,7 +42,7 @@ src/
 │   ├── java/
 │   │   └── com/example/petitionhub/
 │   │       ├── controllers/      | Веб-контроллеры
-│   │       │   ├── controllerAdvice/        | Обработка исключений и доступов
+│   │       │   ├── GlobalControllerAdvice/        | Глобальные модели
 │   │       ├── dto/              | DTO-объекты
 │   │       ├── entities/         | JPA-сущности
 │   │       ├── enums/            | Перечисления ролей и статусов

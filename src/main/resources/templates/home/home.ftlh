@@ -18,7 +18,7 @@ styles='<link rel="stylesheet" href="/css/home/home-style.css">'>
         </div>
 
         <!-- Заголовок секции -->
-        <h3 class="mb-4">Недавние петиции</h3>
+        <h3 class="mb-4">Популярные петиции</h3>
         <div class="row g-4">
             <#if petitions?has_content>
                 <#list petitions as petition>
@@ -69,7 +69,7 @@ styles='<link rel="stylesheet" href="/css/home/home-style.css">'>
             <#if hasPrevious>
                 <form action="/load-more" method="get" class="me-2" onsubmit="saveScrollPosition()">
                     <input type="hidden" name="page" value="${currentPage - 1}">
-                    <input type="hidden" name="size" value="9">
+                    <input type="hidden" name="size" value="6">
                     <button type="submit" class="btn btn-outline-primary rounded-circle page-toggle-btn">
                         <i class="bi bi-chevron-left text-muted"></i>
                     </button>
@@ -81,7 +81,7 @@ styles='<link rel="stylesheet" href="/css/home/home-style.css">'>
             <#if hasNext>
                 <form action="/load-more" method="get" class="ms-2" onsubmit="saveScrollPosition()">
                     <input type="hidden" name="page" value="${currentPage + 1}">
-                    <input type="hidden" name="size" value="9">
+                    <input type="hidden" name="size" value="6">
                     <button type="submit" class="btn btn-outline-primary rounded-circle page-toggle-btn">
                         <i class="bi bi-chevron-right text-muted"></i>
                     </button>

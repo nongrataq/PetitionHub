@@ -1,6 +1,7 @@
 package com.example.petitionhub.controllers;
 
 import com.example.petitionhub.dto.PetitionDto;
+import com.example.petitionhub.dto.projections.PetitionProjection;
 import com.example.petitionhub.entities.PetitionEntity;
 import com.example.petitionhub.entities.SignatureEntity;
 import com.example.petitionhub.entities.UserEntity;
@@ -29,13 +30,13 @@ public class ProfileController {
     private final ProfileService profileService;
 
     @GetMapping("/{name}")
-    public String profile(Model model, @PathVariable(name = "name", required = false) String name, Principal principal) {
-        List<PetitionDto> petitions = profileService.findPetitionsByAuthor_Username(name);
+    public String profile(Model model, @PathVariable(name = "name", required = false) String name) {
+        List<PetitionProjection> petitions = profileService.findPetitionsByAuthor_Username(name);
 
         model.addAttribute("petitions", petitions);
         model.addAttribute("authorName", name);
         model.addAttribute("countOfSub", petitions.stream()
-                .map(PetitionDto::getCountOfSignatures)
+                .map(PetitionProjection::getCountOfSignatures)
                 .reduce(Integer::sum)
                 .orElse(0));
 
@@ -50,8 +51,6 @@ public class ProfileController {
     public String redirectToProfile(Principal principal) {
         return "redirect:/profile/" + principal.getName();
     }
-
-
 
 
 }
