@@ -24,14 +24,10 @@ styles='<link rel="stylesheet" href="/css/petitions/search-style.css">'>
                 <!-- Быстрые фильтры -->
                 <div class="quick-tags mt-3" style="width: 100%;">
                     <div class="d-flex align-items-center" style="gap: 0.5rem; flex-wrap: wrap; width: 100%;">
-                        <button class="btn btn-primary flex-grow-1" onclick="quickSearch('Экология')">🌍 Экология
-                        </button>
-                        <button class="btn btn-primary flex-grow-1" onclick="quickSearch('Образование')">🎓 Образование
-                        </button>
-                        <button class="btn btn-primary flex-grow-1" onclick="quickSearch('Транспорт')">🚇 Транспорт
-                        </button>
-                        <button class="btn btn-primary flex-grow-1" onclick="quickSearch('Медицина')">🏥 Медицина
-                        </button>
+                        <a href="/search?tag=Экология" class="btn btn-primary flex-grow-1">🌍 Экология</a>
+                        <a href="/search?tag=Образование" class="btn btn-primary flex-grow-1">🎓 Образование</a>
+                        <a href="/search?tag=Транспорт" class="btn btn-primary flex-grow-1">🚇 Транспорт</a>
+                        <a href="/search?tag=Медицина" class="btn btn-primary flex-grow-1">🏥 Медицина</a>
 
                         <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle d-flex align-items-center"
@@ -39,15 +35,11 @@ styles='<link rel="stylesheet" href="/css/petitions/search-style.css">'>
                                 <i class="bi bi-chat-square-dots me-1"></i> Другие
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="moreFiltersBtn">
-                                <li><a class="dropdown-item" href="#" onclick="quickSearch('Права человека')">✊ Права
-                                        человека</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="quickSearch('Экономика')">💰 Экономика</a>
-                                </li>
-                                <li><a class="dropdown-item" href="#" onclick="quickSearch('Культура')">🎭 Культура</a>
-                                </li>
-                                <li><a class="dropdown-item" href="#" onclick="quickSearch('Спорт')">🏅 Спорт</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="quickSearch('Технологии')">💻
-                                        Технологии</a></li>
+                                <li><a class="dropdown-item" href="/search?tag=Права человека">✊ Права человека</a></li>
+                                <li><a class="dropdown-item" href="/search?tag=Экономика">💰 Экономика</a></li>
+                                <li><a class="dropdown-item" href="/search?tag=Культура">🎭 Культура</a></li>
+                                <li><a class="dropdown-item" href="/search?tag=Спорт">🏅 Спорт</a></li>
+                                <li><a class="dropdown-item" href="/search?tag=Технологии">💻 Технологии</a></li>
                             </ul>
                         </div>
                     </div>

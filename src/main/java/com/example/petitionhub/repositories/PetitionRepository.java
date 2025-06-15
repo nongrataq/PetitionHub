@@ -48,6 +48,22 @@ public interface PetitionRepository extends JpaRepository<PetitionEntity, UUID> 
     Page<PetitionProjection> findByTitleContainingIgnoreCase(@Param("title") String title, Pageable pageable);
 
     @Query("""
+                SELECT 
+                    p.id as id,
+                    p.title as title,
+                    p.description as description,
+                    p.countOfSignatures as countOfSignatures,
+                    p.date as date,
+                    u.username as authorUsername,
+                    t.name as tagName
+                FROM PetitionEntity p
+                JOIN p.author u
+                JOIN p.tagEntity t 
+                WHERE LOWER(t.name) LIKE LOWER(CONCAT('%', :tag, '%'))
+            """)
+    Page<PetitionProjection> findByTagEntityNameContainingIgnoreCase(@Param("tag") String tag, Pageable pageable);
+
+    @Query("""
                 SELECT
                     p.id as id,
                     p.title as title,
