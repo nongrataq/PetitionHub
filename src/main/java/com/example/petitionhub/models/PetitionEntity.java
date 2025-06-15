@@ -41,4 +41,8 @@ public class PetitionEntity extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "image_id")
     private ImageEntity petitionImage;
+
+    @OneToMany(mappedBy = "petition", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ImageEntity> images = new ArrayList<>();
+
 }

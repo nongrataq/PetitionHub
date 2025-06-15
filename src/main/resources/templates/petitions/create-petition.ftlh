@@ -2,10 +2,11 @@
 <@layout.main title="Petition Creating"
 styles='<link rel="stylesheet" href="/css/petitions/create-petition-style.css">'>
 
-    <form action="/create-petition" method="post" novalidate class="card p-4 mb-4" id="petition-form"
+    <form action="/create-petition" method="post" enctype="multipart/form-data" novalidate class="card p-4 mb-4" id="petition-form"
           onsubmit="document.getElementById('submit-button').disabled = true;">
 
-        <!-- Название -->
+
+    <!-- Название -->
         <div class="mb-3">
             <label for="title" class="form-label">Название</label>
             <input type="text"
@@ -65,6 +66,22 @@ styles='<link rel="stylesheet" href="/css/petitions/create-petition-style.css">'
                 <option value="Технологии">Технологии</option>
                 <option value="Другое">Другое</option>
             </select>
+        </div>
+
+        <!-- Загрузка изображений -->
+        <div class="mb-3">
+            <div class="mb-3">
+                <label class="form-label">Изображения (макс. 5)</label>
+
+                <input type="file" class="form-control mb-1" name="images" accept="image/*">
+                <input type="file" class="form-control mb-1" name="images" accept="image/*">
+                <input type="file" class="form-control mb-1" name="images" accept="image/*">
+                <input type="file" class="form-control mb-1" name="images" accept="image/*">
+                <input type="file" class="form-control mb-1" name="images" accept="image/*">
+
+                <small class="form-text text-muted">Максимум 5 изображений. Поля необязательные.</small>
+            </div>
+
         </div>
 
         <!-- Кнопка отправки -->

@@ -6,6 +6,9 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.BatchSize;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
 @Data
@@ -25,5 +28,14 @@ public class ImageEntity extends BaseEntity {
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "data")
     private byte[] data;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "petition_id")
+    private PetitionEntity petition;
+
+
+
+
+
 }
 
