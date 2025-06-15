@@ -1,2 +1,60 @@
-@import url("../petitions/specific-petition-style.css");
+body.notifications-body {
+    background: #f8f9fa;
+    padding: 2rem;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.btn-wrapper {
+    text-align: right;
+    margin-bottom: 1.5rem;
+}
+
+.petition-card {
+    border-radius: 16px;
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6;
+    transition: box-shadow 0.3s ease;
+}
+
+.petition-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.label-block {
+    margin-bottom: 0.5rem;
+}
+
+.label-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.empty-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
+    margin-top: 3rem;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.link {
+    color: var(--accent-start-reversed);
+    text-decoration: none;
+    transition: color 0.8s ease;
+}
+
+.link:hover {
+    color: var(--accent-end-reversed);
+    text-decoration: underline;
+}
+
 
