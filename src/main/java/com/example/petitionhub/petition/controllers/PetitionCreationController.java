@@ -9,6 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -21,8 +25,9 @@ public class PetitionCreationController {
     public String createPetition(
             @Valid PetitionDto petitionDto,
             BindingResult bindingResult,
+            @RequestParam("images") List<MultipartFile> images,
             Model model
-    ) {
+    ) throws IOException {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getFieldErrors());
@@ -37,9 +42,10 @@ public class PetitionCreationController {
             return "petitions/create-petition";
         }
 
-        petitionService.savePetition(petitionDto);
+        petitionService.savePetitionWithImages(petitionDto, images);
         return "redirect:/profile";
     }
+
 
     @GetMapping
     public String pageOfCreatingPetitions() {

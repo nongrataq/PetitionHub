@@ -1,6 +1,7 @@
 package com.example.petitionhub.petition.services;
 
 import com.example.petitionhub.image.ImageTypes;
+import com.example.petitionhub.image.services.ImageService;
 import com.example.petitionhub.models.PetitionEntity;
 import com.example.petitionhub.models.UserEntity;
 import com.example.petitionhub.exceptions.NoSuchEntityException;
@@ -18,7 +19,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -35,6 +38,7 @@ public class PetitionService {
     private final UserRepository userRepository;
     private final PetitionEntityMapper mapper;
     private final TagService tagService;
+    private final ImageService imageService;
 
 
     @Transactional
@@ -89,4 +93,16 @@ public class PetitionService {
     public Page<PetitionProjection> findAllProjections(Pageable pageable) {
         return petitionRepository.findAllProjections(pageable);
     }
+
+    @Transactional
+    public void savePetitionWithImages(PetitionDto dto, List<MultipartFile> images) throws IOException {
+        PetitionEntity petition = mapper.toPetitionEntity(dto);
+        petition.setAuthor(getCurrentUser());
+        petition.setTagEntity(tagService.getOrCreateTagByName(dto.getTagName()));
+
+        petitionRepository.save(petition);
+        imageService.uploadImagesForPetition(images, petition);
+    }
+
+
 }

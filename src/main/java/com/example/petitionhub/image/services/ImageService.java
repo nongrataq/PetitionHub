@@ -1,6 +1,7 @@
 package com.example.petitionhub.image.services;
 
 import com.example.petitionhub.exceptions.NoSuchEntityException;
+import com.example.petitionhub.models.PetitionEntity;
 import com.example.petitionhub.repositories.ImageRepository;
 import com.example.petitionhub.image.ImageTypes;
 import com.example.petitionhub.models.ImageEntity;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -54,4 +57,25 @@ public class ImageService {
                 .contentLength(avatar.getData().length)
                 .body(avatar.getData());
     }
+
+    public List<ImageEntity> uploadImagesForPetition(List<MultipartFile> files, PetitionEntity petition) throws IOException {
+        if (files.size() > 5) {
+            throw new IllegalArgumentException("Максимум 5 изображений");
+        }
+
+        List<ImageEntity> result = new ArrayList<>();
+        for (MultipartFile file : files) {
+            ImageEntity image = ImageEntity.builder()
+                    .fileName(file.getOriginalFilename())
+                    .fileType(file.getContentType())
+                    .data(file.getBytes())
+                    .imageType(ImageTypes.PETITION)
+                    .petition(petition)
+                    .build();
+
+            result.add(imageRepository.save(image));
+        }
+        return result;
+    }
+
 }

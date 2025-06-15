@@ -32,10 +32,11 @@ public class SpecificPetitionController {
         PetitionEntity currentPetition = petitionService.findPetitionById(id);
 
         model.addAttribute("current_petition", petitionEntityMapper.toPetitionDto(currentPetition));
+        model.addAttribute("hasSigned", signService.hasUserSignedPetition(userDetails.getUserEntity(), currentPetition));
+        model.addAttribute("images", currentPetition.getImages());
 
-        model.addAttribute("hasSigned",
-                signService.hasUserSignedPetition(userDetails.getUserEntity(), currentPetition)
-        );
         return "petitions/specific-petition";
     }
+
+
 }
