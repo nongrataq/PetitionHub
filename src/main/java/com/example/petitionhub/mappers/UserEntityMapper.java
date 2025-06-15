@@ -1,7 +1,7 @@
 package com.example.petitionhub.mappers;
 
-import com.example.petitionhub.dto.UserDto;
-import com.example.petitionhub.entities.UserEntity;
+import com.example.petitionhub.models.UserEntity;
+import com.example.petitionhub.user.UserDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

@@ -1,7 +1,7 @@
 package com.example.petitionhub.security.details;
 
-import com.example.petitionhub.entities.UserEntity;
-import com.example.petitionhub.enums.Status;
+import com.example.petitionhub.models.UserEntity;
+import com.example.petitionhub.auth.enums.Status;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

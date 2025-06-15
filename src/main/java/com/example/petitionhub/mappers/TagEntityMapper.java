@@ -1,7 +1,7 @@
 package com.example.petitionhub.mappers;
 
-import com.example.petitionhub.dto.TagDto;
-import com.example.petitionhub.entities.TagEntity;
+import com.example.petitionhub.models.TagEntity;
+import com.example.petitionhub.tag.TagDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

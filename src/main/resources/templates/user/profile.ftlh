@@ -4,12 +4,30 @@ styles='<link rel="stylesheet" href="/css/user/profile-style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">'>
 
     <div class="profile-container">
-        <div class="profile-header">
-            <div class="profile-icon">
-                <i class="bi bi-person-circle"></i>
+        <div class="profile-avatar-container">
+            <div class="profile-avatar">
+                <#if user.avatar??>
+                    <img src="/avatar/${user.avatar.id}" alt="Аватар" class="avatar-image">
+                <#else>
+                    <div class="avatar-placeholder">
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+                </#if>
+
+                <#if user.username == principal>
+                    <form action="/avatar" method="post" enctype="multipart/form-data" class="avatar-form">
+                        <input type="file" name="file" id="avatarInput" accept="image/*" hidden>
+                        <label for="avatarInput" class="avatar-upload-btn" title="Сменить фото">
+                            <i class="bi bi-camera"></i>
+                        </label>
+                        <button type="submit" class="avatar-submit-btn d-none" id="avatarSubmit" title="Сохранить">
+                            <i class="bi bi-check"></i>
+                        </button>
+                    </form>
+                </#if>
             </div>
-            <h2 class="profile-name">${authorName}</h2>
         </div>
+        <h2 class="profile-name">${user.username}</h2>
 
         <div class="profile-stats">
             <div class="stat-item">
@@ -34,7 +52,7 @@ styles='<link rel="stylesheet" href="/css/user/profile-style.css">
                 <i class="bi bi-list"></i>
                 <span>Показать петиции</span>
             </button>
-            <#if authorName == principal>
+            <#if user.username == principal>
                 <a href="/create-petition" class="btn btn-primary reversed-gradient">
                     <i class="bi bi-plus-lg"></i>
                     <span>Создать петицию</span>
@@ -86,6 +104,14 @@ styles='<link rel="stylesheet" href="/css/user/profile-style.css">
             <div class="alert alert-info">Петиций пока нет.</div>
         </#if>
     </section>
+    <script>
+        // Показываем кнопку "Сохранить" при выборе файла
+        document.getElementById('avatarInput').addEventListener('change', function () {
+            if (this.files.length > 0) {
+                document.getElementById('avatarSubmit').classList.remove('d-none');
+            }
+        });
+    </script>
 
     <script src="/js/user/profile.js"></script>
 
