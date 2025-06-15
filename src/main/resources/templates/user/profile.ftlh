@@ -6,25 +6,28 @@ styles='<link rel="stylesheet" href="/css/user/profile-style.css">
     <div class="profile-container">
         <div class="profile-avatar-container">
             <div class="profile-avatar">
-                <#if user.avatar??>
-                    <img src="/avatar/${user.avatar.id}" alt="Аватар" class="avatar-image">
-                <#else>
-                    <div class="avatar-placeholder">
-                        <i class="bi bi-person-circle"></i>
-                    </div>
-                </#if>
+                <div class="avatar-mask">
+                    <#if user.avatar??>
+                        <img src="/avatar/${user.avatar.id}" alt="Аватар" class="avatar-image">
+                    <#else>
+                        <div class="avatar-placeholder">
+                            <i class="bi bi-person-circle"></i>
+                        </div>
+                    </#if>
 
-                <#if user.username == principal>
-                    <form action="/avatar" method="post" enctype="multipart/form-data" class="avatar-form">
-                        <input type="file" name="file" id="avatarInput" accept="image/*" hidden>
-                        <label for="avatarInput" class="avatar-upload-btn" title="Сменить фото">
-                            <i class="bi bi-camera"></i>
-                        </label>
-                        <button type="submit" class="avatar-submit-btn d-none" id="avatarSubmit" title="Сохранить">
-                            <i class="bi bi-check"></i>
-                        </button>
-                    </form>
-                </#if>
+
+                    <#if user.username == principal>
+                        <form action="/avatar" method="post" enctype="multipart/form-data" class="avatar-form">
+                            <input type="file" name="file" id="avatarInput" accept="image/*" hidden>
+                            <label for="avatarInput" class="avatar-upload-btn" title="Сменить фото">
+                                <i class="bi bi-camera"></i>
+                            </label>
+                            <button type="submit" class="avatar-submit-btn d-none" id="avatarSubmit" title="Сохранить">
+                                <i class="bi bi-check"></i>
+                            </button>
+                        </form>
+                    </#if>
+                </div>
             </div>
         </div>
         <h2 class="profile-name">${user.username}</h2>

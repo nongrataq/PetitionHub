@@ -165,6 +165,18 @@
         flex-direction: column;
     }
 }
+
+.avatar-mask {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Аватарка пользователя */
 .profile-avatar-container {
     position: relative;
@@ -173,18 +185,19 @@
 }
 
 .profile-avatar {
+    overflow: visible;
+    position: relative;
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    border: 5px solid white;
+    border: 4px solid transparent;
+    background: linear-gradient(white, white) padding-box,
+    linear-gradient(90deg, var(--accent-end), var(--accent-start)) border-box;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    position: relative;
 }
 
 .profile-avatar:hover {
@@ -216,14 +229,20 @@
 
 /* Кнопка загрузки аватарки */
 .avatar-form {
-    position: absolute;
+    position: relative;
     right: 10px;
     bottom: 10px;
-    display: flex;
+    display: inline-block;
     gap: 8px;
 }
 
 .avatar-upload-btn {
+    bottom: 8px;
+    right: 8px;
+    padding: 6px;
+    font-size: 16px;
+    z-index: 2;
+    position: absolute;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -251,6 +270,14 @@
 
 /* Кнопка подтверждения */
 .avatar-submit-btn {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    color: white;
+    padding: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 2;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -260,7 +287,7 @@
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     border: none;
-    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    background: #28a745 linear-gradient(135deg, #2ecc71, #27ae60);
 }
 
 .avatar-submit-btn:hover {
