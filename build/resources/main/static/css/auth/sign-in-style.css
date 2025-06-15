@@ -1,0 +1,82 @@
+.auth-wrapper {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+  background: linear-gradient(90deg, var(--accent-end), var(--accent-start));
+}
+
+.auth-container {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* ===========================
+Кнопки
+=========================== */
+.btn-primary {
+  background: linear-gradient(90deg, var(--accent-start-reversed), var(--accent-end-reversed));
+  color: #fff;
+  border: none;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+}
+
+.form-floating {
+  margin-bottom: 1.5rem;
+}
+
+.alert-danger {
+  max-width: 350px;
+  margin: 0 auto 1rem auto;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.form-floating label {
+  color: var(--text-color);
+  transition: color 0.8s ease;
+}
+
+.form-control:focus {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+}
+
+.alert-success-custom {
+  background-color: #f8f9fa;
+  border: 1px solid #d1e7dd;
+  color: #0f5132;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border-left: 4px solid #198754;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.alert-success-custom:before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23198754"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>') no-repeat;
+}
+
+.alert-success-custom {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

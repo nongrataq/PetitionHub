@@ -1,0 +1,378 @@
+/* profile-style.css */
+
+/* Основные стили профиля (оставляем без изменений) */
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.profile-header {
+    margin-bottom: 20px;
+}
+
+.profile-icon i {
+    font-size: 80px;
+    color: #6c757d;
+}
+
+.profile-name {
+    font-size: 28px;
+    margin-top: 10px;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.profile-description {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.profile-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.reversed-gradient {
+    background: linear-gradient(90deg, var(--accent-end), var(--accent-start));
+}
+
+.btn-primary:hover {
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+}
+
+/* Стили для карточек петиций (как на главной странице) */
+.petitions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.petition-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.petition-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.petition-content {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.petition-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.petition-description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.petition-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #6c757d;
+    margin-top: 15px;
+}
+
+.petition-meta i {
+    margin-right: 5px;
+}
+
+.petition-link {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    color: #0d6efd;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.petition-link:hover {
+    background-color: #e9ecef;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .petitions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+    }
+}
+
+.avatar-mask {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Аватарка пользователя */
+.profile-avatar-container {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto 20px;
+}
+
+.profile-avatar {
+    overflow: visible;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid transparent;
+    background: linear-gradient(white, white) padding-box,
+    linear-gradient(90deg, var(--accent-end), var(--accent-start)) border-box;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.profile-avatar:hover .avatar-image {
+    transform: scale(1.05);
+}
+
+.avatar-placeholder {
+    font-size: 5rem;
+    color: rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.profile-avatar:hover .avatar-placeholder {
+    color: rgba(0, 0, 0, 0.25);
+    transform: scale(1.05);
+}
+
+/* Кнопка загрузки аватарки */
+.avatar-form {
+    position: relative;
+    right: 10px;
+    bottom: 10px;
+    display: inline-block;
+    gap: 8px;
+}
+
+.avatar-upload-btn {
+    bottom: 8px;
+    right: 8px;
+    padding: 6px;
+    font-size: 16px;
+    z-index: 2;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    opacity: 0.9;
+}
+
+.avatar-upload-btn:hover {
+    transform: scale(1.1);
+    opacity: 1;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.avatar-upload-btn i {
+    font-size: 1.2rem;
+}
+
+/* Кнопка подтверждения */
+.avatar-submit-btn {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    color: white;
+    padding: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border: none;
+    background: #28a745 linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.avatar-submit-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Анимация появления кнопки подтверждения */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.avatar-submit-btn:not(.d-none) {
+    animation: fadeIn 0.3s ease-out;
+}
+/* Форма аватарки */
+.avatar-form {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    gap: 8px;
+}
+
+/* Основная кнопка камеры */
+.avatar-upload-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: white;
+    color: var(--accent-start);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    font-size: 16px;
+}
+
+.avatar-upload-btn:hover {
+    background: #f5f5f5;
+    transform: scale(1.1);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+/* Кнопка подтверждения */
+.avatar-submit-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent-start);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 16px;
+    opacity: 0;
+    transform: translateX(10px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.avatar-submit-btn:not(.d-none) {
+    opacity: 1;
+    transform: translateX(0);
+    animation: fadeInBtn 0.3s ease-out;
+}
+
+.avatar-submit-btn:hover {
+    background: var(--accent-end);
+    transform: scale(1.1) translateX(0);
+}
+
+@keyframes fadeInBtn {
+    from {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

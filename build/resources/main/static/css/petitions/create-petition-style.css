@@ -1,0 +1,57 @@
+/* ===========================
+Карточка создания
+=========================== */
+.card {
+  background: linear-gradient(90deg, var(--accent-end), var(--accent-start));
+  color: var(--text-color);
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+}
+
+/* ===========================
+Кнопки
+=========================== */
+.btn-primary {
+  background: linear-gradient(90deg, var(--accent-start-reversed), var(--accent-end-reversed));
+  color: #fff;
+  padding: .95rem 3.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  position: relative;
+  text-decoration: none;
+  font-size: 1.25rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+}
+
+/* ===========================
+Стиль поля ввода при фокусе
+=========================== */
+.form-control:focus {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+}
+
+#submit-button {
+  transition: all 0.3s ease;
+}
+
+#tagCustom:checked ~ #tagName {
+  display: block !important;
+}
+#tagCustom:checked ~ #tagList {
+  display: none;
+}
+#tagFromList:checked ~ #tagList {
+  display: block;
+}
+#tagFromList:checked ~ #tagName {
+  display: none !important;
+}

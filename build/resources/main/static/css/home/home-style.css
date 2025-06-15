@@ -1,0 +1,146 @@
+/* ===========================
+Карточки с градиент‑бордером
+=========================== */
+.card {
+  position: relative;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px var(--shadow);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeInUp 0.6s forwards;
+  border: 2px solid transparent;
+  background-image: linear-gradient(var(--card-bg), var(--card-bg)),
+  linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+}
+
+.card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+}
+
+/* Анимация появления карточек */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ===========================
+Кнопки
+=========================== */
+.btn-wrapper {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeInUp 0.6s forwards;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  color: #fff;
+  padding: .95rem 3.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  font-size: 1.25rem;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+}
+
+/* Эффекты при наведении на кнопку */
+.btn-primary:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7);
+}
+
+.btn-primary:hover span {
+  display: inline-block;
+  animation: wiggle 0.4s ease-in-out;
+}
+
+/* Анимация "встряски" текста */
+@keyframes wiggle {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-2px); }
+  50%  { transform: translateX(2px); }
+  75%  { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
+}
+
+/* ===========================
+Ссылки в заголовках карточек
+=========================== */
+.card-title a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+  background-image: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease;
+}
+
+.petition-title a {
+  color: var(--accent-start-reversed) !important;
+}
+
+.card-title a:hover {
+  background-size: 100% 2px;
+}
+
+.description-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+.page-toggle-btn {
+  border-color: var(--accent-end);
+  background-color: transparent;
+  border-width: 2px;
+}
+
+.page-toggle-btn:hover {
+  background-color: var(--accent-end);
+  border-color: var(--accent-end);
+}
+
+.avatar-image {
+  width: 24px;          /* Размер как у иконки */
+  height: 24px;
+  border-radius: 50%;   /* Круглая форма */
+  object-fit: cover;
+  border: 2px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+  linear-gradient(90deg, var(--accent-end), var(--accent-start)) border-box;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Легкая тень *//* Сохраняет пропорции */
+  margin-right: 8px;    /* Отступ от текста */
+  vertical-align: middle; /* Выравнивание по вертикали */
+}
+
+@media (max-width: 768px) {
+  .avatar-image {
+    width: 20px;
+    height: 20px;
+  }
+}
