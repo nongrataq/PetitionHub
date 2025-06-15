@@ -1,8 +1,8 @@
 package com.example.petitionhub.repositories;
 
-import com.example.petitionhub.dto.projections.NotificationProjection;
-import com.example.petitionhub.entities.NotificationEntity;
-import com.example.petitionhub.entities.UserEntity;
+import com.example.petitionhub.user.notification.projections.NotificationProjection;
+import com.example.petitionhub.models.NotificationEntity;
+import com.example.petitionhub.models.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

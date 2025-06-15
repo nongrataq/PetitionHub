@@ -1,6 +1,6 @@
 package com.example.petitionhub.security.details;
 
-import com.example.petitionhub.entities.UserEntity;
+import com.example.petitionhub.models.UserEntity;
 import com.example.petitionhub.repositories.UserRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

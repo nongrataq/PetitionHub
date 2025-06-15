@@ -165,3 +165,187 @@
         flex-direction: column;
     }
 }
+/* Аватарка пользователя */
+.profile-avatar-container {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto 20px;
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border: 5px solid white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.profile-avatar:hover .avatar-image {
+    transform: scale(1.05);
+}
+
+.avatar-placeholder {
+    font-size: 5rem;
+    color: rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.profile-avatar:hover .avatar-placeholder {
+    color: rgba(0, 0, 0, 0.25);
+    transform: scale(1.05);
+}
+
+/* Кнопка загрузки аватарки */
+.avatar-form {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.avatar-upload-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    opacity: 0.9;
+}
+
+.avatar-upload-btn:hover {
+    transform: scale(1.1);
+    opacity: 1;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.avatar-upload-btn i {
+    font-size: 1.2rem;
+}
+
+/* Кнопка подтверждения */
+.avatar-submit-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border: none;
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.avatar-submit-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Анимация появления кнопки подтверждения */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.avatar-submit-btn:not(.d-none) {
+    animation: fadeIn 0.3s ease-out;
+}
+/* Форма аватарки */
+.avatar-form {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    gap: 8px;
+}
+
+/* Основная кнопка камеры */
+.avatar-upload-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: white;
+    color: var(--accent-start);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    font-size: 16px;
+}
+
+.avatar-upload-btn:hover {
+    background: #f5f5f5;
+    transform: scale(1.1);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+/* Кнопка подтверждения */
+.avatar-submit-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent-start);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 16px;
+    opacity: 0;
+    transform: translateX(10px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.avatar-submit-btn:not(.d-none) {
+    opacity: 1;
+    transform: translateX(0);
+    animation: fadeInBtn 0.3s ease-out;
+}
+
+.avatar-submit-btn:hover {
+    background: var(--accent-end);
+    transform: scale(1.1) translateX(0);
+}
+
+@keyframes fadeInBtn {
+    from {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
