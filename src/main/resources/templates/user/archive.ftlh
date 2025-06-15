@@ -1,31 +1,41 @@
 <#import "../patterns/layout.ftlh" as layout>
-<@layout.main title="Notifications"
-styles='<link rel="stylesheet" href="/css/user/notifications-style.css">'>
+<@layout.main title="Archive"
+styles='<link rel="stylesheet" href="/css/user/archive-style.css">'>
 
-<H1>АРХИВ</H1>
+    <body class="notifications-body">
+    <div class="header-wrapper">
+        <h1 class="archive-title">Архив уведомлений</h1>
+        <a class="btn btn-outline-primary" href="/notifications">&#8592; Назад к уведомлениям</a>
+    </div>
 
-    <a class="btn-primary" href="/notifications">Вернуться назад -></a>
-
-<#if readNotifications?has_content>
-    <#list readNotifications as notification>
-        <div class="card petition-card">
-            <div class="card-body">
-                <div class="label-block">
-                    <div class="label-title">Уведомление</div>
-                    Вашу петицию <a class="card-text"
-                                    href="/specific-petition/${notification.petitionId}">${notification.petitionTitle}</a>
-                    подписал <a class="card-text"
-                                href="/profile/${notification.senderName}"> ${notification.senderName}</a>
+    <#if readNotifications?has_content>
+        <#list readNotifications as notification>
+            <div class="card petition-card shadow fade-in">
+                <div class="card-body">
+                    <div class="label-block">
+                        <div class="label-title">Прочитанное уведомление</div>
+                        <p class="card-text">
+                            Вашу петицию
+                            <a href="/specific-petition/${notification.petitionId}" class="link">
+                                ${notification.petitionTitle}
+                            </a>
+                            подписал
+                            <a href="/profile/${notification.senderName}" class="link">
+                                ${notification.senderName}
+                            </a>
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                    <span class="label">
+                <div class="card-footer">
+                    <span class="label text-muted">
                         <i class="bi bi-calendar-event me-1 text-primary"></i>
                         ${notification.formattedDate}
                     </span>
+                </div>
             </div>
-        </div>
-    </#list>
-<#else> Пустой архив
-</#if>
+        </#list>
+    <#else>
+        <div class="empty-message">Архив пуст</div>
+    </#if>
+    </body>
 </@layout.main>

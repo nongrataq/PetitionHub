@@ -1,0 +1,70 @@
+body.notifications-body {
+    background-color: #f1f3f5;
+    padding: 2rem;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.archive-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #343a40;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.petition-card {
+    border: 1px solid #dee2e6;
+    border-radius: 16px;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    transition: transform 0.2s ease-in;
+}
+
+.petition-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.label-block {
+    margin-bottom: 0.5rem;
+}
+
+.label-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    color: #495057;
+}
+
+.empty-message {
+    text-align: center;
+    color: #868e96;
+    font-size: 1.25rem;
+    margin-top: 4rem;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.link {
+    color: var(--accent-start-reversed);
+    text-decoration: none;
+    transition: color 0.8s ease;
+}
+
+.link:hover {
+    color: var(--accent-end-reversed);
+    text-decoration: underline;
+}

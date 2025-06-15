@@ -1,40 +1,43 @@
 <#import "../patterns/layout.ftlh" as layout>
 <@layout.main title="Notifications"
-styles='<link rel="stylesheet" href="/css/petitions/specific-petition-style.css">'>
+styles='<link rel="stylesheet" href="/css/user/notifications-style.css">'>
 
-    <body>
+    <body class="notifications-body">
     <div class="btn-wrapper">
-        <!-- TODO: сделать переход на страницу архива, если он не пуст -->
-        <a href="/archive" class="btn btn-primary mb-4">Архив</a>
+        <a href="/archive" class="btn btn-outline-secondary mb-4">Перейти в архив</a>
     </div>
+
     <#if notifications?has_content>
         <#list notifications as notification>
-            <!-- Карточка уведомлений, стилизованные под карточки specific-petition -->
-            <div class="card petition-card">
+            <div class="card petition-card shadow-sm fade-in">
                 <div class="card-body">
                     <div class="label-block">
-                        <div class="label-title">Уведомление</div>
-                        Вашу петицию <a class="card-text" href="/specific-petition/${notification.petitionId}">${notification.petitionTitle}</a> подписал <a class="card-text" href="/profile/${notification.senderName}"> ${notification.senderName}</a>
+                        <div class="label-title">Новое уведомление</div>
+                        <p class="card-text">
+                            Вашу петицию
+                            <a href="/specific-petition/${notification.petitionId}" class="link">
+                                ${notification.petitionTitle}
+                            </a>
+                            подписал
+                            <a href="/profile/${notification.senderName}" class="link">
+                                ${notification.senderName}
+                            </a>
+                        </p>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <span class="label">
+                <div class="card-footer d-flex justify-content-between align-items-center">
+                    <span class="label text-muted">
                         <i class="bi bi-calendar-event me-1 text-primary"></i>
                         ${notification.formattedDate}
                     </span>
-                    <div class="button-wrapper">
-                        <!-- TODO: отправить увед в архив при нажатии кнопки ниже -->
-                        <form action="/notifications/${notification.id}" method="post">
-                            <button type="submit" class="btn-primary">Пометить как прочитанное</button>
-                        </form>
-                    </div>
+                    <form action="/notifications/${notification.id}" method="post">
+                        <button type="submit" class="btn btn-sm btn-success">Прочитано</button>
+                    </form>
                 </div>
             </div>
         </#list>
-        <#else> Уведомлений нет
+    <#else>
+        <div class="empty-message">Нет новых уведомлений</div>
     </#if>
-
-    <script src="/js/user/notifications-tooltip-script.js"></script>
-
     </body>
 </@layout.main>

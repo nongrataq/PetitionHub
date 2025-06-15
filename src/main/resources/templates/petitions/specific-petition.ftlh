@@ -30,7 +30,7 @@ styles='<link rel="stylesheet" href="/css/petitions/specific-petition-style.css"
             <#if current_petition.tagName?has_content>
                 <div class="label-block mt-3">
                     <div class="label-title">Тег</div>
-                    <span class="badge bg-primary">#${current_petition.tagName}</span>
+                    <span class="tag">#${current_petition.tagName}</span>
                 </div>
             </#if>
         </div>
