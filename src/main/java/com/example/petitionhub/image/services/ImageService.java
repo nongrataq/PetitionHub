@@ -2,8 +2,9 @@ package com.example.petitionhub.image.services;
 
 import com.example.petitionhub.exceptions.NoSuchEntityException;
 import com.example.petitionhub.models.PetitionEntity;
+import com.example.petitionhub.petitions.services.PetitionService;
 import com.example.petitionhub.repositories.ImageRepository;
-import com.example.petitionhub.image.ImageTypes;
+import com.example.petitionhub.image.ImageType;
 import com.example.petitionhub.models.ImageEntity;
 import com.example.petitionhub.models.UserEntity;
 import com.example.petitionhub.repositories.UserRepository;
@@ -26,10 +27,9 @@ import java.util.concurrent.TimeUnit;
 public class ImageService {
     private final ImageRepository imageRepository;
     private final UserRepository userRepository;
-
     @Transactional
-    public void uploadAvatarFromUser(MultipartFile avatarFile, UserEntity user, ImageTypes type) throws IOException {
-        ImageEntity imageEntity = buildAvatarFromFile(avatarFile, type);
+    public void uploadAvatarFromUser(MultipartFile avatarFile, UserEntity user) throws IOException {
+        ImageEntity imageEntity = buildAvatarFromFile(avatarFile, user);
         imageRepository.save(imageEntity);
         user.setAvatar(imageEntity);
         userRepository.save(user);
@@ -40,13 +40,18 @@ public class ImageService {
                 .orElseThrow(() -> new NoSuchEntityException("Аватар с id" +  avatarId + " не существует"));
     }
 
-    public ImageEntity buildAvatarFromFile(MultipartFile file, ImageTypes imageType) throws IOException {
-        return ImageEntity.builder()
-                .fileName(file.getOriginalFilename())
-                .fileType(file.getContentType())
-                .data(file.getBytes())
-                .imageType(imageType)
-                .build();
+    public ImageEntity buildAvatarFromFile(MultipartFile file, UserEntity user){
+        try {
+            return ImageEntity.builder()
+                    .fileName(file.getOriginalFilename())
+                    .fileType(file.getContentType())
+                    .imageType(ImageType.AVATAR)
+                    .user(user)
+                    .data(file.getBytes())
+                    .build();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     public ResponseEntity<?> getAvatar(UUID id) {
@@ -58,24 +63,37 @@ public class ImageService {
                 .body(avatar.getData());
     }
 
-    public List<ImageEntity> uploadImagesForPetition(List<MultipartFile> files, PetitionEntity petition) throws IOException {
-        if (files.size() > 5) {
-            throw new IllegalArgumentException("Максимум 5 изображений");
+    @Transactional
+    public List<ImageEntity> uploadImagesForPetition(List<MultipartFile> files, PetitionEntity petition) {
+        if (files.size() > 3) {
+            throw new IllegalArgumentException("Максимум 3 изображения");
         }
 
         List<ImageEntity> result = new ArrayList<>();
         for (MultipartFile file : files) {
-            ImageEntity image = ImageEntity.builder()
-                    .fileName(file.getOriginalFilename())
-                    .fileType(file.getContentType())
-                    .data(file.getBytes())
-                    .imageType(ImageTypes.PETITION)
-                    .petition(petition)
-                    .build();
+            if (file == null || file.isEmpty() || file.getOriginalFilename() == null || file.getOriginalFilename().isEmpty()) {
+                continue;
+            }
 
-            result.add(imageRepository.save(image));
+            try {
+                if (file.getBytes() == null || file.getBytes().length == 0) {
+                    continue;
+                }
+
+                ImageEntity image = ImageEntity.builder()
+                        .fileName(file.getOriginalFilename())
+                        .fileType(file.getContentType())
+                        .data(file.getBytes())
+                        .imageType(ImageType.PETITION)
+                        .petition(petition)
+                        .build();
+
+                result.add(image);
+            } catch (IOException e) {
+                throw new IllegalStateException(e);
+            }
         }
-        return result;
-    }
 
+        return imageRepository.saveAll(result);
+    }
 }

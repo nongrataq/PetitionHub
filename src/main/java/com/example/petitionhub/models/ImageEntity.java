@@ -1,13 +1,10 @@
 package com.example.petitionhub.models;
 
-import com.example.petitionhub.image.ImageTypes;
+import com.example.petitionhub.image.ImageType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.BatchSize;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
@@ -16,26 +13,21 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @BatchSize(size = 32)
-@Table(name = "avatars")
+@Table(name = "images")
 public class ImageEntity extends BaseEntity {
     private String fileName;
     private String fileType;
+    private byte[] data;
 
     @Enumerated(EnumType.STRING)
-    ImageTypes imageType;
-
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @Column(name = "data")
-    private byte[] data;
+    private ImageType imageType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "petition_id")
     private PetitionEntity petition;
 
-
-
-
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 }
 

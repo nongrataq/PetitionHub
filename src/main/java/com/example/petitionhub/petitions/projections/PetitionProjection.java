@@ -1,4 +1,4 @@
-package com.example.petitionhub.petition.projections;
+package com.example.petitionhub.petitions.projections;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

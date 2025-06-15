@@ -1,6 +1,6 @@
 package com.example.petitionhub.search;
 
-import com.example.petitionhub.petition.projections.PetitionProjection;
+import com.example.petitionhub.petitions.projections.PetitionProjection;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

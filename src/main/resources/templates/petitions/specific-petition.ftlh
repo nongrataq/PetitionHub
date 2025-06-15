@@ -14,23 +14,26 @@ styles='<link rel="stylesheet" href="/css/petitions/specific-petition-style.css"
             <div class="label-block">
                 <div class="label-title">Описание</div>
                 <p class="card-text">${current_petition.description}</p>
-                <#if images?? && (images?size > 0)>
+
+                <!-- Галерея изображений-->
+                <#if images?? && images?has_content>
                     <div class="mt-3">
                         <div class="label-title">Изображения</div>
-                        <div class="d-flex flex-wrap gap-2">
+                        <div class="image-gallery">
                             <#list images as img>
-                                <img src="/avatar/${img.id}" style="max-width: 200px; border-radius: 5px;">
+                                <div class="gallery-item">
+                                    <img src="/image/${img.id}" class="gallery-image" alt="">
+                                </div>
                             </#list>
                         </div>
                     </div>
                 </#if>
-
             </div>
 
             <#if current_petition.tagName?has_content>
                 <div class="label-block mt-3">
                     <div class="label-title">Тег</div>
-                    <span class="tag">#${current_petition.tagName}</span>
+                    <span class="badge bg-primary">#${current_petition.tagName}</span>
                 </div>
             </#if>
         </div>

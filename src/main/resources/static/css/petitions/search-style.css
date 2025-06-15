@@ -181,3 +181,23 @@
     /*color: var(--accent-start);*/
     text-align: center;
 }
+
+.avatar-image {
+    width: 24px;          /* Размер как у иконки */
+    height: 24px;
+    border-radius: 50%;   /* Круглая форма */
+    object-fit: cover;
+    border: 2px solid transparent;
+    background: linear-gradient(white, white) padding-box,
+    linear-gradient(90deg, var(--accent-end), var(--accent-start)) border-box;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Легкая тень *//* Сохраняет пропорции */
+    margin-right: 8px;    /* Отступ от текста */
+    vertical-align: middle; /* Выравнивание по вертикали */
+}
+
+@media (max-width: 768px) {
+    .avatar-image {
+        width: 20px;
+        height: 20px;
+    }
+}

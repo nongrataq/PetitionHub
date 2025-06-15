@@ -38,11 +38,7 @@ public class PetitionEntity extends BaseEntity {
     @JoinColumn(name = "tag_id")
     private TagEntity tagEntity;
 
-    @OneToOne
-    @JoinColumn(name = "image_id")
-    private ImageEntity petitionImage;
-
     @OneToMany(mappedBy = "petition", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<ImageEntity> images = new ArrayList<>();
-
 }

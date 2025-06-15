@@ -1,8 +1,8 @@
 package com.example.petitionhub.user.profile;
 
-import com.example.petitionhub.petition.projections.PetitionProjection;
+import com.example.petitionhub.petitions.projections.PetitionProjection;
 import com.example.petitionhub.repositories.UserRepository;
-import com.example.petitionhub.petition.services.PetitionService;
+import com.example.petitionhub.petitions.services.PetitionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,10 +1,11 @@
-package com.example.petitionhub.petition.controllers;
+package com.example.petitionhub.petitions.controllers;
 
 import com.example.petitionhub.models.PetitionEntity;
 import com.example.petitionhub.mappers.PetitionEntityMapper;
-import com.example.petitionhub.petition.services.PetitionService;
-import com.example.petitionhub.petition.services.SignService;
+import com.example.petitionhub.petitions.services.PetitionService;
+import com.example.petitionhub.petitions.services.SignService;
 import com.example.petitionhub.security.details.UserEntityDetails;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RequestMapping("/specific-petition")
 @RequiredArgsConstructor

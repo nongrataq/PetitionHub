@@ -1,4 +1,4 @@
-package com.example.petitionhub.petition.services;
+package com.example.petitionhub.petitions.services;
 
 import com.example.petitionhub.models.PetitionEntity;
 import com.example.petitionhub.models.SignatureEntity;

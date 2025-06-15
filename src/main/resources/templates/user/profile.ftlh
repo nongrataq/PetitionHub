@@ -8,7 +8,7 @@ styles='<link rel="stylesheet" href="/css/user/profile-style.css">
             <div class="profile-avatar">
                 <div class="avatar-mask">
                     <#if user.avatar??>
-                        <img src="/avatar/${user.avatar.id}" alt="Аватар" class="avatar-image">
+                        <img src="/image/${user.avatar.id}" alt="Аватар" class="avatar-image">
                     <#else>
                         <div class="avatar-placeholder">
                             <i class="bi bi-person-circle"></i>
@@ -17,7 +17,7 @@ styles='<link rel="stylesheet" href="/css/user/profile-style.css">
 
 
                     <#if user.username == principal>
-                        <form action="/avatar" method="post" enctype="multipart/form-data" class="avatar-form">
+                        <form action="/image" method="post" enctype="multipart/form-data" class="avatar-form">
                             <input type="file" name="file" id="avatarInput" accept="image/*" hidden>
                             <label for="avatarInput" class="avatar-upload-btn" title="Сменить фото">
                                 <i class="bi bi-camera"></i>

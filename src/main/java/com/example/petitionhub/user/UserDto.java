@@ -1,6 +1,6 @@
 package com.example.petitionhub.user;
 
-import com.example.petitionhub.petition.dto.PetitionDto;
+import com.example.petitionhub.petitions.dto.PetitionDto;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

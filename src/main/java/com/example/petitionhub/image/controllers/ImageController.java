@@ -1,7 +1,6 @@
 package com.example.petitionhub.image.controllers;
 
 import com.example.petitionhub.image.services.ImageService;
-import com.example.petitionhub.image.ImageTypes;
 import com.example.petitionhub.security.details.UserEntityDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +15,10 @@ import java.io.IOException;
 import java.util.UUID;
 
 
-@RequestMapping("/avatar")
+@RequestMapping("/image")
 @RequiredArgsConstructor
 @Controller
-public class AvatarController {
+public class ImageController {
     private final ImageService imageService;
 
     @PostMapping
@@ -27,7 +26,7 @@ public class AvatarController {
                                @AuthenticationPrincipal UserEntityDetails user,
                                RedirectAttributes redirectAttributes) {
         try {
-            imageService.uploadAvatarFromUser(file, user.getUserEntity(), ImageTypes.AVATAR);
+            imageService.uploadAvatarFromUser(file, user.getUserEntity());
             redirectAttributes.addFlashAttribute("successAvatar", "Аватар успешно обновлен!");
             return "redirect:/profile";
         } catch (IOException e) {
@@ -38,7 +37,7 @@ public class AvatarController {
 
     @GetMapping("/{id}")
     @Transactional(readOnly = true)
-    public ResponseEntity<?> getAvatar(@PathVariable(name = "id") UUID id) {
+    public ResponseEntity<?> getImage(@PathVariable(name = "id") UUID id) {
         return imageService.getAvatar(id);
     }
 

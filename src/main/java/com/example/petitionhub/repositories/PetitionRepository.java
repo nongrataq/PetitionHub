@@ -1,7 +1,6 @@
 package com.example.petitionhub.repositories;
 
-import com.example.petitionhub.image.ImageTypes;
-import com.example.petitionhub.petition.projections.PetitionProjection;
+import com.example.petitionhub.petitions.projections.PetitionProjection;
 import com.example.petitionhub.models.PetitionEntity;
 import com.example.petitionhub.models.UserEntity;
 import org.springframework.data.domain.Page;
@@ -48,17 +47,18 @@ public interface PetitionRepository extends JpaRepository<PetitionEntity, UUID> 
     Page<PetitionProjection> findByTitleContainingIgnoreCase(@Param("title") String title, Pageable pageable);
 
     @Query("""
-                SELECT 
+                SELECT
                     p.id as id,
                     p.title as title,
                     p.description as description,
                     p.countOfSignatures as countOfSignatures,
                     p.date as date,
                     u.username as authorUsername,
-                    t.name as tagName
+                    t.name as tagName,
+                    u.avatar.id as avatarId
                 FROM PetitionEntity p
                 JOIN p.author u
-                JOIN p.tagEntity t 
+                JOIN p.tagEntity t
                 WHERE LOWER(t.name) LIKE LOWER(CONCAT('%', :tag, '%'))
             """)
     Page<PetitionProjection> findByTagEntityNameContainingIgnoreCase(@Param("tag") String tag, Pageable pageable);
@@ -71,7 +71,8 @@ public interface PetitionRepository extends JpaRepository<PetitionEntity, UUID> 
                     p.countOfSignatures as countOfSignatures,
                     p.date as date,
                     u.username as authorUsername,
-                    t.name as tagName
+                    t.name as tagName,
+                    u.avatar.id as avatarId
                 FROM PetitionEntity p
                 JOIN p.author u
                 LEFT JOIN p.tagEntity t

@@ -1,7 +1,7 @@
-package com.example.petitionhub.petition.controllers;
+package com.example.petitionhub.petitions.controllers;
 
-import com.example.petitionhub.petition.dto.PetitionDto;
-import com.example.petitionhub.petition.services.PetitionService;
+import com.example.petitionhub.petitions.dto.PetitionDto;
+import com.example.petitionhub.petitions.services.PetitionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,9 +25,9 @@ public class PetitionCreationController {
     public String createPetition(
             @Valid PetitionDto petitionDto,
             BindingResult bindingResult,
-            @RequestParam("images") List<MultipartFile> images,
+            @RequestParam(name = "images") List<MultipartFile> images,
             Model model
-    ) throws IOException {
+    ) {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getFieldErrors());
@@ -42,7 +42,7 @@ public class PetitionCreationController {
             return "petitions/create-petition";
         }
 
-        petitionService.savePetitionWithImages(petitionDto, images);
+        petitionService.savePetition(petitionDto, images);
         return "redirect:/profile";
     }
 

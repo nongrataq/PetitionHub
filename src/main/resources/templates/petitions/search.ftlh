@@ -40,6 +40,7 @@ styles='<link rel="stylesheet" href="/css/petitions/search-style.css">'>
                                 <li><a class="dropdown-item" href="/search?tag=Культура">🎭 Культура</a></li>
                                 <li><a class="dropdown-item" href="/search?tag=Спорт">🏅 Спорт</a></li>
                                 <li><a class="dropdown-item" href="/search?tag=Технологии">💻 Технологии</a></li>
+                                <li><a class="dropdown-item" href="/search?tag=Другое">❓ Другое</a></li>
                             </ul>
                         </div>
                     </div>
@@ -60,8 +61,12 @@ styles='<link rel="stylesheet" href="/css/petitions/search-style.css">'>
                                 <p class="card-text text-muted description-truncate">
                                     ${petition.description}</p>
                                 <span>
-                                    <i class="bi bi-person-circle text-danger"></i>
-                                    <span class="text-muted">${petition.authorUsername}</span>
+                                <#if petition.avatarId?has_content>
+                                    <img src="/image/${petition.avatarId}" alt="Аватар" class="avatar-image me-1 mb-2">
+                                <#else>
+                                    <i class="bi bi-person-circle text-danger me-1"></i>
+                                </#if>
+                                <a href="profile/${petition.authorUsername}" class="text-muted">${petition.authorUsername}</a>
                                 </span>
                                 <div class="d-flex justify-content-between text-muted small">
                                     <span>
@@ -90,9 +95,10 @@ styles='<link rel="stylesheet" href="/css/petitions/search-style.css">'>
                 <div class="col-12">
                     <div class="alert alert-info">
                         <#if query?has_content>
-                            По запросу "${query}" ничего не найдено.
-                        <#else>
-                            Введите поисковый запрос
+                            По запросу ${query} ничего не найдено.
+                        <#elseif tag?has_content>
+                            По запросу ${tag} ничего не найдено.
+                        <#else> Введите поисковый запрос
                         </#if>
                     </div>
                 </div>

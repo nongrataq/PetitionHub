@@ -1,8 +1,8 @@
-package com.example.petitionhub.petition.controllers;
+package com.example.petitionhub.petitions.controllers;
 
 import com.example.petitionhub.exceptions.AlreadySignedException;
-import com.example.petitionhub.petition.services.SignService;
-import com.example.petitionhub.petition.services.PetitionService;
+import com.example.petitionhub.petitions.services.SignService;
+import com.example.petitionhub.petitions.services.PetitionService;
 import com.example.petitionhub.security.details.UserEntityDetails;
 
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
 package com.example.petitionhub.mappers;
 
 import com.example.petitionhub.models.PetitionEntity;
-import com.example.petitionhub.petition.dto.PetitionDto;
+import com.example.petitionhub.petitions.dto.PetitionDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;

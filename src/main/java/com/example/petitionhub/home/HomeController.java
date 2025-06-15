@@ -1,8 +1,7 @@
 package com.example.petitionhub.home;
 
-import com.example.petitionhub.image.ImageTypes;
-import com.example.petitionhub.petition.projections.PetitionProjection;
-import com.example.petitionhub.petition.services.PetitionService;
+import com.example.petitionhub.petitions.projections.PetitionProjection;
+import com.example.petitionhub.petitions.services.PetitionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

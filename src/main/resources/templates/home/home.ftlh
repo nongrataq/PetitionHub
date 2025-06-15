@@ -31,10 +31,10 @@ styles='<link rel="stylesheet" href="/css/home/home-style.css">'>
                                 <p class="card-text text-muted description-truncate">
                                     ${petition.description}</p>
                                 <span>
-                                <#if petition.avatarId??>
-                                    <img src="/avatar/${petition.avatarId}" alt="Аватар" class="avatar-image me-1">  <!-- me-2 - отступ справа -->
+                                <#if petition.avatarId?has_content>
+                                    <img src="/image/${petition.avatarId}" alt="Аватар" class="avatar-image me-1 mb-2">
                                 <#else>
-                                    <i class="bi bi-person-circle text-danger me-2"></i>
+                                    <i class="bi bi-person-circle text-danger me-1"></i>
                                 </#if>
                                 <a href="profile/${petition.authorUsername}" class="text-muted">${petition.authorUsername}</a>
                                 </span>

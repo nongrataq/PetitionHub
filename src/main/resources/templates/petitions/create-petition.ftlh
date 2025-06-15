@@ -71,15 +71,13 @@ styles='<link rel="stylesheet" href="/css/petitions/create-petition-style.css">'
         <!-- Загрузка изображений -->
         <div class="mb-3">
             <div class="mb-3">
-                <label class="form-label">Изображения (макс. 5)</label>
+                <label class="form-label">Изображения (макс. 3)</label>
 
                 <input type="file" class="form-control mb-1" name="images" accept="image/*">
                 <input type="file" class="form-control mb-1" name="images" accept="image/*">
                 <input type="file" class="form-control mb-1" name="images" accept="image/*">
-                <input type="file" class="form-control mb-1" name="images" accept="image/*">
-                <input type="file" class="form-control mb-1" name="images" accept="image/*">
 
-                <small class="form-text text-muted">Максимум 5 изображений. Поля необязательные.</small>
+                <small class="form-text text-muted">Максимум 3 изображений. Поля необязательные.</small>
             </div>
 
         </div>

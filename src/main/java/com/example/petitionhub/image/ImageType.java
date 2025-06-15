@@ -1,6 +1,6 @@
 package com.example.petitionhub.image;
 
-public enum ImageTypes {
+public enum ImageType {
     AVATAR,
     PETITION
 }

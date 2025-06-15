@@ -1,13 +1,12 @@
-package com.example.petitionhub.petition.services;
+package com.example.petitionhub.petitions.services;
 
-import com.example.petitionhub.image.ImageTypes;
 import com.example.petitionhub.image.services.ImageService;
 import com.example.petitionhub.models.PetitionEntity;
 import com.example.petitionhub.models.UserEntity;
 import com.example.petitionhub.exceptions.NoSuchEntityException;
 import com.example.petitionhub.mappers.PetitionEntityMapper;
-import com.example.petitionhub.petition.dto.PetitionDto;
-import com.example.petitionhub.petition.projections.PetitionProjection;
+import com.example.petitionhub.petitions.dto.PetitionDto;
+import com.example.petitionhub.petitions.projections.PetitionProjection;
 import com.example.petitionhub.repositories.PetitionRepository;
 import com.example.petitionhub.repositories.UserRepository;
 import com.example.petitionhub.tag.TagService;
@@ -40,16 +39,15 @@ public class PetitionService {
     private final TagService tagService;
     private final ImageService imageService;
 
-
     @Transactional
-    public void savePetition(PetitionDto petitionDto) {
+    public void savePetition(PetitionDto dto, List<MultipartFile> images) {
         UserEntity user = getCurrentUser();
-        PetitionEntity petitionEntity = mapper.toPetitionEntity(petitionDto);
-
-        petitionEntity.setAuthor(user);
-        petitionEntity.setTagEntity(tagService.getOrCreateTagByName(petitionDto.getTagName()));
-        user.getPetitions().add(petitionEntity);
-        petitionRepository.save(petitionEntity);
+        PetitionEntity petition = mapper.toPetitionEntity(dto);
+        petition.setAuthor(getCurrentUser());
+        petition.setTagEntity(tagService.getOrCreateTagByName(dto.getTagName()));
+        petition.setImages(imageService.uploadImagesForPetition(images, petition));
+        user.getPetitions().add(petition);
+        petitionRepository.save(petition);
     }
 
     public void incrementSignatureCount(PetitionEntity petition) {
@@ -93,16 +91,4 @@ public class PetitionService {
     public Page<PetitionProjection> findAllProjections(Pageable pageable) {
         return petitionRepository.findAllProjections(pageable);
     }
-
-    @Transactional
-    public void savePetitionWithImages(PetitionDto dto, List<MultipartFile> images) throws IOException {
-        PetitionEntity petition = mapper.toPetitionEntity(dto);
-        petition.setAuthor(getCurrentUser());
-        petition.setTagEntity(tagService.getOrCreateTagByName(dto.getTagName()));
-
-        petitionRepository.save(petition);
-        imageService.uploadImagesForPetition(images, petition);
-    }
-
-
 }
