@@ -21,6 +21,7 @@ public class SearchController {
     @GetMapping
     public String search(
             @RequestParam(value = "query", required = false) String query,
+            @RequestParam(value = "tag", required = false) String tag,
             Model model,
             @PageableDefault(direction = Sort.Direction.DESC, size = 6, sort = "countOfSignatures") Pageable pageable
     ) {
@@ -29,6 +30,13 @@ public class SearchController {
             Page<PetitionProjection> petitions = searchService.searchPetitionByTitle(query.trim(), pageable);
             model.addAttribute("petitions", petitions.getContent());
             model.addAttribute("query", query);
+            model.addAttribute("searchType", "title");
+
+        } else if (tag != null && !tag.trim().isEmpty()) {
+            Page<PetitionProjection> petitions = searchService.searchPetitionByTag(tag.trim(), pageable);
+            model.addAttribute("petitions", petitions.getContent());
+            model.addAttribute("tag", tag);
+            model.addAttribute("searchType", "tag");
         }
 
         return "petitions/search";

@@ -16,4 +16,8 @@ public class SearchService {
     public Page<PetitionProjection> searchPetitionByTitle(String query, Pageable pageable) {
         return petitionRepository.findByTitleContainingIgnoreCase(query, pageable);
     }
+
+    public Page<PetitionProjection> searchPetitionByTag(String tag, Pageable pageable) {
+        return petitionRepository.findByTagEntityNameContainingIgnoreCase(tag, pageable);
+    }
 }
