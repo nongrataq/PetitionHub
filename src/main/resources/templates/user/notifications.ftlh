@@ -2,18 +2,21 @@
 <@layout.main title="Notifications"
 styles='<link rel="stylesheet" href="/css/user/notifications-style.css">'>
 
-    <body class="notifications-body">
+    <div class="notifications-body">
+        <div class="header-wrapper">
+            <h1 class="archive-title">Уведомления</h1>
+        </div>
     <div class="btn-wrapper">
-        <a href="/archive" class="btn btn-outline-secondary mb-4">Перейти в архив</a>
+        <a href="/archive" class="btn btn-primary mb-4">Перейти в архив</a>
     </div>
 
     <#if notifications?has_content>
         <#list notifications as notification>
-            <div class="card petition-card shadow-sm fade-in">
+            <div class="card petition-card shadow-sm">
                 <div class="card-body">
                     <div class="label-block">
                         <div class="label-title">Новое уведомление</div>
-                        <p class="card-text">
+                        <p style="color: var(--text-color);">
                             Вашу петицию
                             <a href="/specific-petition/${notification.petitionId}" class="link">
                                 ${notification.petitionTitle}
@@ -39,5 +42,5 @@ styles='<link rel="stylesheet" href="/css/user/notifications-style.css">'>
     <#else>
         <div class="empty-message">Нет новых уведомлений</div>
     </#if>
-    </body>
+    </div>
 </@layout.main>

@@ -3,17 +3,68 @@ body.notifications-body {
     padding: 2rem;
     font-family: "Segoe UI", sans-serif;
 }
+.btn-primary {
+    background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+    color: #fff;
+    padding: 0.5rem 2.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    font-size: 1.25rem;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeInUp 0.6s forwards;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+}
 
 .btn-wrapper {
     text-align: right;
     margin-bottom: 1.5rem;
 }
 
+.archive-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
 .petition-card {
     border-radius: 16px;
     margin-bottom: 1rem;
-    border: 1px solid #dee2e6;
     transition: box-shadow 0.3s ease;
+    background: var(--card-bg);
+    position: relative;
+    background: var(--card-bg);
+    box-shadow: 0 2px 6px var(--shadow);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeInUp 0.6s forwards;
+    border: 2px solid transparent;
+    background-image: linear-gradient(var(--card-bg), var(--card-bg)),
+    linear-gradient(90deg, var(--accent-start), var(--accent-end));
+    background-origin: padding-box, border-box;
+    background-clip: padding-box, border-box;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .petition-card:hover {
@@ -28,6 +79,7 @@ body.notifications-body {
     font-weight: bold;
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
+    color: var(--text-color);
 }
 
 .empty-message {

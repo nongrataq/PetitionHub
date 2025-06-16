@@ -61,8 +61,8 @@
                             class="theme-select dropdown-toggle me-2"
                             onchange="onThemeChange(this.value)">
                         <option value="" disabled selected hidden>Темы</option>
-                        <option value="classic">Для Богдана</option>
-                        <option value="robot">Робот</option>
+                        <!-- <option value="classic">Для Богдана</option>
+                        <option value="robot">Робот</option> -->
                         <option value="pastel">Нежный</option>
                         <option value="modern">Современный</option>
                         <option value="blue">Строгий синий</option>

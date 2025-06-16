@@ -8,7 +8,7 @@ body.notifications-body {
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #343a40;
+    color: var(--text-color);
 }
 
 .header-wrapper {
@@ -19,16 +19,33 @@ body.notifications-body {
 }
 
 .petition-card {
-    border: 1px solid #dee2e6;
     border-radius: 16px;
     margin-bottom: 1rem;
-    background-color: #fff;
-    transition: transform 0.2s ease-in;
+    transition: box-shadow 0.3s ease;
+    background: var(--card-bg);
+    position: relative;
+    background: var(--card-bg);
+    box-shadow: 0 2px 6px var(--shadow);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeInUp 0.3s forwards;
+    border: 2px solid transparent;
+    background-image: linear-gradient(var(--card-bg), var(--card-bg)),
+    linear-gradient(90deg, var(--accent-start), var(--accent-end));
+    background-origin: padding-box, border-box;
+    background-clip: padding-box, border-box;
 }
 
-.petition-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .label-block {
@@ -39,7 +56,7 @@ body.notifications-body {
     font-weight: 600;
     font-size: 1.1rem;
     margin-bottom: 0.4rem;
-    color: #495057;
+    color: var(--text-color);
 }
 
 .empty-message {
@@ -67,4 +84,26 @@ body.notifications-body {
 .link:hover {
     color: var(--accent-end-reversed);
     text-decoration: underline;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+    color: #fff;
+    padding: 0.5rem 2.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    font-size: 1.25rem;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeInUp 0.6s forwards;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
 }

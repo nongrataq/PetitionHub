@@ -11,7 +11,7 @@ function applyTheme(palette, mode) {
   : 'bi bi-moon-stars-fill';
 }
 
-const savedPalette = localStorage.getItem('theme') || 'classic';
+const savedPalette = localStorage.getItem('theme') || 'blue';
 const savedMode    = localStorage.getItem('mode')  || 'light';
 themeSelect.value = savedPalette;
 applyTheme(savedPalette, savedMode);

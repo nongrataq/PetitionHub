@@ -34,6 +34,36 @@
   color: var(--text-color);
   line-height: 1.6;
   white-space: pre-wrap;
+  margin: 0 0 0.5rem 0;
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-content h5 {
+  color: var(--accent-start);
+  margin: 1.2rem 0 0.5rem 0; /* сверху | справа | снизу | слева */
+  font-size: 1.1rem;
+}
+
+.about-list {
+  padding-left: 1.2rem;
+  margin: 0.3rem 0 1rem 0; /* Компактные отступы */
+  line-height: 1.4;
+  color: var(--text-color);
+}
+
+.about-list.checkmarks {
+  list-style-type: none;
+  padding-left: 1.5rem;
+}
+
+.about-list.checkmarks li::before {
+  content: "✓";
+  color: var(--accent-start);
+  margin-right: 0.5rem;
 }
 
 .team-section {
