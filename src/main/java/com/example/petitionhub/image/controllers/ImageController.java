@@ -22,9 +22,11 @@ public class ImageController {
     private final ImageService imageService;
 
     @PostMapping
-    public String uploadAvatar(@RequestParam(name = "file") MultipartFile file,
-                               @AuthenticationPrincipal UserEntityDetails user,
-                               RedirectAttributes redirectAttributes) {
+    public String uploadAvatar(
+            @RequestParam(name = "file") MultipartFile file,
+            @AuthenticationPrincipal UserEntityDetails user,
+            RedirectAttributes redirectAttributes
+    ) {
         try {
             imageService.uploadAvatarFromUser(file, user.getUserEntity());
             redirectAttributes.addFlashAttribute("successAvatar", "Аватар успешно обновлен!");

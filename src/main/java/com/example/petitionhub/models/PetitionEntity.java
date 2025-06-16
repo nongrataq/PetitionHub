@@ -4,14 +4,19 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.BatchSize;
+
 import java.util.ArrayList;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"images"})
 @Entity
 @Data
 @SuperBuilder
 @NoArgsConstructor
+@ToString(
+        callSuper = true,
+        exclude = {"author", "signatures", "tagEntity", "images"}
+)
 @AllArgsConstructor
 @BatchSize(size = 32)
 @Table(name = "petitions")
@@ -41,4 +46,5 @@ public class PetitionEntity extends BaseEntity {
     @OneToMany(mappedBy = "petition", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<ImageEntity> images = new ArrayList<>();
+
 }

@@ -6,16 +6,25 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.BatchSize;
+
 import java.util.ArrayList;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"avatar"})
 @Entity
 @Getter
 @Setter
 @SuperBuilder
 @NoArgsConstructor
-@ToString(exclude = {"petitions", "signatures", "receivedNotifications", "sentNotifications"})
+@ToString(
+        exclude = {
+                "petitions",
+                "signatures",
+                "receivedNotifications",
+                "sendNotifications",
+                "avatar"
+        },
+        callSuper = true)
 @BatchSize(size = 64)
 @AllArgsConstructor
 @Table(name = "users")
@@ -51,7 +60,7 @@ public class UserEntity extends BaseEntity {
     private List<NotificationEntity> receivedNotifications;
 
     @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)
-    private List<NotificationEntity> sentNotifications;
+    private List<NotificationEntity> sendNotifications;
 
     @OneToOne(
             fetch = FetchType.LAZY,
