@@ -6,7 +6,7 @@ import com.example.petitionhub.auth.enums.Role;
 import com.example.petitionhub.auth.enums.Status;
 import com.example.petitionhub.exceptions.UserAccountAlreadyExistsException;
 import com.example.petitionhub.repositories.UserRepository;
-import com.example.petitionhub.user.UserDto;
+import com.example.petitionhub.user.dto.UserDto;
 import com.example.petitionhub.mappers.UserEntityMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

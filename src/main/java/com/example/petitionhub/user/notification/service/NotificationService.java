@@ -31,7 +31,6 @@ public class NotificationService {
         log.info("Signer ID: {}", signer.getId());
         log.info("Petition ID: {}", petition.getId());
         log.info("Author ID: {}", petition.getAuthor().getId());
-        
         if (!petition.getAuthor().getId().equals(signer.getId())) {
             NotificationEntity notificationEntity = NotificationEntity.builder()
                     .sender(signer)

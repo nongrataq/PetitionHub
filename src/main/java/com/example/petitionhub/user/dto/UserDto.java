@@ -1,4 +1,4 @@
-package com.example.petitionhub.user;
+package com.example.petitionhub.user.dto;
 
 import com.example.petitionhub.petitions.dto.PetitionDto;
 import jakarta.validation.constraints.NotBlank;

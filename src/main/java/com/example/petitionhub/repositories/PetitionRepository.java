@@ -38,7 +38,6 @@ public interface PetitionRepository extends JpaRepository<PetitionEntity, UUID> 
                     p.countOfSignatures as countOfSignatures,
                     p.date as date,
                     u.username as authorUsername,
-                    t.name as tagName,
                     u.avatar.id as avatarId
                 FROM PetitionEntity p
                 JOIN p.author u
@@ -55,7 +54,6 @@ public interface PetitionRepository extends JpaRepository<PetitionEntity, UUID> 
                     p.countOfSignatures as countOfSignatures,
                     p.date as date,
                     u.username as authorUsername,
-                    t.name as tagName,
                     u.avatar.id as avatarId
                 FROM PetitionEntity p
                 JOIN p.author u
