@@ -4,12 +4,12 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.7'
 }
 
-group = 'com.example'
+group = 'ru.itis'
 version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
@@ -24,11 +24,18 @@ repositories {
 }
 
 dependencies {
+    // Web
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    //FreeMarker
     implementation 'org.springframework.boot:spring-boot-starter-freemarker'
+
+    // DATABASE
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
     runtimeOnly 'org.postgresql:postgresql'
+
+    //Validation
+    implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
 
     // Lombok
     compileOnly 'org.projectlombok:lombok:1.18.30'
